@@ -76,3 +76,15 @@
   color: #999;
   margin-left: auto;
 }
+
+@media (max-width: 768px) {
+
+  .album-card {
+      width: 100%;
+      height: 100%;
+  }
+
+  .album-image {
+      display: none;
+  }
+}
