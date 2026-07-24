@@ -1,0 +1,26 @@
+@use './scss-modules/root.scss' as root;
+
+@use './scss-modules/header.scss';
+@use './scss-modules/footer.scss';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+}
+
+main {
+    flex: 1;
+}
+
+a {
+    text-decoration: none !important;
+}
