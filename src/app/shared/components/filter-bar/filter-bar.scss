@@ -1,0 +1,10 @@
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  mat-form-field {
+    width: 180px;
+  }
+}
