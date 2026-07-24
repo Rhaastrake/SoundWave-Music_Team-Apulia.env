@@ -1,0 +1,39 @@
+<div class="filter-bar">
+  <mat-form-field subscriptSizing="dynamic">
+    <mat-label>Genere</mat-label>
+    <mat-select
+      [value]="service.selectedGenres()"
+      (selectionChange)="service.setGenre($event.value)"
+      multiple>
+      @for (g of genres; track g.value) {
+        <mat-option [value]="g.value">{{ g.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field subscriptSizing="dynamic">
+    <mat-label>Anno</mat-label>
+    <input
+      matInput
+      id="filter-year"
+      type="text"
+      inputmode="numeric"
+      aria-label="Anno"
+      [value]="service.selectedYear()"
+      (input)="onYearInput($event)"
+      (keydown)="onYearKeydown($event)"
+      placeholder="es. 2023" />
+  </mat-form-field>
+
+  <mat-form-field subscriptSizing="dynamic">
+    <mat-label>Tipo</mat-label>
+    <mat-select
+      [value]="service.selectedContentTypes()"
+      (selectionChange)="service.setContentType($event.value)"
+      multiple>
+      @for (t of contentTypes; track t.value) {
+        <mat-option [value]="t.value">{{ t.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>

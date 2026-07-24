@@ -1,0 +1,38 @@
+import { Component, input } from '@angular/core';
+import { Album } from '../../../core/models';
+import { Genre, ContentType } from '../../../core/enums';
+
+const GENRE_LABELS: Record<Genre, string> = {
+  [Genre.Rock]: 'Rock',
+  [Genre.Pop]: 'Pop',
+  [Genre.Electronic]: 'Elettronica',
+  [Genre.Jazz]: 'Jazz',
+};
+
+const TYPE_LABELS: Record<ContentType, string> = {
+  [ContentType.Single]: 'Singolo',
+  [ContentType.EP]: 'EP',
+  [ContentType.Album]: 'Album',
+};
+
+@Component({
+  standalone: true,
+  selector: 'app-album-card',
+  templateUrl: './album-card.html',
+  styleUrl: './album-card.scss',
+})
+export class AlbumCardComponent {
+  readonly album = input.required<Album>();
+
+  protected get genreLabel(): string {
+    return GENRE_LABELS[this.album().genre];
+  }
+
+  protected get typeLabel(): string {
+    return TYPE_LABELS[this.album().type];
+  }
+
+  protected get year(): number {
+    return this.album().releaseDate.getFullYear();
+  }
+}
