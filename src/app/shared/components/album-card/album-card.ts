@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Album } from '../../../core/models';
 import { Genre, ContentType } from '../../../core/enums';
 
@@ -18,6 +19,7 @@ const TYPE_LABELS: Record<ContentType, string> = {
 @Component({
   standalone: true,
   selector: 'app-album-card',
+  imports: [RouterLink],
   templateUrl: './album-card.html',
   styleUrl: './album-card.scss',
 })

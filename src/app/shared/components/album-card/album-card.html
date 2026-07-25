@@ -1,4 +1,4 @@
-<div class="album-card">
+<div class="album-card" [routerLink]="'/music/' + album().id" style="cursor: pointer">
   <div class="album-image">
     @if (album().imageUrl) {
       <img [src]="album().imageUrl" [alt]="album().title" />
