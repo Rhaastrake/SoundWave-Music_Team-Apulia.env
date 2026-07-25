@@ -1,0 +1,33 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 32px 16px;
+
+  h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    color: #ddd;
+    margin: 0 0 8px;
+    line-height: 1;
+  }
+
+  p {
+    font-size: 1.25rem;
+    color: #666;
+    margin: 0 0 24px;
+  }
+}
+
+.back-link {
+  font-size: 0.9375rem;
+  color: #1565c0;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
