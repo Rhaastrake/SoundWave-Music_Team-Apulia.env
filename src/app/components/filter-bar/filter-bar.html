@@ -4,7 +4,8 @@
     <mat-select
       [value]="service.selectedGenres()"
       (selectionChange)="service.setGenre($event.value)"
-      multiple>
+      multiple
+    >
       @for (g of genres; track g.value) {
         <mat-option [value]="g.value">{{ g.label }}</mat-option>
       }
@@ -22,7 +23,8 @@
       [value]="service.selectedYear()"
       (input)="onYearInput($event)"
       (keydown)="onYearKeydown($event)"
-      placeholder="es. 2023" />
+      placeholder="es. 2023"
+    />
   </mat-form-field>
 
   <mat-form-field subscriptSizing="dynamic">
@@ -30,7 +32,8 @@
     <mat-select
       [value]="service.selectedContentTypes()"
       (selectionChange)="service.setContentType($event.value)"
-      multiple>
+      multiple
+    >
       @for (t of contentTypes; track t.value) {
         <mat-option [value]="t.value">{{ t.label }}</mat-option>
       }

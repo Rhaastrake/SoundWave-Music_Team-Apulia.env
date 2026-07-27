@@ -1,11 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Album } from '../../../core/models';
-import { Genre } from '../../../core/enums';
-import { CatalogService } from '../../../services/catalog/catalog.service';
-import { FavoritesService } from '../../../services/favorites/favorites.service';
-import { DurationPipe } from '../../../shared/pipes/duration/duration';
+import { Album } from '../../models';
+import { Genre } from '../../enums';
+import { CatalogService } from '../../services/catalog.service';
+import { FavoritesService } from '../../services/favorites.service';
+import { DurationPipe } from '../../pipes/duration/duration';
 
 const GENRE_LABELS: Record<Genre, string> = {
   [Genre.Rock]: 'Rock',

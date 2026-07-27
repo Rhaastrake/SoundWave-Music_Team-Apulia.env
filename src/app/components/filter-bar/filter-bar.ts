@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CatalogService } from '../../../services/catalog/catalog.service';
-import { Genre, ContentType } from '../../../core/enums';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { ContentType, Genre } from '../../enums';
+import { CatalogService } from '../../services/catalog.service';
 
 interface SelectOption<T> {
   value: T;

@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Album } from '../../../core/models';
-import { Genre, ContentType } from '../../../core/enums';
+import { Album } from '../../models';
+import { Genre, ContentType } from '../../enums';
 
 const GENRE_LABELS: Record<Genre, string> = {
   [Genre.Rock]: 'Rock',
