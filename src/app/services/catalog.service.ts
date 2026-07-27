@@ -1,25 +1,16 @@
-<<<<<<< Updated upstream:src/app/services/catalog.service.ts
-import { Injectable, WritableSignal, computed, signal } from '@angular/core';
-import { ContentType, Genre } from '../enums';
-import { Album } from '../models';
-import { MOCK_ALBUMS } from './mock-albums';
-=======
 import { HttpClient } from '@angular/common/http';
-import {
-  Injectable,
-  WritableSignal,
-  computed,
-  inject,
-  signal,
-} from '@angular/core';
-import { ContentType, Genre } from '../../enums';
-import { Album, Artist, Track } from '../../models';
+import { Injectable, WritableSignal, computed, inject, signal } from '@angular/core';
+import { ContentType, Genre } from '../enums';
+import { Album, Artist, Track } from '../models';
 
-/** Raw JSON shape: normalized, no Date, no circular refs, enums as their names. */
+/** Shape del JSON: normalizzato, senza Date, senza riferimenti circolari, enum per nome. */
 interface RawArtist {
   id: string;
   name: string;
   imageUrl: string;
+  bio: string;
+  mainGenre: keyof typeof Genre;
+  formationYear: number;
 }
 interface RawTrack {
   id: string;
@@ -43,7 +34,6 @@ interface CatalogData {
   tracks: RawTrack[];
   releases: RawRelease[];
 }
->>>>>>> Stashed changes:src/app/services/catalog/catalog.service.ts
 
 @Injectable({ providedIn: 'root' })
 export class CatalogService {
@@ -51,7 +41,8 @@ export class CatalogService {
   private readonly dataUrl = 'assets/data/albums.json';
 
   readonly albums: WritableSignal<Album[]> = signal([]);
-  readonly loading: WritableSignal<boolean> = signal(true);
+  readonly artists: WritableSignal<Artist[]> = signal([]);
+  readonly loaded: WritableSignal<boolean> = signal(false);
 
   readonly searchText: WritableSignal<string> = signal('');
   readonly selectedGenres: WritableSignal<Genre[]> = signal([]);
@@ -76,26 +67,32 @@ export class CatalogService {
   readonly resultCount = computed(() => this.filteredAlbums().length);
 
   constructor() {
-    this.load();
-  }
-
-  private load(): void {
     this.http.get<CatalogData>(this.dataUrl).subscribe({
       next: (data) => {
-        this.albums.set(this.buildAlbums(data));
-        this.loading.set(false);
+        this.build(data);
+        this.loaded.set(true);
       },
       error: (err) => {
-        console.error('Failed to load catalog data', err);
-        this.loading.set(false);
+        console.error('Caricamento catalogo fallito', err);
+        this.loaded.set(true);
       },
     });
   }
 
-  /** Rebuilds Date, numeric enums and the circular artist<->album / track->artists refs. */
-  private buildAlbums(data: CatalogData): Album[] {
+  /** Ricostruisce Date, enum numerici e i riferimenti circolari artist<->album. */
+  private build(data: CatalogData): void {
     const artistMap = new Map<string, Artist>();
-    data.artists.forEach((a) => artistMap.set(a.id, { ...a, albums: [] }));
+    data.artists.forEach((a) =>
+      artistMap.set(a.id, {
+        id: a.id,
+        name: a.name,
+        imageUrl: a.imageUrl,
+        bio: a.bio,
+        mainGenre: Genre[a.mainGenre],
+        formationYear: a.formationYear,
+        albums: [],
+      }),
+    );
 
     const trackMap = new Map<string, Track>();
     data.tracks.forEach((t) =>
@@ -108,7 +105,7 @@ export class CatalogService {
       }),
     );
 
-    return data.releases.map((raw) => {
+    const albums = data.releases.map((raw) => {
       const artist = artistMap.get(raw.artistId)!;
       const album: Album = {
         id: raw.id,
@@ -123,6 +120,9 @@ export class CatalogService {
       artist.albums.push(album);
       return album;
     });
+
+    this.artists.set([...artistMap.values()]);
+    this.albums.set(albums);
   }
 
   private matchesSearch(album: Album, text: string): boolean {
@@ -130,6 +130,10 @@ export class CatalogService {
     const artistMatch = album.artist.name.toLowerCase().includes(text);
     const genreMatch = Genre[album.genre].toLowerCase().includes(text);
     return titleMatch || artistMatch || genreMatch;
+  }
+
+  getAlbumById(id: string): Album | undefined {
+    return this.albums().find((a) => a.id === id);
   }
 
   setGenre(genres: Genre[]): void {
@@ -144,14 +148,6 @@ export class CatalogService {
   setSearchText(text: string): void {
     this.searchText.set(text);
   }
-<<<<<<< Updated upstream:src/app/services/catalog.service.ts
-
-  getAlbumById(id: string): Album | undefined {
-    return this.albums().find(a => a.id === id);
-  }
-
-=======
->>>>>>> Stashed changes:src/app/services/catalog/catalog.service.ts
   resetFilters(): void {
     this.searchText.set('');
     this.selectedGenres.set([]);

@@ -3,27 +3,42 @@
     {
       "id": "artist-1",
       "name": "The Waves",
-      "imageUrl": ""
+      "imageUrl": "",
+      "bio": "Rock band from the coast",
+      "mainGenre": "Rock",
+      "formationYear": 2015
     },
     {
       "id": "artist-2",
       "name": "Luna Nova",
-      "imageUrl": ""
+      "imageUrl": "",
+      "bio": "Pop duo with ethereal sound",
+      "mainGenre": "Pop",
+      "formationYear": 2018
     },
     {
       "id": "artist-3",
       "name": "Echo Valley",
-      "imageUrl": ""
+      "imageUrl": "",
+      "bio": "Electronic music producer",
+      "mainGenre": "Electronic",
+      "formationYear": 2016
     },
     {
       "id": "artist-4",
       "name": "Neon District",
-      "imageUrl": ""
+      "imageUrl": "",
+      "bio": "Synthwave collective",
+      "mainGenre": "Electronic",
+      "formationYear": 2014
     },
     {
       "id": "artist-5",
       "name": "Jazz Collective",
-      "imageUrl": ""
+      "imageUrl": "",
+      "bio": "Jazz ensemble",
+      "mainGenre": "Jazz",
+      "formationYear": 2000
     }
   ],
   "tracks": [

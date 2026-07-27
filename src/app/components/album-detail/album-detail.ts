@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Album } from '../../models';
@@ -21,41 +21,56 @@ const GENRE_LABELS: Record<Genre, string> = {
   templateUrl: './album-detail.html',
   styleUrl: './album-detail.scss',
 })
-export class AlbumDetailComponent implements OnInit {
+export class AlbumDetailComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly catalogService = inject(CatalogService);
   private readonly meta = inject(Meta);
   protected readonly favoritesService = inject(FavoritesService);
 
-  protected album: Album | null = null;
+  private readonly id = signal(this.route.snapshot.paramMap.get('id'));
 
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (!id) {
-      this.router.navigate(['/not-found']);
-      return;
-    }
+  /** null finché il catalogo non ha caricato, poi l'album o undefined. */
+  protected readonly album = computed<Album | null>(() => {
+    if (!this.catalogService.loaded()) return null;
+    const id = this.id();
+    return id ? (this.catalogService.getAlbumById(id) ?? null) : null;
+  });
 
-    const found = this.catalogService.getAlbumById(id);
-    if (!found) {
-      this.router.navigate(['/not-found']);
-      return;
-    }
+  protected readonly loading = computed(() => !this.catalogService.loaded());
 
-    this.album = found;
-    this.meta.updateTag({ name: 'description', content: `${found.title} by ${found.artist.name} - SoundWave Music` });
+  constructor() {
+    // Redirect solo DOPO che i dati sono arrivati
+    effect(() => {
+      if (!this.catalogService.loaded()) return;
+      if (!this.album()) {
+        this.router.navigate(['/not-found']);
+      }
+    });
+
+    effect(() => {
+      const a = this.album();
+      if (a) {
+        this.meta.updateTag({
+          name: 'description',
+          content: `${a.title} by ${a.artist.name} - SoundWave Music`,
+        });
+      }
+    });
   }
 
   protected get genreLabel(): string {
-    return this.album ? GENRE_LABELS[this.album.genre] : '';
+    const a = this.album();
+    return a ? GENRE_LABELS[a.genre] : '';
   }
 
   protected get year(): number {
-    return this.album ? this.album.releaseDate.getFullYear() : 0;
+    const a = this.album();
+    return a ? a.releaseDate.getFullYear() : 0;
   }
 
   protected get totalDuration(): number {
-    return this.album ? this.album.tracks.reduce((sum, t) => sum + t.duration, 0) : 0;
+    const a = this.album();
+    return a ? a.tracks.reduce((sum, t) => sum + t.duration, 0) : 0;
   }
 }
