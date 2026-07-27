@@ -1,1 +1,1 @@
-export { DurationPipe } from './duration/duration';
+export * from './duration';

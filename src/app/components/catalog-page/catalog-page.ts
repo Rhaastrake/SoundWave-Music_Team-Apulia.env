@@ -17,6 +17,9 @@ export class CatalogPageComponent implements OnInit {
   readonly service = inject(CatalogService);
 
   ngOnInit(): void {
-    this.meta.updateTag({ name: 'description', content: 'Browse the full album catalog - SoundWave Music' });
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Browse the full album catalog - SoundWave Music',
+    });
   }
 }
