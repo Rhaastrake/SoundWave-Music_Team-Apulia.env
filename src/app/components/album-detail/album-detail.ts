@@ -5,7 +5,7 @@ import { Album } from '../../models';
 import { Genre } from '../../enums';
 import { CatalogService } from '../../services/catalog.service';
 import { FavoritesService } from '../../services/favorites.service';
-import { DurationPipe } from '../../pipes/duration/duration';
+import { DurationPipe } from '../../pipes/duration';
 
 const GENRE_LABELS: Record<Genre, string> = {
   [Genre.Rock]: 'Rock',
