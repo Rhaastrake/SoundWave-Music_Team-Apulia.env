@@ -1,16 +1,33 @@
-import { Artist, Album, Track } from '../../core/models';
-import {Genre, ContentType } from '../../core/enums'
+import { ContentType, Genre } from '../../enums';
+import { Album, Artist, Track } from '../../models';
 
 const theWaves: Artist = { id: 'artist-1', name: 'The Waves', imageUrl: '', albums: [] };
 const lunaNova: Artist = { id: 'artist-2', name: 'Luna Nova', imageUrl: '', albums: [] };
 const echoValley: Artist = { id: 'artist-3', name: 'Echo Valley', imageUrl: '', albums: [] };
 const neonDistrict: Artist = { id: 'artist-4', name: 'Neon District', imageUrl: '', albums: [] };
-const jazzCollective: Artist = { id: 'artist-5', name: 'Jazz Collective', imageUrl: '', albums: [] };
+const jazzCollective: Artist = {
+  id: 'artist-5',
+  name: 'Jazz Collective',
+  imageUrl: '',
+  albums: [],
+};
 
 const tracks: Track[] = [
   { id: 'track-1', title: 'Ocean Drive', duration: 245, genre: Genre.Rock, artists: [theWaves] },
-  { id: 'track-2', title: 'Electric Dreams', duration: 198, genre: Genre.Rock, artists: [theWaves] },
-  { id: 'track-3', title: 'Midnight Static', duration: 267, genre: Genre.Rock, artists: [theWaves] },
+  {
+    id: 'track-2',
+    title: 'Electric Dreams',
+    duration: 198,
+    genre: Genre.Rock,
+    artists: [theWaves],
+  },
+  {
+    id: 'track-3',
+    title: 'Midnight Static',
+    duration: 267,
+    genre: Genre.Rock,
+    artists: [theWaves],
+  },
   { id: 'track-4', title: 'Coastal Wind', duration: 210, genre: Genre.Rock, artists: [theWaves] },
   { id: 'track-5', title: 'Tidepools', duration: 189, genre: Genre.Rock, artists: [theWaves] },
   { id: 'track-6', title: 'Neon Skyline', duration: 203, genre: Genre.Pop, artists: [lunaNova] },
@@ -19,21 +36,111 @@ const tracks: Track[] = [
   { id: 'track-9', title: 'Afterglow', duration: 176, genre: Genre.Pop, artists: [lunaNova] },
   { id: 'track-10', title: 'Daydream', duration: 195, genre: Genre.Pop, artists: [lunaNova] },
   { id: 'track-11', title: 'Sunset Blvd', duration: 208, genre: Genre.Pop, artists: [lunaNova] },
-  { id: 'track-12', title: 'Deep Circuits', duration: 312, genre: Genre.Electronic, artists: [echoValley] },
-  { id: 'track-13', title: 'Synthetic Rain', duration: 289, genre: Genre.Electronic, artists: [echoValley] },
-  { id: 'track-14', title: 'Pulse Grid', duration: 254, genre: Genre.Electronic, artists: [echoValley] },
-  { id: 'track-15', title: 'Static Field', duration: 233, genre: Genre.Electronic, artists: [echoValley] },
-  { id: 'track-16', title: 'Nightdrive', duration: 276, genre: Genre.Electronic, artists: [neonDistrict] },
-  { id: 'track-17', title: 'Chrome Heart', duration: 244, genre: Genre.Electronic, artists: [neonDistrict] },
-  { id: 'track-18', title: 'Voltage', duration: 260, genre: Genre.Electronic, artists: [neonDistrict] },
-  { id: 'track-19', title: 'Signal Lost', duration: 218, genre: Genre.Electronic, artists: [neonDistrict] },
-  { id: 'track-20', title: 'Blackout', duration: 231, genre: Genre.Electronic, artists: [neonDistrict] },
-  { id: 'track-21', title: 'Blue Hour', duration: 334, genre: Genre.Jazz, artists: [jazzCollective] },
-  { id: 'track-22', title: 'Late Night Sessions', duration: 298, genre: Genre.Jazz, artists: [jazzCollective] },
-  { id: 'track-23', title: 'Smoke Signals', duration: 271, genre: Genre.Jazz, artists: [jazzCollective] },
-  { id: 'track-24', title: 'Riverside', duration: 287, genre: Genre.Jazz, artists: [jazzCollective] },
-  { id: 'track-25', title: 'Autumn Keys', duration: 256, genre: Genre.Jazz, artists: [jazzCollective] },
-  { id: 'track-26', title: 'Solstice', duration: 302, genre: Genre.Jazz, artists: [jazzCollective] },
+  {
+    id: 'track-12',
+    title: 'Deep Circuits',
+    duration: 312,
+    genre: Genre.Electronic,
+    artists: [echoValley],
+  },
+  {
+    id: 'track-13',
+    title: 'Synthetic Rain',
+    duration: 289,
+    genre: Genre.Electronic,
+    artists: [echoValley],
+  },
+  {
+    id: 'track-14',
+    title: 'Pulse Grid',
+    duration: 254,
+    genre: Genre.Electronic,
+    artists: [echoValley],
+  },
+  {
+    id: 'track-15',
+    title: 'Static Field',
+    duration: 233,
+    genre: Genre.Electronic,
+    artists: [echoValley],
+  },
+  {
+    id: 'track-16',
+    title: 'Nightdrive',
+    duration: 276,
+    genre: Genre.Electronic,
+    artists: [neonDistrict],
+  },
+  {
+    id: 'track-17',
+    title: 'Chrome Heart',
+    duration: 244,
+    genre: Genre.Electronic,
+    artists: [neonDistrict],
+  },
+  {
+    id: 'track-18',
+    title: 'Voltage',
+    duration: 260,
+    genre: Genre.Electronic,
+    artists: [neonDistrict],
+  },
+  {
+    id: 'track-19',
+    title: 'Signal Lost',
+    duration: 218,
+    genre: Genre.Electronic,
+    artists: [neonDistrict],
+  },
+  {
+    id: 'track-20',
+    title: 'Blackout',
+    duration: 231,
+    genre: Genre.Electronic,
+    artists: [neonDistrict],
+  },
+  {
+    id: 'track-21',
+    title: 'Blue Hour',
+    duration: 334,
+    genre: Genre.Jazz,
+    artists: [jazzCollective],
+  },
+  {
+    id: 'track-22',
+    title: 'Late Night Sessions',
+    duration: 298,
+    genre: Genre.Jazz,
+    artists: [jazzCollective],
+  },
+  {
+    id: 'track-23',
+    title: 'Smoke Signals',
+    duration: 271,
+    genre: Genre.Jazz,
+    artists: [jazzCollective],
+  },
+  {
+    id: 'track-24',
+    title: 'Riverside',
+    duration: 287,
+    genre: Genre.Jazz,
+    artists: [jazzCollective],
+  },
+  {
+    id: 'track-25',
+    title: 'Autumn Keys',
+    duration: 256,
+    genre: Genre.Jazz,
+    artists: [jazzCollective],
+  },
+  {
+    id: 'track-26',
+    title: 'Solstice',
+    duration: 302,
+    genre: Genre.Jazz,
+    artists: [jazzCollective],
+  },
 ];
 
 const album1: Album = {
@@ -177,8 +284,20 @@ const album13: Album = {
   imageUrl: '',
   releaseDate: new Date('2017-01-30'),
   tracks: [
-    { id: 'track-27', title: 'Night Sessions', duration: 240, genre: Genre.Electronic, artists: [echoValley] },
-    { id: 'track-28', title: 'Low Light', duration: 225, genre: Genre.Electronic, artists: [echoValley] },
+    {
+      id: 'track-27',
+      title: 'Night Sessions',
+      duration: 240,
+      genre: Genre.Electronic,
+      artists: [echoValley],
+    },
+    {
+      id: 'track-28',
+      title: 'Low Light',
+      duration: 225,
+      genre: Genre.Electronic,
+      artists: [echoValley],
+    },
   ],
 };
 
@@ -204,10 +323,26 @@ neonDistrict.albums = [album8, album9];
 jazzCollective.albums = [album10, album11, album12];
 
 export const MOCK_ALBUMS: Album[] = [
-  album1, album2, album3, album4, album5, album6, album7,
-  album8, album9, album10, album11, album12, album13, album14,
+  album1,
+  album2,
+  album3,
+  album4,
+  album5,
+  album6,
+  album7,
+  album8,
+  album9,
+  album10,
+  album11,
+  album12,
+  album13,
+  album14,
 ];
 
 export const MOCK_ARTISTS: Artist[] = [
-  theWaves, lunaNova, echoValley, neonDistrict, jazzCollective,
+  theWaves,
+  lunaNova,
+  echoValley,
+  neonDistrict,
+  jazzCollective,
 ];

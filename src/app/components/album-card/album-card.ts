@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
-import { Album } from '../../../core/models';
-import { Genre, ContentType } from '../../../core/enums';
+import { ContentType, Genre } from '../../enums';
+import { Album } from '../../models';
 
 const GENRE_LABELS: Record<Genre, string> = {
   [Genre.Rock]: 'Rock',
