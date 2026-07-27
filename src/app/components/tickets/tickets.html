@@ -1,0 +1,242 @@
+<mat-card>
+
+    <mat-card-header>
+
+        <mat-card-title>
+            Prenotazione Biglietti
+        </mat-card-title>
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+        <form
+            [formGroup]="ticketForm"
+            (ngSubmit)="onSubmit()">
+
+            <!-- NOME -->
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>Nome</mat-label>
+
+                <input
+                    matInput
+                    maxlength="50"
+                    formControlName="nome">
+
+                @if(ticketForm.controls.nome.touched && ticketForm.controls.nome.hasError('required')){
+
+                    <mat-error>
+                        Il nome è obbligatorio
+                    </mat-error>
+
+                }
+
+                @if(ticketForm.controls.nome.touched && ticketForm.controls.nome.hasError('minlength')){
+
+                    <mat-error>
+                        Il nome deve contenere almeno 2 caratteri
+                    </mat-error>
+
+                }
+
+                @if(ticketForm.controls.nome.touched && ticketForm.controls.nome.hasError('maxlength')){
+
+                    <mat-error>
+                        Il nome non può superare 50 caratteri
+                    </mat-error>
+
+                }
+
+                @if(ticketForm.controls.nome.touched && ticketForm.controls.nome.hasError('pattern')){
+
+                    <mat-error>
+                        Il nome non può contenere numeri
+                    </mat-error>
+
+                }
+
+            </mat-form-field>
+
+            <!-- COGNOME -->
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>Cognome</mat-label>
+
+                <input
+                    matInput
+                    maxlength="50"
+                    formControlName="cognome">
+
+                @if(ticketForm.controls.cognome.touched && ticketForm.controls.cognome.hasError('required')){
+
+                    <mat-error>
+                        Il cognome è obbligatorio
+                    </mat-error>
+
+                }
+
+                @if(ticketForm.controls.cognome.touched && ticketForm.controls.cognome.hasError('minlength')){
+
+                    <mat-error>
+                        Il cognome deve contenere almeno 2 caratteri
+                    </mat-error>
+
+                }
+
+                @if(ticketForm.controls.cognome.touched && ticketForm.controls.cognome.hasError('maxlength')){
+
+                    <mat-error>
+                        Il cognome non può superare 50 caratteri
+                    </mat-error>
+
+                }
+
+                @if(ticketForm.controls.cognome.touched && ticketForm.controls.cognome.hasError('pattern')){
+
+                    <mat-error>
+                        Il cognome non può contenere numeri
+                    </mat-error>
+
+                }
+
+            </mat-form-field>
+
+            <!-- EMAIL -->
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>Email</mat-label>
+
+                <input
+                    matInput
+                    maxlength="100"
+                    formControlName="email">
+
+                @if(ticketForm.controls.email.touched && ticketForm.controls.email.hasError('required')){
+
+                    <mat-error>
+                        L'email è obbligatoria
+                    </mat-error>
+
+                }
+
+                @if(ticketForm.controls.email.touched && ticketForm.controls.email.hasError('email')){
+
+                    <mat-error>
+                        Inserisci un'email valida
+                    </mat-error>
+
+                }
+
+                @if(ticketForm.controls.email.touched && ticketForm.controls.email.hasError('maxlength')){
+
+                    <mat-error>
+                        L'email non può superare 100 caratteri
+                    </mat-error>
+
+                }
+
+            </mat-form-field>
+
+            <!-- TELEFONO -->
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>Telefono</mat-label>
+
+                <input
+                    matInput
+                    maxlength="15"
+                    formControlName="telefono">
+
+                @if(ticketForm.controls.telefono.touched && ticketForm.controls.telefono.hasError('required')){
+
+                    <mat-error>
+                        Il telefono è obbligatorio
+                    </mat-error>
+
+                }
+
+                @if(ticketForm.controls.telefono.touched && ticketForm.controls.telefono.hasError('pattern')){
+
+                    <mat-error>
+                        Il telefono deve contenere solo numeri
+                    </mat-error>
+
+                }
+
+                @if(ticketForm.controls.telefono.touched && ticketForm.controls.telefono.hasError('maxlength')){
+
+                    <mat-error>
+                        Il numero di telefono non può superare 15 cifre
+                    </mat-error>
+
+                }
+
+            </mat-form-field>
+
+            <!-- NUMERO POSTI -->
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>Numero posti</mat-label>
+
+                <input
+                    matInput
+                    type="number"
+                    min="1"
+                    max="6"
+                    formControlName="numeroPosti">
+
+                @if(ticketForm.controls.numeroPosti.touched && ticketForm.controls.numeroPosti.hasError('required')){
+
+                    <mat-error>
+                        Il numero di posti è obbligatorio
+                    </mat-error>
+
+                }
+
+                @if(ticketForm.controls.numeroPosti.touched && ticketForm.controls.numeroPosti.hasError('minSeats')){
+
+                    <mat-error>
+                        È necessario prenotare almeno 1 posto
+                    </mat-error>
+
+                }
+
+                @if(ticketForm.controls.numeroPosti.touched && ticketForm.controls.numeroPosti.hasError('maxSeats')){
+
+                    <mat-error>
+                        È possibile prenotare al massimo 6 posti
+                    </mat-error>
+
+                }
+
+                @if(ticketForm.controls.numeroPosti.touched && ticketForm.controls.numeroPosti.hasError('unavailableSeats')){
+
+                    <mat-error>
+                        I posti richiesti non sono disponibili
+                    </mat-error>
+
+                }
+
+            </mat-form-field>
+
+            <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="ticketForm.invalid">
+
+                Conferma Prenotazione
+
+            </button>
+
+        </form>
+
+    </mat-card-content>
+
+</mat-card>
