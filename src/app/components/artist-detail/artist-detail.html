@@ -1,0 +1,77 @@
+<div class="artist-detail">
+  @if (loading()) {
+    <div class="loading-state">Caricamento catalogo...</div>
+  } @else if (artist(); as artist) {
+    <div class="artist-header">
+      <div class="artist-cover">
+        @if (artist.imageUrl) {
+          <img [src]="artist.imageUrl" [alt]="artist.name" />
+        } @else {
+          <div class="placeholder-cover">🎤</div>
+        }
+      </div>
+      <div class="artist-info">
+        <h1 class="artist-name">{{ artist.name }}</h1>
+        <div class="artist-meta">
+          <span class="badge genre">{{ genreLabel }}</span>
+          <span class="artist-formation">Anno di formazione: {{ artist.formationYear }}</span>
+        </div>
+        <p class="artist-bio">{{ artist.bio }}</p>
+      </div>
+    </div>
+
+    @if (sortedAlbums().length > 0) {
+      <section class="artist-albums">
+        <h2 class="section-title">Altri album</h2>
+        <div class="albums-grid">
+          @for (album of sortedAlbums(); track album.id) {
+            <a class="album-link" [routerLink]="['/music', album.id]">
+              <div class="album-cover">
+                @if (album.imageUrl) {
+                  <img [src]="album.imageUrl" [alt]="album.title" />
+                } @else {
+                  <div class="placeholder-cover">🎵</div>
+                }
+              </div>
+              <div class="album-info">
+                <h3 class="album-title">{{ album.title }}</h3>
+                <p class="album-meta">
+                  <span class="badge type">{{ getAlbumTypeLabel(album.type) }}</span>
+                  <span class="album-year">{{ album.releaseDate.getFullYear() }}</span>
+                </p>
+              </div>
+            </a>
+          }
+        </div>
+      </section>
+    }
+
+    <section class="artist-events">
+      <h2 class="section-title">Prossimi eventi live</h2>
+      @if (upcomingConcerts().length > 0) {
+        <div class="events-list">
+          @for (concert of upcomingConcerts(); track concert.id) {
+            <article class="event-card">
+              <div class="event-info">
+                <h3 class="event-title">{{ concert.title }}</h3>
+                <div class="event-meta">
+                  <span class="event-date">{{ concert.date | date:'dd/MM/yyyy HH:mm' }}</span>
+                  <span class="event-location">{{ concert.location }}, {{ concert.city }}</span>
+                </div>
+                <div class="event-details">
+                  <span class="event-price">Prezzo base: €{{ concert.basePrice }}</span>
+                  <span class="event-seats">Posti disponibili: {{ concert.availableSeats }}</span>
+                </div>
+              </div>
+              <a class="btn-buy" [routerLink]="['/tickets', concert.id]">Acquista biglietti</a>
+            </article>
+          }
+        </div>
+      } @else {
+        <app-empty-state message="Nessun evento in programma per questo artista" hint="Torna a trovarci per scoprire le prossime date" />
+      }
+    </section>
+  } @else {
+    <div class="not-found-state">Artista non trovato (ID: {{ id() }})</div>
+  }
+</div>

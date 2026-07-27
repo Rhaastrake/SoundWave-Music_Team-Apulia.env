@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -9,5 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './empty-state.scss',
 })
 export class EmptyStateComponent {
+  @Input() message = 'Nessun risultato';
+  @Input() hint = 'Prova a modificare i filtri o la ricerca.';
+  @Input() showReset = true;
   @Output() readonly reset = new EventEmitter<void>();
 }
