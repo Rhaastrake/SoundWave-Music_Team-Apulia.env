@@ -13,13 +13,11 @@ export class FavoritesService {
 
   readonly favoritesCount = computed(() => this.favoriteIds().size);
 
-  /** Album preferiti "grezzi" — utile per il dettaglio (DEV-C). */
   readonly favoriteAlbums = computed<Album[]>(() => {
     const ids = this.favoriteIds();
     return this.catalog.albums().filter((a) => ids.has(a.id));
   });
 
-  /** Brani preferiti "grezzi", con riferimento all'album padre per l'imageUrl. */
   readonly favoriteTracks = computed<{ track: Track; album: Album }[]>(() => {
     const ids = this.favoriteIds();
     return this.catalog.albums()
@@ -27,7 +25,6 @@ export class FavoritesService {
       .filter(({ track }) => ids.has(track.id));
   });
 
-  /** View model unico e normalizzato, pronto per CardComponent in /favorites. */
   readonly favoriteCardItems = computed<FavoriteCardItem[]>(() => [
     ...this.favoriteAlbums().map((a): FavoriteCardItem => ({
       id: a.id,
@@ -38,9 +35,9 @@ export class FavoritesService {
     })),
     ...this.favoriteTracks().map(({ track, album }): FavoriteCardItem => ({
       id: track.id,
-      type: album.type, // o un valore fisso 'track' se l'enum lo prevede
+      type: album.type,
       title: track.title,
-      imageUrl: album.imageUrl, // ereditata dall'album
+      imageUrl: album.imageUrl,
       subtitle: track.artists.map((a) => a.name).join(', '),
     })),
   ]);

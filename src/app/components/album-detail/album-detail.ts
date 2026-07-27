@@ -30,17 +30,17 @@ export class AlbumDetailComponent {
 
   private readonly id = signal(this.route.snapshot.paramMap.get('id'));
 
-  /** null finché il catalogo non ha caricato, poi l'album o undefined. */
-  protected readonly album = computed<Album | null>(() => {
+  private resolveAlbum(): Album | null {
     if (!this.catalogService.loaded()) return null;
-    const id = this.id();
-    return id ? (this.catalogService.getAlbumById(id) ?? null) : null;
-  });
+    const albumId = this.id();
+    return albumId ? (this.catalogService.getAlbumById(albumId) ?? null) : null;
+  }
+
+  protected readonly album = computed(() => this.resolveAlbum());
 
   protected readonly loading = computed(() => !this.catalogService.loaded());
 
   constructor() {
-    // Redirect solo DOPO che i dati sono arrivati
     effect(() => {
       if (!this.catalogService.loaded()) return;
       if (!this.album()) {
