@@ -1,11 +1,58 @@
+<<<<<<< Updated upstream:src/app/services/catalog.service.ts
 import { Injectable, WritableSignal, computed, signal } from '@angular/core';
 import { ContentType, Genre } from '../enums';
 import { Album } from '../models';
 import { MOCK_ALBUMS } from './mock-albums';
+=======
+import { HttpClient } from '@angular/common/http';
+import {
+  Injectable,
+  WritableSignal,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
+import { ContentType, Genre } from '../../enums';
+import { Album, Artist, Track } from '../../models';
+
+/** Raw JSON shape: normalized, no Date, no circular refs, enums as their names. */
+interface RawArtist {
+  id: string;
+  name: string;
+  imageUrl: string;
+}
+interface RawTrack {
+  id: string;
+  title: string;
+  duration: number;
+  genre: keyof typeof Genre;
+  artistIds: string[];
+}
+interface RawRelease {
+  id: string;
+  title: string;
+  type: keyof typeof ContentType;
+  genre: keyof typeof Genre;
+  imageUrl: string;
+  releaseDate: string;
+  artistId: string;
+  trackIds: string[];
+}
+interface CatalogData {
+  artists: RawArtist[];
+  tracks: RawTrack[];
+  releases: RawRelease[];
+}
+>>>>>>> Stashed changes:src/app/services/catalog/catalog.service.ts
 
 @Injectable({ providedIn: 'root' })
 export class CatalogService {
-  readonly albums: WritableSignal<Album[]> = signal(MOCK_ALBUMS);
+  private readonly http = inject(HttpClient);
+  private readonly dataUrl = 'assets/data/albums.json';
+
+  readonly albums: WritableSignal<Album[]> = signal([]);
+  readonly loading: WritableSignal<boolean> = signal(true);
+
   readonly searchText: WritableSignal<string> = signal('');
   readonly selectedGenres: WritableSignal<Genre[]> = signal([]);
   readonly selectedYear: WritableSignal<number | null> = signal(null);
@@ -28,6 +75,56 @@ export class CatalogService {
 
   readonly resultCount = computed(() => this.filteredAlbums().length);
 
+  constructor() {
+    this.load();
+  }
+
+  private load(): void {
+    this.http.get<CatalogData>(this.dataUrl).subscribe({
+      next: (data) => {
+        this.albums.set(this.buildAlbums(data));
+        this.loading.set(false);
+      },
+      error: (err) => {
+        console.error('Failed to load catalog data', err);
+        this.loading.set(false);
+      },
+    });
+  }
+
+  /** Rebuilds Date, numeric enums and the circular artist<->album / track->artists refs. */
+  private buildAlbums(data: CatalogData): Album[] {
+    const artistMap = new Map<string, Artist>();
+    data.artists.forEach((a) => artistMap.set(a.id, { ...a, albums: [] }));
+
+    const trackMap = new Map<string, Track>();
+    data.tracks.forEach((t) =>
+      trackMap.set(t.id, {
+        id: t.id,
+        title: t.title,
+        duration: t.duration,
+        genre: Genre[t.genre],
+        artists: t.artistIds.map((id) => artistMap.get(id)!),
+      }),
+    );
+
+    return data.releases.map((raw) => {
+      const artist = artistMap.get(raw.artistId)!;
+      const album: Album = {
+        id: raw.id,
+        title: raw.title,
+        type: ContentType[raw.type],
+        genre: Genre[raw.genre],
+        imageUrl: raw.imageUrl,
+        releaseDate: new Date(raw.releaseDate),
+        artist,
+        tracks: raw.trackIds.map((id) => trackMap.get(id)!),
+      };
+      artist.albums.push(album);
+      return album;
+    });
+  }
+
   private matchesSearch(album: Album, text: string): boolean {
     const titleMatch = album.title.toLowerCase().includes(text);
     const artistMatch = album.artist.name.toLowerCase().includes(text);
@@ -38,23 +135,23 @@ export class CatalogService {
   setGenre(genres: Genre[]): void {
     this.selectedGenres.set(genres);
   }
-
   setYear(year: number | null): void {
     this.selectedYear.set(year);
   }
-
   setContentType(types: ContentType[]): void {
     this.selectedContentTypes.set(types);
   }
-
   setSearchText(text: string): void {
     this.searchText.set(text);
   }
+<<<<<<< Updated upstream:src/app/services/catalog.service.ts
 
   getAlbumById(id: string): Album | undefined {
     return this.albums().find(a => a.id === id);
   }
 
+=======
+>>>>>>> Stashed changes:src/app/services/catalog/catalog.service.ts
   resetFilters(): void {
     this.searchText.set('');
     this.selectedGenres.set([]);
