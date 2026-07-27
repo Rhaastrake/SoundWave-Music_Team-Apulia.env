@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { MatCardModule } from '@angular/material/card';
@@ -14,6 +15,7 @@ import { ticketValidator } from '../../validators/ticket.validator';
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    CurrencyPipe,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
@@ -26,11 +28,21 @@ export class TicketsComponent {
 
   private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
   concertId = Number(this.route.snapshot.paramMap.get('concertId'));
 
-  // TODO: sostituire con i posti reali quando sarà disponibile il servizio dei concerti
+  // TODO: sostituire con il prezzo reale del concerto
+  ticketPrice = 20;
+
+  // TODO: sostituire con i posti disponibili reali
   availableSeats = 50;
+
+  bookingCompleted = false;
+
+  bookingCode = '';
+
+  totalPrice = this.ticketPrice;
 
   ticketForm = this.fb.group({
 
@@ -82,14 +94,49 @@ export class TicketsComponent {
 
   });
 
+  constructor() {
+
+  this.updateTotal();
+
+  this.ticketForm.get('numeroPosti')?.valueChanges.subscribe(() => {
+    this.updateTotal();
+  });
+
+}
+
   onSubmit(): void {
 
     if (this.ticketForm.invalid) {
+
       this.ticketForm.markAllAsTouched();
+
       return;
+
     }
 
-    console.log('Prenotazione:', this.ticketForm.getRawValue());
+    this.bookingCode = this.generateBookingCode();
+
+    this.bookingCompleted = true;
+
+  }
+
+  private generateBookingCode(): string {
+
+    return 'BK-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+
+  }
+
+  goToCatalog(): void {
+
+    this.router.navigate(['/catalog']);
+
+  }
+
+  private updateTotal(): void {
+
+    const posti = Number(this.ticketForm.get('numeroPosti')?.value ?? 0);
+
+    this.totalPrice = posti * this.ticketPrice;
 
   }
 
