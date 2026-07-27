@@ -1,11 +1,10 @@
-import { Injectable, WritableSignal, computed, signal } from "@angular/core";
-import { Album } from "../../core/models";
-import { Genre, ContentType } from "../../core/enums";
-import { MOCK_ALBUMS } from "./mock-albums";
+import { Injectable, WritableSignal, computed, signal } from '@angular/core';
+import { ContentType, Genre } from '../../enums';
+import { Album } from '../../models';
+import { MOCK_ALBUMS } from './mock-albums';
 
 @Injectable({ providedIn: 'root' })
 export class CatalogService {
-
   readonly albums: WritableSignal<Album[]> = signal(MOCK_ALBUMS);
   readonly searchText: WritableSignal<string> = signal('');
   readonly selectedGenres: WritableSignal<Genre[]> = signal([]);
@@ -18,7 +17,7 @@ export class CatalogService {
     const year = this.selectedYear();
     const types = this.selectedContentTypes();
 
-    return this.albums().filter(album => {
+    return this.albums().filter((album) => {
       if (text && !this.matchesSearch(album, text)) return false;
       if (genres.length && !genres.includes(album.genre)) return false;
       if (year !== null && album.releaseDate.getFullYear() !== year) return false;

@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { FilterBarComponent } from '../../../shared/components/filter-bar/filter-bar';
-import { AlbumCardComponent } from '../../../shared/components/album-card/album-card';
-import { EmptyStateComponent } from '../../../shared/components/empty-state/empty-state';
-import { CatalogService } from '../../../services/catalog/catalog.service';
+import { CatalogService } from '../../services/catalog/catalog.service';
+import { AlbumCardComponent } from '../album-card/album-card';
+import { EmptyStateComponent } from '../empty-state/empty-state';
+import { FilterBarComponent } from '../filter-bar/filter-bar';
 
 @Component({
   standalone: true,
