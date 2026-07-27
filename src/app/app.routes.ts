@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { CatalogPageComponent } from './components/catalog-page/catalog-page';
 import { AlbumDetailComponent } from './components/album-detail/album-detail';
-import { NotFoundComponent } from './components/not-found/not-found';
+import { CatalogPageComponent } from './components/catalog-page/catalog-page';
 import { HomePlaceholderComponent } from './components/home-placeholder/home-placeholder';
+import { NotFoundComponent } from './components/not-found/not-found';
 
 export const routes: Routes = [
   { path: '', component: HomePlaceholderComponent },

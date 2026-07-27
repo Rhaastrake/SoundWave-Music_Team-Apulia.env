@@ -1,11 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Album } from '../../models';
 import { Genre } from '../../enums';
+import { Album } from '../../models';
+import { DurationPipe } from '../../pipes/duration';
 import { CatalogService } from '../../services/catalog.service';
 import { FavoritesService } from '../../services/favorites.service';
-import { DurationPipe } from '../../pipes/duration/duration';
 
 const GENRE_LABELS: Record<Genre, string> = {
   [Genre.Rock]: 'Rock',
@@ -44,7 +44,10 @@ export class AlbumDetailComponent implements OnInit {
     }
 
     this.album = found;
-    this.meta.updateTag({ name: 'description', content: `${found.title} by ${found.artist.name} - SoundWave Music` });
+    this.meta.updateTag({
+      name: 'description',
+      content: `${found.title} by ${found.artist.name} - SoundWave Music`,
+    });
   }
 
   protected get genreLabel(): string {

@@ -1,11 +1,51 @@
 import { ContentType, Genre } from '../enums';
 import { Album, Artist, Track } from '../models';
 
-const theWaves: Artist = { id: 'artist-1', name: 'The Waves', imageUrl: '', albums: [], bio: 'Rock band from the coast', mainGenre: Genre.Rock, formationYear: 2015 };
-const lunaNova: Artist = { id: 'artist-2', name: 'Luna Nova', imageUrl: '', albums: [], bio: 'Pop duo with ethereal sound', mainGenre: Genre.Pop, formationYear: 2018 };
-const echoValley: Artist = { id: 'artist-3', name: 'Echo Valley', imageUrl: '', albums: [], bio: 'Electronic music producer', mainGenre: Genre.Electronic, formationYear: 2016 };
-const neonDistrict: Artist = { id: 'artist-4', name: 'Neon District', imageUrl: '', albums: [], bio: 'Synthwave collective', mainGenre: Genre.Electronic, formationYear: 2014 };
-const jazzCollective: Artist = { id: 'artist-5', name: 'Jazz Collective', imageUrl: '', albums: [], bio: 'Jazz ensemble', mainGenre: Genre.Jazz, formationYear: 2000 };
+const theWaves: Artist = {
+  id: 'artist-1',
+  name: 'The Waves',
+  imageUrl: '',
+  albums: [],
+  bio: 'Rock band from the coast',
+  mainGenre: Genre.Rock,
+  formationYear: 2015,
+};
+const lunaNova: Artist = {
+  id: 'artist-2',
+  name: 'Luna Nova',
+  imageUrl: '',
+  albums: [],
+  bio: 'Pop duo with ethereal sound',
+  mainGenre: Genre.Pop,
+  formationYear: 2018,
+};
+const echoValley: Artist = {
+  id: 'artist-3',
+  name: 'Echo Valley',
+  imageUrl: '',
+  albums: [],
+  bio: 'Electronic music producer',
+  mainGenre: Genre.Electronic,
+  formationYear: 2016,
+};
+const neonDistrict: Artist = {
+  id: 'artist-4',
+  name: 'Neon District',
+  imageUrl: '',
+  albums: [],
+  bio: 'Synthwave collective',
+  mainGenre: Genre.Electronic,
+  formationYear: 2014,
+};
+const jazzCollective: Artist = {
+  id: 'artist-5',
+  name: 'Jazz Collective',
+  imageUrl: '',
+  albums: [],
+  bio: 'Jazz ensemble',
+  mainGenre: Genre.Jazz,
+  formationYear: 2000,
+};
 
 const tracks: Track[] = [
   { id: 'track-1', title: 'Ocean Drive', duration: 245, genre: Genre.Rock, artists: [theWaves] },

@@ -52,7 +52,7 @@ export class CatalogService {
   }
 
   getAlbumById(id: string): Album | undefined {
-    return this.albums().find(a => a.id === id);
+    return this.albums().find((a) => a.id === id);
   }
 
   resetFilters(): void {

@@ -10,6 +10,9 @@ export class HomePlaceholderComponent implements OnInit {
   private readonly meta = inject(Meta);
 
   ngOnInit(): void {
-    this.meta.updateTag({ name: 'description', content: 'SoundWave Music - Discover albums and tracks' });
+    this.meta.updateTag({
+      name: 'description',
+      content: 'SoundWave Music - Discover albums and tracks',
+    });
   }
 }
