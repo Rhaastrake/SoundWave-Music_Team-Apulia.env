@@ -6,25 +6,27 @@
   min-height: 60vh;
   text-align: center;
   padding: 32px 16px;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
 
   h1 {
     font-size: 5rem;
     font-weight: 700;
-    color: #ddd;
+    color: var(--mat-sys-outline-variant);
     margin: 0 0 8px;
     line-height: 1;
   }
 
   p {
     font-size: 1.25rem;
-    color: #666;
+    color: var(--mat-sys-on-surface-variant);
     margin: 0 0 24px;
   }
 }
 
 .back-link {
   font-size: 0.9375rem;
-  color: #1565c0;
+  color: var(--mat-sys-primary);
   text-decoration: none;
 
   &:hover {
