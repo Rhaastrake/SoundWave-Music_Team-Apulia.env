@@ -5,36 +5,6 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
-//==========================
-// STRUCTURE
-//==========================
-$header-height: 10vh;
-$header-padding-y: 15px;
-$header-padding-x: 15px;
-
-//==========================
-// COLORS — BASE
-//==========================
-$primary: rgba(0, 0, 0, 0.5);
-$secondary: #a3dcff;
-$accent: #f9a8c9;
-
-//==========================
-// COLORS — NEUTRALS
-//==========================
-$white: #ffffff;
-$light: #f5f5f5;
-$muted: #888888;
-$dark: #2d2d2d;
-
-//==========================
-// COLORS — SEMANTIC
-//==========================
-$success: #198754;
-$warning: #ffc107;
-$danger: #dc3545;
-$info: #0dcaf0;
-
 html {
   height: 100%;
   @include mat.theme(

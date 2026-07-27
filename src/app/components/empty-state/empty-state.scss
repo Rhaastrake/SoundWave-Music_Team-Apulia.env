@@ -5,17 +5,19 @@
   justify-content: center;
   padding: 48px 24px;
   text-align: center;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
 }
 
 .empty-message {
   font-size: 1.25rem;
   font-weight: 500;
   margin: 0 0 8px;
-  color: #333;
+  color: var(--mat-sys-on-surface);
 }
 
 .empty-hint {
   font-size: 0.875rem;
-  color: #888;
+  color: var(--mat-sys-on-surface-variant);
   margin: 0 0 24px;
 }
