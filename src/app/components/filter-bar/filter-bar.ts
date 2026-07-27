@@ -3,7 +3,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ContentType, Genre } from '../../enums';
-import { CatalogService } from '../../services/catalog/catalog.service';
+import { CatalogService } from '../../services/catalog.service';
 
 interface SelectOption<T> {
   value: T;

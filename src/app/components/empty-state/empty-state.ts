@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -9,5 +9,5 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './empty-state.scss',
 })
 export class EmptyStateComponent {
-  readonly reset = output<void>();
+  @Output() readonly reset = new EventEmitter<void>();
 }

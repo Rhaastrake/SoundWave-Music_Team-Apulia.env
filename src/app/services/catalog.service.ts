@@ -1,6 +1,6 @@
 import { Injectable, WritableSignal, computed, signal } from '@angular/core';
-import { ContentType, Genre } from '../../enums';
-import { Album } from '../../models';
+import { ContentType, Genre } from '../enums';
+import { Album } from '../models';
 import { MOCK_ALBUMS } from './mock-albums';
 
 @Injectable({ providedIn: 'root' })
@@ -49,6 +49,10 @@ export class CatalogService {
 
   setSearchText(text: string): void {
     this.searchText.set(text);
+  }
+
+  getAlbumById(id: string): Album | undefined {
+    return this.albums().find(a => a.id === id);
   }
 
   resetFilters(): void {
