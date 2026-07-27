@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, computed, effect, inject } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -25,7 +26,7 @@ const TYPE_LABELS: Record<ContentType, string> = {
 @Component({
   standalone: true,
   selector: 'app-artist-detail',
-  imports: [RouterLink, EmptyStateComponent],
+  imports: [RouterLink, EmptyStateComponent, DatePipe],
   templateUrl: './artist-detail.html',
   styleUrl: './artist-detail.scss',
 })
