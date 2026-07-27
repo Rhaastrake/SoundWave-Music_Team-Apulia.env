@@ -1,0 +1,57 @@
+<div class="profile-page">
+  <header class="profile-header">
+    <h1>I miei preferiti</h1>
+    @if (!loading() && !isEmpty()) {
+      <p class="profile-summary">
+        {{ favorites.favoriteTracks().length }} brani ·
+        {{ favorites.favoriteAlbums().length }} release ·
+        {{ totalDuration() | duration }}
+      </p>
+    }
+  </header>
+
+  @if (loading()) {
+    <p class="loading">Caricamento…</p>
+  } @else if (isEmpty()) {
+    <div class="empty-state">
+      <p class="empty-message">Nessun preferito</p>
+      <p class="empty-hint">Aggiungi brani e release dal catalogo.</p>
+      <a class="back-link" routerLink="/catalog">Vai al catalogo</a>
+    </div>
+  } @else {
+    @if (favorites.favoriteTracks().length) {
+      <section class="favorites-section">
+        <h2>Brani</h2>
+        <ol class="track-list">
+          @for (track of favorites.favoriteTracks(); track track.id; let i = $index) {
+            <li class="track-item">
+              <span class="track-number">{{ i + 1 }}</span>
+              <span class="track-title">{{ track.title }}</span>
+              <span class="track-artist">{{ track.artists[0].name }}</span>
+              <span class="track-duration">{{ track.duration | duration }}</span>
+              <button
+                type="button"
+                class="remove-btn"
+                (click)="favorites.toggleFavorite(track.id)"
+                [attr.aria-label]="'Rimuovi ' + track.title + ' dai preferiti'"
+              >
+                ✕
+              </button>
+            </li>
+          }
+        </ol>
+      </section>
+    }
+
+    @if (favorites.favoriteAlbums().length) {
+      <section class="favorites-section">
+        <h2>Album, EP e singoli</h2>
+        <div class="album-grid">
+          @for (album of favorites.favoriteAlbums(); track album.id) {
+            <app-album-card [album]="album" />
+          }
+        </div>
+      </section>
+    }
+  }
+</div>
