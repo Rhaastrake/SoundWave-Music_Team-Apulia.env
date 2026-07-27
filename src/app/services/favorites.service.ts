@@ -1,10 +1,29 @@
-import { Injectable, WritableSignal, computed, signal } from '@angular/core';
+import { Injectable, WritableSignal, computed, effect, inject, signal } from '@angular/core';
+import { Album } from '../models';
+import { CatalogService } from './catalog.service';
+
+const STORAGE_KEY = 'soundwave.favorites';
 
 @Injectable({ providedIn: 'root' })
 export class FavoritesService {
-  private readonly favoriteIds: WritableSignal<Set<string>> = signal(new Set());
+  private readonly catalog = inject(CatalogService);
+
+  private readonly favoriteIds: WritableSignal<Set<string>> = signal(this.restore());
 
   readonly favoritesCount = computed(() => this.favoriteIds().size);
+
+  /** Preferiti risolti in Album veri; vuoto finché il catalogo non ha caricato. */
+  readonly favoriteAlbums = computed<Album[]>(() => {
+    const ids = this.favoriteIds();
+    return this.catalog.albums().filter((a) => ids.has(a.id));
+  });
+
+  constructor() {
+    // Salva a ogni modifica
+    effect(() => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify([...this.favoriteIds()]));
+    });
+  }
 
   isFavorite(id: string): boolean {
     return this.favoriteIds().has(id);
@@ -17,5 +36,18 @@ export class FavoritesService {
       else next.add(id);
       return next;
     });
+  }
+
+  clear(): void {
+    this.favoriteIds.set(new Set());
+  }
+
+  private restore(): Set<string> {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? new Set<string>(JSON.parse(raw)) : new Set();
+    } catch {
+      return new Set();
+    }
   }
 }
