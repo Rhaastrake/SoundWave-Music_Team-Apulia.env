@@ -1,0 +1,90 @@
+.profile-page {
+  padding: 1.5rem;
+}
+
+.profile-header {
+  margin-bottom: 2rem;
+
+  h1 {
+    margin: 0 0 0.25rem;
+  }
+}
+
+.profile-summary {
+  margin: 0;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+.favorites-section {
+  margin-bottom: 2.5rem;
+
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+.track-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.track-item {
+  display: grid;
+  grid-template-columns: 2rem 1fr auto auto 2rem;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.6rem 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.track-number {
+  opacity: 0.5;
+  text-align: right;
+}
+
+.track-artist,
+.track-duration {
+  opacity: 0.65;
+  font-size: 0.85rem;
+}
+
+.remove-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  opacity: 0.4;
+  font-size: 1rem;
+  line-height: 1;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.empty-message {
+  font-size: 1.1rem;
+  margin: 0 0 0.25rem;
+}
+
+.empty-hint {
+  opacity: 0.6;
+  margin: 0 0 1rem;
+}
+
+.loading {
+  opacity: 0.6;
+}
