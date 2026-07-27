@@ -1,0 +1,39 @@
+<mat-toolbar class="navbar">
+  <a
+    class="navbar-brand"
+    routerLink="/home"
+    aria-label="Vai alla home di SoundWave Music"
+  >
+    <span class="brand-icon" aria-hidden="true">
+      <mat-icon>graphic_eq</mat-icon>
+    </span>
+
+    <span class="brand-title">
+      SoundWave <strong>Music</strong>
+    </span>
+  </a>
+
+  <span class="navbar-spacer"></span>
+
+  <button
+    mat-icon-button
+    class="menu-button"
+    [matMenuTriggerFor]="menu"
+    aria-label="Apri il menu"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu" xPosition="before">
+  @for (link of links; track link.path) {
+    <a
+      mat-menu-item
+      [routerLink]="link.path"
+      routerLinkActive="active-menu-item"
+    >
+      <mat-icon>{{ link.icon }}</mat-icon>
+      <span>{{ link.label }}</span>
+    </a>
+  }
+</mat-menu>

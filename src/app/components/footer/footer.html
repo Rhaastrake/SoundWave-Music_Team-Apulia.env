@@ -1,0 +1,32 @@
+<footer class="footer">
+  <div class="footer-divider" aria-hidden="true">
+    <span class="divider-line"></span>
+
+    <mat-icon class="divider-icon">graphic_eq</mat-icon>
+
+    <span class="divider-line"></span>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="copyright">
+      © {{ currentYear }}
+      <strong>{{ projectName }}</strong>.
+      Tutti i diritti riservati.
+    </p>
+
+    <div class="team" aria-label="Componenti del team">
+      @for (member of teamMembers; track member.name; let last = $last) {
+        <span class="team-member">
+          {{ member.name }}
+
+          @if (!last) {
+            <span class="separator" aria-hidden="true">•</span>
+          }
+        </span>
+      }
+    </div>
+  </div>
+
+  <span class="decoration decoration-left" aria-hidden="true"></span>
+  <span class="decoration decoration-right" aria-hidden="true"></span>
+</footer>

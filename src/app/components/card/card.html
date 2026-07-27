@@ -1,0 +1,34 @@
+<div
+  class="app-card"
+  role="button"
+  tabindex="0"
+  (click)="cardClick.emit()"
+  (keydown.enter)="cardClick.emit()"
+>
+  <div class="app-card-image">
+    @if (imageUrl()) {
+      <img [src]="imageUrl()" [alt]="title()" />
+    } @else {
+      <div class="app-card-placeholder">🎵</div>
+    }
+
+    <button
+      class="app-card-favorite"
+      mat-icon-button
+      [attr.aria-label]="isFavorite() ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'"
+      (click)="onFavoriteClick($event)"
+    >
+      <mat-icon>{{ isFavorite() ? 'favorite' : 'favorite_border' }}</mat-icon>
+    </button>
+  </div>
+
+  <div class="app-card-body">
+    @if (badge()) {
+      <span class="app-card-badge">{{ badge() }}</span>
+    }
+    <h3 class="app-card-title">{{ title() }}</h3>
+    @if (subtitle()) {
+      <p class="app-card-subtitle">{{ subtitle() }}</p>
+    }
+  </div>
+</div>

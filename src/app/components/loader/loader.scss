@@ -1,0 +1,17 @@
+@use '../../variables' as vars;
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--app-space-md);
+  padding: var(--app-space-2xl) var(--app-space-lg);
+}
+
+.loader-label {
+  margin: 0;
+  font-size: var(--app-font-size-sm);
+  color: var(--app-color-on-surface-variant);
+  text-align: center;
+}

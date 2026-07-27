@@ -1,0 +1,43 @@
+
+
+$breakpoint-mobile: 599px;
+$breakpoint-tablet: 959px;
+
+:root {
+  // Palette — alias sui system token Material 3
+  --app-color-primary: var(--mat-sys-primary);
+  --app-color-on-primary: var(--mat-sys-on-primary);
+  --app-color-primary-container: var(--mat-sys-primary-container);
+  --app-color-on-primary-container: var(--mat-sys-on-primary-container);
+  --app-color-surface: var(--mat-sys-surface);
+  --app-color-on-surface: var(--mat-sys-on-surface);
+  --app-color-on-surface-variant: var(--mat-sys-on-surface-variant);
+  --app-color-surface-container-low: var(--mat-sys-surface-container-low);
+  --app-color-surface-container-high: var(--mat-sys-surface-container-high);
+  --app-color-outline: var(--mat-sys-outline);
+  --app-color-outline-variant: var(--mat-sys-outline-variant);
+  --app-color-error: var(--mat-sys-error);
+
+  // Spacing — griglia a 8px
+  --app-space-xs: 4px;
+  --app-space-sm: 8px;
+  --app-space-md: 16px;
+  --app-space-lg: 24px;
+  --app-space-xl: 32px;
+  --app-space-2xl: 48px;
+
+  // Font
+  --app-font-family: Roboto, 'Helvetica Neue', sans-serif;
+  --app-font-size-xs: 0.75rem;
+  --app-font-size-sm: 0.875rem;
+  --app-font-size-md: 1rem;
+  --app-font-size-lg: 1.25rem;
+  --app-font-size-xl: 1.5rem;
+  --app-font-weight-regular: 400;
+  --app-font-weight-medium: 500;
+  --app-font-weight-bold: 700;
+
+  // Raggio — coerente con quanto già usato in album-card.scss
+  --app-radius-sm: var(--mat-sys-corner-small, 8px);
+  --app-radius-md: var(--mat-sys-corner-medium, 12px);
+}
