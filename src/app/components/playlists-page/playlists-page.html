@@ -1,0 +1,211 @@
+<div class="playlists-page">
+  <div class="page-title">
+    <h1>Le mie playlist</h1>
+
+    <p>
+      Crea le tue raccolte e aggiungi i brani
+      dalla pagina di dettaglio.
+    </p>
+  </div>
+
+  <mat-card
+    class="create-card"
+    appearance="outlined"
+  >
+    <mat-card-content>
+      <form
+        class="playlist-form"
+        [formGroup]="playlistForm"
+        (ngSubmit)="createPlaylist()"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>Nome playlist</mat-label>
+
+          <input
+            matInput
+            formControlName="name"
+          />
+
+          @if (
+            playlistForm.controls.name.touched &&
+            playlistForm.controls.name.hasError('required')
+          ) {
+            <mat-error>
+              Il nome della playlist è obbligatorio
+            </mat-error>
+          }
+
+          @if (
+            playlistForm.controls.name.touched &&
+            playlistForm.controls.name.hasError(
+              'duplicateName'
+            )
+          ) {
+            <mat-error>
+              Esiste già una playlist con questo nome
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+        >
+          <mat-icon>add</mat-icon>
+          Crea playlist
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  @if (
+    playlistService.playlists().length === 0
+  ) {
+    <div class="empty-state">
+      <mat-icon class="empty-icon">
+        queue_music
+      </mat-icon>
+
+      <p class="empty-message">
+        Nessuna playlist
+      </p>
+
+      <p class="empty-hint">
+        Crea la prima playlist, poi aggiungi
+        i brani dal catalogo.
+      </p>
+
+      <a
+        mat-stroked-button
+        color="primary"
+        routerLink="/catalog"
+      >
+        <mat-icon>library_music</mat-icon>
+        Vai al catalogo
+      </a>
+    </div>
+  } @else {
+    <div class="playlist-list">
+      @for (
+        playlist of playlistService.playlists();
+        track playlist.id
+      ) {
+        <mat-card
+          class="playlist-card"
+          appearance="outlined"
+        >
+          <mat-card-header>
+            <div class="playlist-heading">
+              <div>
+                <mat-card-title>
+                  {{ playlist.title }}
+                </mat-card-title>
+
+                <mat-card-subtitle>
+                  {{ playlist.tracks.length }}
+
+                  {{
+                    playlist.tracks.length === 1
+                      ? 'brano'
+                      : 'brani'
+                  }}
+
+                  ·
+
+                  {{
+                    totalDuration(playlist)
+                      | duration
+                  }}
+                </mat-card-subtitle>
+              </div>
+
+              <button
+                mat-icon-button
+                color="warn"
+                type="button"
+                (click)="deletePlaylist(playlist)"
+                [attr.aria-label]="
+                  'Elimina la playlist ' +
+                  playlist.title
+                "
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </mat-card-header>
+
+          <mat-card-content>
+            @if (
+              playlist.tracks.length === 0
+            ) {
+              <div class="empty-playlist">
+                <mat-icon>music_note</mat-icon>
+
+                <span>
+                  Nessun brano in questa playlist.
+                </span>
+              </div>
+            } @else {
+              <mat-list class="track-list">
+                @for (
+                  track of playlist.tracks;
+                  track track.id;
+                  let i = $index
+                ) {
+                  <mat-list-item>
+                    <span
+                      matListItemIcon
+                      class="track-number"
+                    >
+                      {{ i + 1 }}
+                    </span>
+
+                    <span matListItemTitle>
+                      {{ track.title }}
+                    </span>
+
+                    <span matListItemLine>
+                      {{ track.artists[0].name }}
+                    </span>
+
+                    <div
+                      matListItemMeta
+                      class="track-actions"
+                    >
+                      <span class="track-duration">
+                        {{ track.duration | duration }}
+                      </span>
+
+                      <button
+                        mat-icon-button
+                        color="warn"
+                        type="button"
+                        (click)="
+                          removeTrack(
+                            playlist,
+                            track.id,
+                            track.title
+                          )
+                        "
+                        [attr.aria-label]="
+                          'Rimuovi ' +
+                          track.title +
+                          ' dalla playlist'
+                        "
+                      >
+                        <mat-icon>
+                          remove_circle_outline
+                        </mat-icon>
+                      </button>
+                    </div>
+                  </mat-list-item>
+                }
+              </mat-list>
+            }
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  }
+</div>

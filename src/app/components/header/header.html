@@ -15,6 +15,7 @@
       >
       <a mat-button routerLink="/catalog" routerLinkActive="active-link">Catalogo</a>
       <a mat-button routerLink="/favorites" routerLinkActive="active-link">Preferiti</a>
+      <a mat-button routerLink="/playlists" routerLinkActive="active-link">Playlist</a>
     </nav>
 
     <button mat-icon-button class="hamburger-btn" (click)="sidenav.toggle()" aria-label="Menu">
@@ -53,6 +54,15 @@
       >
         <mat-icon matListItemIcon>person</mat-icon>
         <span matListItemTitle>Preferiti</span>
+      </a>
+      <a
+        mat-list-item
+        routerLink="/playlists"
+        routerLinkActive="active-link"
+        (click)="sidenav.close()"
+      >
+        <mat-icon matListItemIcon>playlist</mat-icon>
+        <span matListItemTitle>Playlist</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
