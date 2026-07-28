@@ -13,7 +13,6 @@ export class FavoritesService {
 
   readonly favoritesCount = computed(() => this.favoriteIds().size);
 
-
   readonly favoriteAlbums = computed<Album[]>(() => {
     const ids = this.favoriteIds();
     return this.catalog.albums().filter((a) => ids.has(a.id));
@@ -21,7 +20,8 @@ export class FavoritesService {
 
   readonly favoriteTracks = computed<{ track: Track; album: Album }[]>(() => {
     const ids = this.favoriteIds();
-    return this.catalog.albums()
+    return this.catalog
+      .albums()
       .flatMap((album) => album.tracks.map((track) => ({ track, album })))
       .filter(({ track }) => ids.has(track.id));
   });

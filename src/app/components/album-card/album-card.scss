@@ -9,7 +9,9 @@
   overflow: hidden;
   background-color: var(--mat-sys-surface-container-low);
   color: var(--mat-sys-on-surface);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 
   &:hover {
     transform: translateY(-4px);

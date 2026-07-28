@@ -39,12 +39,12 @@ export class ArtistDetailComponent {
   private readonly concertService = inject(ConcertService);
   private readonly meta = inject(Meta);
 
-  protected readonly id = toSignal(this.route.paramMap.pipe(map(p => p.get('id'))));
+  protected readonly id = toSignal(this.route.paramMap.pipe(map((p) => p.get('id'))));
 
   protected readonly artist = computed<Artist | null>(() => {
     if (!this.catalogService.loaded()) return null;
     const id = this.id();
-    const found = id ? this.catalogService.getArtistById(id) ?? null : null;
+    const found = id ? (this.catalogService.getArtistById(id) ?? null) : null;
     console.log('[ArtistDetail] computed artist for id:', id, '->', found?.name ?? 'NOT FOUND');
     return found;
   });
@@ -69,11 +69,19 @@ export class ArtistDetailComponent {
       const loaded = this.catalogService.loaded();
       const id = this.id();
       const artist = this.artist();
-      console.log('[ArtistDetail] effect:', { loaded, id, artist: artist?.name ?? null, artistsCount: this.catalogService.artists().length });
-      
+      console.log('[ArtistDetail] effect:', {
+        loaded,
+        id,
+        artist: artist?.name ?? null,
+        artistsCount: this.catalogService.artists().length,
+      });
+
       if (!loaded) return;
       if (!artist) {
-        console.warn('[ArtistDetail] Artist not found, redirecting to not-found. Available IDs:', this.catalogService.artists().map(a => a.id));
+        console.warn(
+          '[ArtistDetail] Artist not found, redirecting to not-found. Available IDs:',
+          this.catalogService.artists().map((a) => a.id),
+        );
         this.router.navigate(['/not-found']);
       }
     });

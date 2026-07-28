@@ -101,7 +101,9 @@
   .album-link {
     cursor: pointer;
     border-radius: var(--mat-sys-corner-medium, 12px);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
 
     &:hover {
       transform: translateY(-4px);

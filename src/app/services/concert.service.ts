@@ -25,9 +25,10 @@ export class ConcertService {
 
   readonly upcomingConcertsByArtist = computed(() => {
     const now = new Date();
-    return (artistId: string): Concert[] => this.concerts()
-      .filter((c: Concert) => c.artistId === artistId && c.date > now)
-      .sort((a: Concert, b: Concert) => a.date.getTime() - b.date.getTime());
+    return (artistId: string): Concert[] =>
+      this.concerts()
+        .filter((c: Concert) => c.artistId === artistId && c.date > now)
+        .sort((a: Concert, b: Concert) => a.date.getTime() - b.date.getTime());
   });
 
   constructor() {
@@ -44,18 +45,20 @@ export class ConcertService {
   }
 
   private build(data: RawConcert[]): void {
-    this.concerts.set(data.map((c) => ({
-      id: c.id,
-      title: c.title,
-      location: c.location,
-      city: c.city,
-      date: new Date(c.date),
-      artistId: c.artistId,
-      basePrice: c.basePrice,
-      availableSeats: c.availableSeats,
-      duration: new Date(c.duration),
-      trackList: [],
-    })));
+    this.concerts.set(
+      data.map((c) => ({
+        id: c.id,
+        title: c.title,
+        location: c.location,
+        city: c.city,
+        date: new Date(c.date),
+        artistId: c.artistId,
+        basePrice: c.basePrice,
+        availableSeats: c.availableSeats,
+        duration: new Date(c.duration),
+        trackList: [],
+      })),
+    );
   }
 
   getConcertById(id: string): Concert | undefined {
