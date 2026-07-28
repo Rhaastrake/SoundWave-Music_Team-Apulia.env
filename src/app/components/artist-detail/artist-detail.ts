@@ -9,6 +9,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Genre } from '../../enums';
 import { Artist } from '../../models';
+import { BookingService } from '../../services/booking.service';
 import { CatalogService } from '../../services/catalog.service';
 import { ConcertService } from '../../services/concert.service';
 import { AlbumCardComponent } from '../album-card/album-card';
@@ -40,6 +41,7 @@ export class ArtistDetailComponent {
   private readonly router = inject(Router);
   private readonly catalogService = inject(CatalogService);
   private readonly concertService = inject(ConcertService);
+  private readonly bookingService = inject(BookingService);
   private readonly meta = inject(Meta);
 
   protected readonly id = toSignal(this.route.paramMap.pipe(map((p) => p.get('id'))));
@@ -66,7 +68,11 @@ export class ArtistDetailComponent {
   protected readonly upcomingConcerts = computed(() => {
     const artist = this.artist();
     if (!artist || !this.concertService.loaded()) return [];
-    return this.concertService.upcomingConcertsByArtist()(artist.id);
+    const concerts = this.concertService.upcomingConcertsByArtist()(artist.id);
+    return concerts.map((c) => ({
+      ...c,
+      availableSeats: this.bookingService.getRemainingSeats(c.id, c.availableSeats),
+    }));
   });
 
   constructor() {
