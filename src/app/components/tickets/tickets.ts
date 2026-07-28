@@ -13,7 +13,6 @@ import { ticketValidator } from '../../validators/ticket.validator';
 
 @Component({
   selector: 'app-tickets',
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     CurrencyPipe,
