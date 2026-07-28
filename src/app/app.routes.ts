@@ -7,6 +7,7 @@ import { HomePlaceholderComponent } from './components/home-placeholder/home-pla
 import { BookingComponent } from './components/booking-page/booking-page';
 import { NotFoundComponent } from './components/not-found/not-found';
 import { TicketsComponent } from './components/tickets/tickets';
+import { ConcertPageComponent } from './components/concert-page/concert-page';
 
 export const routes: Routes = [
   { path: '', component: HomePlaceholderComponent },
@@ -15,6 +16,7 @@ export const routes: Routes = [
   { path: 'artist/:id', component: ArtistDetailComponent },
   { path: 'tickets/:concertId', component: TicketsComponent },
   { path: 'favorites', component: FavoritesPageComponent },
+  { path: 'concerts', component: ConcertPageComponent},
   { path: 'prenotazioni', component: BookingComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: '/not-found' },
