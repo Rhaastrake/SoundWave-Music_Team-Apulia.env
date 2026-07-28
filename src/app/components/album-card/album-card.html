@@ -1,18 +1,22 @@
-<div class="album-card">
+<mat-card class="album-card" matRipple [routerLink]="'/music/' + album().id">
   <div class="album-image">
     @if (album().imageUrl) {
-      <img [src]="album().imageUrl" [alt]="album().title" />
+      <img mat-card-image [src]="album().imageUrl" [alt]="album().title" />
     } @else {
-      <div class="placeholder-image">🎵</div>
+      <div class="placeholder-image">
+        <mat-icon>album</mat-icon>
+      </div>
     }
   </div>
-  <div class="album-info">
+
+  <mat-card-content class="album-info">
     <h3 class="album-title">{{ album().title }}</h3>
     <p class="album-artist">{{ album().artist.name }}</p>
+
     <div class="album-meta">
       <span class="badge genre">{{ genreLabel }}</span>
       <span class="badge type">{{ typeLabel }}</span>
       <span class="album-year">{{ year }}</span>
     </div>
-  </div>
-</div>
+  </mat-card-content>
+</mat-card>

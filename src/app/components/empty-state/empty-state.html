@@ -1,12 +1,7 @@
 <div class="empty-state">
-  <mat-icon class="empty-state-icon" aria-hidden="true">{{ icon() }}</mat-icon>
-  <p class="empty-state-message">{{ message() }}</p>
-  @if (description()) {
-    <p class="empty-state-description">{{ description() }}</p>
-  }
-  @if (actionLabel()) {
-    <button mat-stroked-button color="primary" (click)="actionClick.emit()">
-      {{ actionLabel() }}
-    </button>
+  <p class="empty-message">{{ message }}</p>
+  <p class="empty-hint">{{ hint }}</p>
+  @if (showReset) {
+    <button mat-stroked-button color="primary" (click)="reset.emit()">Azzera filtri</button>
   }
 </div>

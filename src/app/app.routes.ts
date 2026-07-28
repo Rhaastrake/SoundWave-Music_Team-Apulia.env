@@ -1,47 +1,16 @@
 import { Routes } from '@angular/router';
+import { AlbumDetailComponent } from './components/album-detail/album-detail';
+import { ArtistDetailComponent } from './components/artist-detail/artist-detail';
 import { CatalogPageComponent } from './components/catalog-page/catalog-page';
-import { PlaylistPageComponent } from './components/playlist-page/playlist-page';
-import { FavoritesPageComponent } from './components/favorites-page/favorites-page';
+import { HomePlaceholderComponent } from './components/home-placeholder/home-placeholder';
+import { NotFoundComponent } from './components/not-found/not-found';
+import { ProfilePageComponent } from './components/profile-page/profile-page';
 
 export const routes: Routes = [
-     {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'home',
-  },
-  {
-    path: 'home',
-    loadComponent: () =>
-      import('./components/home-page/home-page').then(
-        (component) => component.HomePageComponent,
-      ),
-  },
-  {
-    path: 'catalog',
-    loadComponent: () =>
-      import('./components/catalog-page/catalog-page').then(
-        (component) => component.CatalogPageComponent,
-      ),
-  },
-  {
-    path: 'playlist',
-    loadComponent: () =>
-      import('./components/playlist-page/playlist-page').then(
-        (component) => component.PlaylistPageComponent,
-      ),
-  },
-  {
-    path: 'favorites',
-    loadComponent: () =>
-      import('./components/favorites-page/favorites-page').then(
-        (component) => component.FavoritesPageComponent,
-      ),
-  },
-  {
-    path: 'booking',
-    loadComponent: () =>
-      import('./components/booking-page/booking-page').then(
-        (component) => component.BookingPageComponent,
-      ),
-  },
+  { path: '', component: HomePlaceholderComponent },
+  { path: 'catalog', component: CatalogPageComponent },
+  { path: 'music/:id', component: AlbumDetailComponent },
+  { path: 'artist/:id', component: ArtistDetailComponent },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: '**', redirectTo: '/not-found' },
 ];

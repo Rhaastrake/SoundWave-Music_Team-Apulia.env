@@ -1,19 +1,16 @@
-import { Component, input, output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  standalone: true,
   selector: 'app-empty-state',
-  imports: [MatIconModule, MatButtonModule],
+  imports: [MatButtonModule, MatIconModule],
   templateUrl: './empty-state.html',
   styleUrl: './empty-state.scss',
 })
 export class EmptyStateComponent {
-  readonly icon = input<string>('search_off');
-  readonly message = input<string>('Nessun risultato trovato');
-  readonly description = input<string>('');
-  readonly actionLabel = input<string>('');
-
-  readonly actionClick = output<void>();
+  @Input() message = 'Nessun risultato';
+  @Input() hint = 'Prova a modificare i filtri o la ricerca.';
+  @Input() showReset = true;
+  @Output() readonly reset = new EventEmitter<void>();
 }

@@ -1,19 +1,26 @@
 .catalog-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 16px;
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.results-counter {
-  font-size: 0.875rem;
-  color: var(--mat-sys-on-surface-variant);
-  margin: 16px 0;
+.catalog-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .results-counter {
+    font-size: 0.875rem;
+    font-weight: 500;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 }
 
 .album-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
+  gap: 1.5rem;
 }
