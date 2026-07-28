@@ -55,14 +55,16 @@
   align-items: flex-start;
 
   .album-title {
-    font-size: 2rem;
-    margin: 0 0 0.25rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 0.75rem;
   }
 
   .album-artist {
-    font-size: 1.1rem;
-    opacity: 0.7;
-    margin: 0 0 1rem;
+    font-size: 1.15rem;
+    opacity: 0.75;
+    margin: 0 0 1.25rem;
   }
 
   .album-meta {
