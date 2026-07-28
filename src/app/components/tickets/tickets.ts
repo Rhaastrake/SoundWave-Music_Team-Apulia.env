@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -24,7 +24,7 @@ import { ticketValidator } from '../../validators/ticket.validator';
   templateUrl: './tickets.html',
   styleUrl: './tickets.scss',
 })
-export class TicketsComponent {
+export class TicketsComponent implements OnInit {
 
   private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
@@ -94,28 +94,24 @@ export class TicketsComponent {
 
   });
 
-  constructor() {
+  ngOnInit(): void {
 
-  this.updateTotal();
-
-  this.ticketForm.get('numeroPosti')?.valueChanges.subscribe(() => {
     this.updateTotal();
-  });
 
-}
+    this.ticketForm.controls.numeroPosti.valueChanges.subscribe(() => {
+      this.updateTotal();
+    });
+
+  }
 
   onSubmit(): void {
 
     if (this.ticketForm.invalid) {
-
       this.ticketForm.markAllAsTouched();
-
       return;
-
     }
 
     this.bookingCode = this.generateBookingCode();
-
     this.bookingCompleted = true;
 
   }
@@ -134,9 +130,8 @@ export class TicketsComponent {
 
   private updateTotal(): void {
 
-    const posti = Number(this.ticketForm.get('numeroPosti')?.value ?? 0);
-
-    this.totalPrice = posti * this.ticketPrice;
+    this.totalPrice =
+      Number(this.ticketForm.controls.numeroPosti.value ?? 0) * this.ticketPrice;
 
   }
 
