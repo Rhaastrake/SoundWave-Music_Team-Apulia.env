@@ -83,7 +83,7 @@
 
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Telefono</mat-label>
-            <input matInput maxlength="15" formControlName="telefono" />
+            <input matInput maxlength="15" formControlName="telefono" (keydown)="onlyNumbers($event)" />
             @if (
               ticketForm.controls.telefono.touched &&
               ticketForm.controls.telefono.hasError('required')
@@ -110,7 +110,7 @@
 
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Numero posti</mat-label>
-            <input matInput type="number" min="1" max="6" formControlName="numeroPosti" />
+            <input matInput type="text" inputmode="numeric" maxlength="1" formControlName="numeroPosti" (keydown)="onlyNumbers($event)" />
             @if (
               ticketForm.controls.numeroPosti.touched &&
               ticketForm.controls.numeroPosti.hasError('required')

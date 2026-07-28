@@ -31,12 +31,12 @@ import { ticketValidator } from '../../validators/ticket.validator';
   styleUrl: './tickets.scss',
 })
 export class TicketsComponent implements OnInit {
-  private fb = inject(FormBuilder);
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
-  private destroyRef = inject(DestroyRef);
-  private concertService = inject(ConcertService);
-  private bookingService = inject(BookingService);
+  private readonly fb = inject(FormBuilder);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly concertService = inject(ConcertService);
+  private readonly bookingService = inject(BookingService);
 
   concertId = this.route.snapshot.paramMap.get('concertId') ?? '';
 
@@ -72,7 +72,7 @@ export class TicketsComponent implements OnInit {
       ],
     ],
     email: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
-    telefono: ['', [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.maxLength(15)]],
+    telefono: ['', [Validators.required, Validators.pattern(/^\d+$/), Validators.maxLength(15)]],
     numeroPosti: [1],
   });
 
@@ -130,6 +130,15 @@ export class TicketsComponent implements OnInit {
 
   goToBookings(): void {
     this.router.navigate(['/prenotazioni']);
+  }
+
+  protected onlyNumbers(event: KeyboardEvent): void {
+    const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight', 'Home', 'End'];
+    if (allowedKeys.includes(event.key)) return;
+    if (event.ctrlKey || event.metaKey) return;
+    if (event.key.length === 1 && !/^\d$/.test(event.key)) {
+      event.preventDefault();
+    }
   }
 
   private updateTotal(): void {

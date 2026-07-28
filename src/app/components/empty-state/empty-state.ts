@@ -12,5 +12,5 @@ export class EmptyStateComponent {
   @Input() message = 'Nessun risultato';
   @Input() hint = 'Prova a modificare i filtri o la ricerca.';
   @Input() showReset = true;
-  @Output() readonly reset = new EventEmitter<void>();
+  @Output() readonly resetRequest = new EventEmitter<void>();
 }
