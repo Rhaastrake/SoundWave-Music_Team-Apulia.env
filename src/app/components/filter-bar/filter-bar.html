@@ -16,15 +16,25 @@
     <mat-label>Anno</mat-label>
     <input
       matInput
-      id="filter-year"
       type="text"
       inputmode="numeric"
-      aria-label="Anno"
       [value]="service.selectedYear()"
       (input)="onYearInput($event)"
       (keydown)="onYearKeydown($event)"
       placeholder="es. 2023"
     />
+
+    @if (service.selectedYear()) {
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        aria-label="Cancella anno"
+        (click)="service.setYear(null)"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    }
   </mat-form-field>
 
   <mat-form-field subscriptSizing="dynamic">

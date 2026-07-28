@@ -1,0 +1,94 @@
+.profile-page {
+  padding: 1.5rem;
+}
+
+.profile-header {
+  margin-bottom: 2rem;
+
+  h1 {
+    margin: 0 0 0.25rem;
+  }
+}
+
+.profile-summary {
+  margin: 0;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+.favorites-section {
+  margin-bottom: 2.5rem;
+
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+.track-list {
+  .track-number {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    display: inline-block;
+    width: 1.5rem;
+    text-align: center;
+  }
+
+  .track-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    .track-duration {
+      opacity: 0.65;
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  gap: 1rem;
+  opacity: 0.7;
+
+  p {
+    margin: 0;
+  }
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 1rem;
+
+  .empty-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+  }
+
+  .empty-message {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0 0 0.25rem;
+  }
+
+  .empty-hint {
+    opacity: 0.6;
+    margin: 0 0 1.5rem;
+  }
+}

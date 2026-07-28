@@ -1,4 +1,8 @@
 import { Component, input } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatRippleModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 import { ContentType, Genre } from '../../enums';
 import { Album } from '../../models';
 
@@ -16,8 +20,8 @@ const TYPE_LABELS: Record<ContentType, string> = {
 };
 
 @Component({
-  standalone: true,
   selector: 'app-album-card',
+  imports: [RouterLink, MatCardModule, MatRippleModule, MatIconModule],
   templateUrl: './album-card.html',
   styleUrl: './album-card.scss',
 })
