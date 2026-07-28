@@ -19,3 +19,29 @@ main {
 a {
   text-decoration: none !important;
 }
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 32px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    min-height: calc(100vh - 56px);
+  }
+
+  .main-content {
+    padding: 16px;
+  }
+}
