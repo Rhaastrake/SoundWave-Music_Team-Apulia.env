@@ -3,7 +3,6 @@ import { Injectable, WritableSignal, computed, inject, signal } from '@angular/c
 import { ContentType, Genre } from '../enums';
 import { Album, Artist, Track } from '../models';
 
-/** Shape del JSON: normalizzato, senza Date, senza riferimenti circolari, enum per nome. */
 interface RawArtist {
   id: string;
   name: string;
@@ -82,7 +81,6 @@ export class CatalogService {
     });
   }
 
-  /** Ricostruisce Date, enum numerici e i riferimenti circolari artist<->album. */
   private build(data: CatalogData): void {
     const artistMap = new Map<string, Artist>();
     data.artists.forEach((a) =>

@@ -1,13 +1,16 @@
+import { DatePipe } from '@angular/common';
 import { Component, computed, effect, inject } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { Artist } from '../../models';
 import { Genre, ContentType } from '../../enums';
 import { CatalogService } from '../../services/catalog.service';
 import { ConcertService } from '../../services/concert.service';
-import { EmptyStateComponent } from "../empty-state/empty-state";
+import { EmptyStateComponent } from '../empty-state/empty-state';
 
 const GENRE_LABELS: Record<Genre, string> = {
   [Genre.Rock]: 'Rock',
@@ -25,7 +28,7 @@ const TYPE_LABELS: Record<ContentType, string> = {
 @Component({
   standalone: true,
   selector: 'app-artist-detail',
-  imports: [RouterLink, EmptyStateComponent],
+  imports: [RouterLink, EmptyStateComponent, DatePipe, MatButtonModule, MatCardModule],
   templateUrl: './artist-detail.html',
   styleUrl: './artist-detail.scss',
 })
