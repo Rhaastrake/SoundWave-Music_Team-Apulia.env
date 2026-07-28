@@ -1,14 +1,14 @@
-<div class="profile-page">
-  <header class="profile-header">
+<div class="favorites-page">
+  <div class="favorites-title">
     <h1>I miei preferiti</h1>
     @if (!loading() && !isEmpty()) {
-      <p class="profile-summary">
+      <p class="favorites-summary">
         {{ favorites.favoriteTracks().length }} brani ·
         {{ favorites.favoriteAlbums().length }} release ·
         {{ totalDuration() | duration }}
       </p>
     }
-  </header>
+  </div>
 
   @if (loading()) {
     <div class="loading-container">
