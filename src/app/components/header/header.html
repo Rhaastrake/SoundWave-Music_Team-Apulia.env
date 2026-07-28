@@ -1,12 +1,10 @@
 <mat-toolbar color="primary" class="app-toolbar">
   <div class="toolbar-container">
-    <!-- Logo -->
     <a routerLink="/" class="logo" (click)="closeMenu()">
       <mat-icon class="logo-icon">graphic_eq</mat-icon>
       <span>SoundWave</span>
     </a>
 
-    <!-- Navigation Links Desktop -->
     <nav class="desktop-nav">
       <a
         mat-button
@@ -16,17 +14,15 @@
         >Home</a
       >
       <a mat-button routerLink="/catalog" routerLinkActive="active-link">Catalogo</a>
-      <a mat-button routerLink="/profile" routerLinkActive="active-link">Profilo</a>
+      <a mat-button routerLink="/favorites" routerLinkActive="active-link">Preferiti</a>
     </nav>
 
-    <!-- Pulsante Hamburger Mobile -->
     <button mat-icon-button class="hamburger-btn" (click)="sidenav.toggle()" aria-label="Menu">
       <mat-icon>menu</mat-icon>
     </button>
   </div>
 </mat-toolbar>
 
-<!-- Menu Mobile Sidenav -->
 <mat-sidenav-container class="sidenav-container" [hasBackdrop]="true">
   <mat-sidenav #sidenav mode="over" position="end" class="app-sidenav">
     <mat-nav-list>
@@ -51,17 +47,16 @@
       </a>
       <a
         mat-list-item
-        routerLink="/profile"
+        routerLink="/favorites"
         routerLinkActive="active-link"
         (click)="sidenav.close()"
       >
         <mat-icon matListItemIcon>person</mat-icon>
-        <span matListItemTitle>Profilo</span>
+        <span matListItemTitle>Preferiti</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
 
-  <!-- Il contenuto della pagina verrà inserito qui tramite app.html -->
   <mat-sidenav-content>
     <ng-content></ng-content>
   </mat-sidenav-content>

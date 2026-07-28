@@ -2,7 +2,6 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  /* Rimuoviamo eventuali padding interni predefiniti di Material per gestire il margine noi */
   padding: 0 !important;
 
   .toolbar-container {
@@ -10,10 +9,8 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    /* Stessa larghezza massima del contenuto di catalogo */
     max-width: 1400px;
     margin: 0 auto;
-    /* Aggiunge respiro ai lati su schermi grandi/medi per non far toccare i bordi */
     padding: 0 32px;
     box-sizing: border-box;
   }
@@ -43,11 +40,10 @@
   }
 }
 
-/* Responsiveness per schermi piccoli */
 @media (max-width: 768px) {
   .app-toolbar {
     .toolbar-container {
-      padding: 0 16px; /* Padding più contenuto su mobile */
+      padding: 0 16px;
     }
 
     .desktop-nav {

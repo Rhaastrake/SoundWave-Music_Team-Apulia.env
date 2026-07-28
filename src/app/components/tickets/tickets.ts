@@ -1,13 +1,14 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ticketValidator } from '../../validators/ticket.validator';
 
 @Component({
@@ -20,6 +21,8 @@ import { ticketValidator } from '../../validators/ticket.validator';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
   ],
   templateUrl: './tickets.html',
   styleUrl: './tickets.scss',
@@ -28,13 +31,12 @@ export class TicketsComponent implements OnInit {
   private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
 
   concertId = Number(this.route.snapshot.paramMap.get('concertId'));
 
-  // TODO: sostituire con il prezzo reale del concerto
   ticketPrice = 20;
 
-  // TODO: sostituire con i posti disponibili reali
   availableSeats = 50;
 
   bookingCompleted = false;
@@ -53,7 +55,6 @@ export class TicketsComponent implements OnInit {
         Validators.pattern(/^[A-Za-zÀ-ÿ\s]+$/),
       ],
     ],
-
     cognome: [
       '',
       [
@@ -63,20 +64,17 @@ export class TicketsComponent implements OnInit {
         Validators.pattern(/^[A-Za-zÀ-ÿ\s]+$/),
       ],
     ],
-
     email: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
-
     telefono: ['', [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.maxLength(15)]],
-
     numeroPosti: [1, [Validators.required, ticketValidator(this.availableSeats)]],
   });
 
   ngOnInit(): void {
     this.updateTotal();
 
-    this.ticketForm.controls.numeroPosti.valueChanges.subscribe(() => {
-      this.updateTotal();
-    });
+    this.ticketForm.controls.numeroPosti.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.updateTotal());
   }
 
   onSubmit(): void {
@@ -89,12 +87,12 @@ export class TicketsComponent implements OnInit {
     this.bookingCompleted = true;
   }
 
-  private generateBookingCode(): string {
-    return 'BK-' + Math.random().toString(36).substring(2, 10).toUpperCase();
-  }
-
   goToCatalog(): void {
     this.router.navigate(['/catalog']);
+  }
+
+  private generateBookingCode(): string {
+    return 'BK-' + Math.random().toString(36).substring(2, 10).toUpperCase();
   }
 
   private updateTotal(): void {
