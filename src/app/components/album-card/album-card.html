@@ -1,4 +1,4 @@
-<mat-card class="album-card" matRipple [routerLink]="'/music/' + album().id">
+<mat-card class="album-card" appearance="outlined" matRipple [routerLink]="'/music/' + album().id">
   <div class="album-image">
     @if (album().imageUrl) {
       <img mat-card-image [src]="album().imageUrl" [alt]="album().title" />

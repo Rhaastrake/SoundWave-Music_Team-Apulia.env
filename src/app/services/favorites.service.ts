@@ -12,20 +12,17 @@ export class FavoritesService {
 
   readonly favoritesCount = computed(() => this.favoriteIds().size);
 
-  /** Release preferite risolte in Album veri; vuoto finché il catalogo non ha caricato. */
   readonly favoriteAlbums = computed<Album[]>(() => {
     const ids = this.favoriteIds();
     return this.catalog.albums().filter((a) => ids.has(a.id));
   });
 
-  /** Brani preferiti risolti in Track veri; vuoto finché il catalogo non ha caricato. */
   readonly favoriteTracks = computed<Track[]>(() => {
     const ids = this.favoriteIds();
     return this.catalog.tracks().filter((t) => ids.has(t.id));
   });
 
   constructor() {
-    // Salva a ogni modifica
     effect(() => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify([...this.favoriteIds()]));
     });
