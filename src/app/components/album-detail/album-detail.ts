@@ -1,10 +1,12 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { Genre } from '../../enums';
 import { Album } from '../../models';
 import { DurationPipe } from '../../pipes/duration';
@@ -38,9 +40,10 @@ export class AlbumDetailComponent {
   private readonly meta = inject(Meta);
   protected readonly favoritesService = inject(FavoritesService);
 
-  private readonly id = signal(this.route.snapshot.paramMap.get('id'));
+  private readonly id = toSignal(
+    this.route.paramMap.pipe(map((params) => params.get('id')))
+  );
 
-  /** null finché il catalogo non ha caricato, poi l'album o undefined. */
   protected readonly album = computed<Album | null>(() => {
     if (!this.catalogService.loaded()) return null;
     const id = this.id();
@@ -49,8 +52,22 @@ export class AlbumDetailComponent {
 
   protected readonly loading = computed(() => !this.catalogService.loaded());
 
+  protected readonly genreLabel = computed(() => {
+    const a = this.album();
+    return a ? GENRE_LABELS[a.genre] : '';
+  });
+
+  protected readonly year = computed(() => {
+    const a = this.album();
+    return a ? a.releaseDate.getFullYear() : 0;
+  });
+
+  protected readonly totalDuration = computed(() => {
+    const a = this.album();
+    return a ? a.tracks.reduce((sum, t) => sum + t.duration, 0) : 0;
+  });
+
   constructor() {
-    // Redirect solo DOPO che i dati sono arrivati
     effect(() => {
       if (!this.catalogService.loaded()) return;
       if (!this.album()) {
@@ -67,20 +84,5 @@ export class AlbumDetailComponent {
         });
       }
     });
-  }
-
-  protected get genreLabel(): string {
-    const a = this.album();
-    return a ? GENRE_LABELS[a.genre] : '';
-  }
-
-  protected get year(): number {
-    const a = this.album();
-    return a ? a.releaseDate.getFullYear() : 0;
-  }
-
-  protected get totalDuration(): number {
-    const a = this.album();
-    return a ? a.tracks.reduce((sum, t) => sum + t.duration, 0) : 0;
   }
 }
