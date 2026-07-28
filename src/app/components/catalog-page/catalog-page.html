@@ -13,12 +13,6 @@
       }
     </div>
   } @else {
-    <app-empty-state
-  icon="search_off"
-  message="Nessun risultato"
-  description="Prova a modificare i filtri o la ricerca."
-  actionLabel="Azzera filtri"
-  (actionClick)="service.resetFilters()"
-/>
+    <app-empty-state (reset)="service.resetFilters()" />
   }
 </div>
