@@ -3,6 +3,11 @@
     <mat-card class="ticket-card" appearance="outlined">
       <mat-card-header>
         <mat-card-title>Prenotazione Biglietti</mat-card-title>
+        @if (concert) {
+          <mat-card-subtitle>
+            {{ concert.title }} — {{ concert.date | date:"d MMMM yyyy, HH:mm" }} — {{ concert.city }}
+          </mat-card-subtitle>
+        }
       </mat-card-header>
 
       <mat-card-content>
@@ -99,6 +104,10 @@
             }
           </mat-form-field>
 
+          <p class="seats-info" [class.seats-exhausted]="remainingSeats === 0">
+            Posti rimanenti: <strong>{{ remainingSeats }}</strong>
+          </p>
+
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Numero posti</mat-label>
             <input matInput type="number" min="1" max="6" formControlName="numeroPosti" />
@@ -175,8 +184,13 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-flat-button color="primary" class="back-button" (click)="goToCatalog()">
+        <button mat-button color="primary" class="back-button" (click)="goToCatalog()">
+          <mat-icon>library_music</mat-icon>
           Torna al Catalogo
+        </button>
+        <button mat-flat-button color="primary" class="back-button" (click)="goToBookings()">
+          <mat-icon>confirmation_number</mat-icon>
+          Vedi le mie prenotazioni
         </button>
       </mat-card-actions>
     </mat-card>
