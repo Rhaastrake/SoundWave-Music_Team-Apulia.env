@@ -71,20 +71,12 @@ export class CatalogService {
   readonly resultCount = computed(() => this.filteredAlbums().length);
 
   constructor() {
-    console.log('[CatalogService] Constructor - starting data load from', this.dataUrl);
     this.http.get<CatalogData>(this.dataUrl).subscribe({
       next: (data) => {
-        console.log('[CatalogService] Data loaded:', {
-          artists: data.artists.length,
-          tracks: data.tracks.length,
-          releases: data.releases.length,
-        });
         this.build(data);
         this.loaded.set(true);
-        console.log('[CatalogService] Build complete, loaded=true');
       },
-      error: (err) => {
-        console.error('[CatalogService] Caricamento catalogo fallito', err);
+      error: () => {
         this.loaded.set(true);
       },
     });
@@ -134,10 +126,6 @@ export class CatalogService {
     this.artists.set([...artistMap.values()]);
     this.tracks.set([...trackMap.values()]);
     this.albums.set(albums);
-    console.log(
-      '[CatalogService] Artists set:',
-      this.artists().map((a) => a.id),
-    );
   }
 
   private matchesSearch(album: Album, text: string): boolean {

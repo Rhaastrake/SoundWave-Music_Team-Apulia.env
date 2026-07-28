@@ -45,7 +45,6 @@ export class ArtistDetailComponent {
     if (!this.catalogService.loaded()) return null;
     const id = this.id();
     const found = id ? (this.catalogService.getArtistById(id) ?? null) : null;
-    console.log('[ArtistDetail] computed artist for id:', id, '->', found?.name ?? 'NOT FOUND');
     return found;
   });
 
@@ -64,24 +63,13 @@ export class ArtistDetailComponent {
   });
 
   constructor() {
-    console.log('[ArtistDetail] CONSTRUCTOR - component created');
     effect(() => {
       const loaded = this.catalogService.loaded();
       const id = this.id();
       const artist = this.artist();
-      console.log('[ArtistDetail] effect:', {
-        loaded,
-        id,
-        artist: artist?.name ?? null,
-        artistsCount: this.catalogService.artists().length,
-      });
 
       if (!loaded) return;
       if (!artist) {
-        console.warn(
-          '[ArtistDetail] Artist not found, redirecting to not-found. Available IDs:',
-          this.catalogService.artists().map((a) => a.id),
-        );
         this.router.navigate(['/not-found']);
       }
     });

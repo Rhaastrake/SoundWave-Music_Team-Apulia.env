@@ -38,7 +38,6 @@ export class ConcertService {
         this.loaded.set(true);
       },
       error: (err) => {
-        console.error('Caricamento concerti fallito', err);
         this.loaded.set(true);
       },
     });

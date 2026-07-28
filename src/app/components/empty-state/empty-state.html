@@ -1,7 +1,9 @@
 <div class="empty-state">
-  <p class="empty-message">{{ message }}</p>
-  <p class="empty-hint">{{ hint }}</p>
-  @if (showReset) {
-    <button mat-stroked-button color="primary" (click)="reset.emit()">Azzera filtri</button>
-  }
+  <mat-icon class="empty-icon">filter_alt_off</mat-icon>
+  <p class="empty-message">Nessun risultato</p>
+  <p class="empty-hint">Prova a modificare i filtri o la ricerca.</p>
+  <button mat-stroked-button color="primary" type="button" (click)="reset.emit()">
+    <mat-icon>restart_alt</mat-icon>
+    Azzera filtri
+  </button>
 </div>

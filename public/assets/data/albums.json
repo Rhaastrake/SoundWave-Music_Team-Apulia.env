@@ -1,4 +1,4 @@
-  {
+{
   "artists": [
     {
       "id": "artist-1",
@@ -47,279 +47,217 @@
       "title": "Ocean Drive",
       "duration": 245,
       "genre": "Rock",
-      "artistIds": [
-        "artist-1"
-      ]
+      "artistIds": ["artist-1"]
     },
     {
       "id": "track-2",
       "title": "Electric Dreams",
       "duration": 198,
       "genre": "Rock",
-      "artistIds": [
-        "artist-1"
-      ]
+      "artistIds": ["artist-1"]
     },
     {
       "id": "track-3",
       "title": "Midnight Static",
       "duration": 267,
       "genre": "Rock",
-      "artistIds": [
-        "artist-1"
-      ]
+      "artistIds": ["artist-1"]
     },
     {
       "id": "track-4",
       "title": "Coastal Wind",
       "duration": 210,
       "genre": "Rock",
-      "artistIds": [
-        "artist-1"
-      ]
+      "artistIds": ["artist-1"]
     },
     {
       "id": "track-5",
       "title": "Tidepools",
       "duration": 189,
       "genre": "Rock",
-      "artistIds": [
-        "artist-1"
-      ]
+      "artistIds": ["artist-1"]
     },
     {
       "id": "track-6",
       "title": "Neon Skyline",
       "duration": 203,
       "genre": "Pop",
-      "artistIds": [
-        "artist-2"
-      ]
+      "artistIds": ["artist-2"]
     },
     {
       "id": "track-7",
       "title": "Paper Hearts",
       "duration": 187,
       "genre": "Pop",
-      "artistIds": [
-        "artist-2"
-      ]
+      "artistIds": ["artist-2"]
     },
     {
       "id": "track-8",
       "title": "Gravity",
       "duration": 221,
       "genre": "Pop",
-      "artistIds": [
-        "artist-2"
-      ]
+      "artistIds": ["artist-2"]
     },
     {
       "id": "track-9",
       "title": "Afterglow",
       "duration": 176,
       "genre": "Pop",
-      "artistIds": [
-        "artist-2"
-      ]
+      "artistIds": ["artist-2"]
     },
     {
       "id": "track-10",
       "title": "Daydream",
       "duration": 195,
       "genre": "Pop",
-      "artistIds": [
-        "artist-2"
-      ]
+      "artistIds": ["artist-2"]
     },
     {
       "id": "track-11",
       "title": "Sunset Blvd",
       "duration": 208,
       "genre": "Pop",
-      "artistIds": [
-        "artist-2"
-      ]
+      "artistIds": ["artist-2"]
     },
     {
       "id": "track-12",
       "title": "Deep Circuits",
       "duration": 312,
       "genre": "Electronic",
-      "artistIds": [
-        "artist-3"
-      ]
+      "artistIds": ["artist-3"]
     },
     {
       "id": "track-13",
       "title": "Synthetic Rain",
       "duration": 289,
       "genre": "Electronic",
-      "artistIds": [
-        "artist-3"
-      ]
+      "artistIds": ["artist-3"]
     },
     {
       "id": "track-14",
       "title": "Pulse Grid",
       "duration": 254,
       "genre": "Electronic",
-      "artistIds": [
-        "artist-3"
-      ]
+      "artistIds": ["artist-3"]
     },
     {
       "id": "track-15",
       "title": "Static Field",
       "duration": 233,
       "genre": "Electronic",
-      "artistIds": [
-        "artist-3"
-      ]
+      "artistIds": ["artist-3"]
     },
     {
       "id": "track-16",
       "title": "Nightdrive",
       "duration": 276,
       "genre": "Electronic",
-      "artistIds": [
-        "artist-4"
-      ]
+      "artistIds": ["artist-4"]
     },
     {
       "id": "track-17",
       "title": "Chrome Heart",
       "duration": 244,
       "genre": "Electronic",
-      "artistIds": [
-        "artist-4"
-      ]
+      "artistIds": ["artist-4"]
     },
     {
       "id": "track-18",
       "title": "Voltage",
       "duration": 260,
       "genre": "Electronic",
-      "artistIds": [
-        "artist-4"
-      ]
+      "artistIds": ["artist-4"]
     },
     {
       "id": "track-19",
       "title": "Signal Lost",
       "duration": 218,
       "genre": "Electronic",
-      "artistIds": [
-        "artist-4"
-      ]
+      "artistIds": ["artist-4"]
     },
     {
       "id": "track-20",
       "title": "Blackout",
       "duration": 231,
       "genre": "Electronic",
-      "artistIds": [
-        "artist-4"
-      ]
+      "artistIds": ["artist-4"]
     },
     {
       "id": "track-21",
       "title": "Blue Hour",
       "duration": 334,
       "genre": "Jazz",
-      "artistIds": [
-        "artist-5"
-      ]
+      "artistIds": ["artist-5"]
     },
     {
       "id": "track-22",
       "title": "Late Night Sessions",
       "duration": 298,
       "genre": "Jazz",
-      "artistIds": [
-        "artist-5"
-      ]
+      "artistIds": ["artist-5"]
     },
     {
       "id": "track-23",
       "title": "Smoke Signals",
       "duration": 271,
       "genre": "Jazz",
-      "artistIds": [
-        "artist-5"
-      ]
+      "artistIds": ["artist-5"]
     },
     {
       "id": "track-24",
       "title": "Riverside",
       "duration": 287,
       "genre": "Jazz",
-      "artistIds": [
-        "artist-5"
-      ]
+      "artistIds": ["artist-5"]
     },
     {
       "id": "track-25",
       "title": "Autumn Keys",
       "duration": 256,
       "genre": "Jazz",
-      "artistIds": [
-        "artist-5"
-      ]
+      "artistIds": ["artist-5"]
     },
     {
       "id": "track-26",
       "title": "Solstice",
       "duration": 302,
       "genre": "Jazz",
-      "artistIds": [
-        "artist-5"
-      ]
+      "artistIds": ["artist-5"]
     },
     {
       "id": "track-27",
       "title": "Night Sessions",
       "duration": 240,
       "genre": "Electronic",
-      "artistIds": [
-        "artist-3"
-      ]
+      "artistIds": ["artist-3"]
     },
     {
       "id": "track-28",
       "title": "Low Light",
       "duration": 225,
       "genre": "Electronic",
-      "artistIds": [
-        "artist-3"
-      ]
+      "artistIds": ["artist-3"]
     },
     {
       "id": "track-29",
       "title": "Wavelength",
       "duration": 250,
       "genre": "Rock",
-      "artistIds": [
-        "artist-1"
-      ]
+      "artistIds": ["artist-1"]
     },
     {
       "id": "track-30",
       "title": "Undertow",
       "duration": 233,
       "genre": "Rock",
-      "artistIds": [
-        "artist-1"
-      ]
+      "artistIds": ["artist-1"]
     },
     {
       "id": "track-31",
       "title": "Riptide",
       "duration": 219,
       "genre": "Rock",
-      "artistIds": [
-        "artist-1"
-      ]
+      "artistIds": ["artist-1"]
     }
   ],
   "releases": [
@@ -331,11 +269,7 @@
       "imageUrl": "",
       "releaseDate": "2023-05-15",
       "artistId": "artist-1",
-      "trackIds": [
-        "track-1",
-        "track-2",
-        "track-3"
-      ]
+      "trackIds": ["track-1", "track-2", "track-3"]
     },
     {
       "id": "album-2",
@@ -345,10 +279,7 @@
       "imageUrl": "",
       "releaseDate": "2019-08-02",
       "artistId": "artist-1",
-      "trackIds": [
-        "track-4",
-        "track-5"
-      ]
+      "trackIds": ["track-4", "track-5"]
     },
     {
       "id": "album-3",
@@ -358,11 +289,7 @@
       "imageUrl": "",
       "releaseDate": "2021-03-19",
       "artistId": "artist-2",
-      "trackIds": [
-        "track-6",
-        "track-7",
-        "track-8"
-      ]
+      "trackIds": ["track-6", "track-7", "track-8"]
     },
     {
       "id": "album-4",
@@ -372,9 +299,7 @@
       "imageUrl": "",
       "releaseDate": "2024-01-26",
       "artistId": "artist-2",
-      "trackIds": [
-        "track-9"
-      ]
+      "trackIds": ["track-9"]
     },
     {
       "id": "album-5",
@@ -384,10 +309,7 @@
       "imageUrl": "",
       "releaseDate": "2016-06-10",
       "artistId": "artist-2",
-      "trackIds": [
-        "track-10",
-        "track-11"
-      ]
+      "trackIds": ["track-10", "track-11"]
     },
     {
       "id": "album-6",
@@ -397,11 +319,7 @@
       "imageUrl": "",
       "releaseDate": "2020-11-13",
       "artistId": "artist-3",
-      "trackIds": [
-        "track-12",
-        "track-13",
-        "track-14"
-      ]
+      "trackIds": ["track-12", "track-13", "track-14"]
     },
     {
       "id": "album-7",
@@ -411,9 +329,7 @@
       "imageUrl": "",
       "releaseDate": "2025-02-14",
       "artistId": "artist-3",
-      "trackIds": [
-        "track-15"
-      ]
+      "trackIds": ["track-15"]
     },
     {
       "id": "album-8",
@@ -423,11 +339,7 @@
       "imageUrl": "",
       "releaseDate": "2018-09-07",
       "artistId": "artist-4",
-      "trackIds": [
-        "track-16",
-        "track-17",
-        "track-18"
-      ]
+      "trackIds": ["track-16", "track-17", "track-18"]
     },
     {
       "id": "album-9",
@@ -437,10 +349,7 @@
       "imageUrl": "",
       "releaseDate": "2022-04-22",
       "artistId": "artist-4",
-      "trackIds": [
-        "track-19",
-        "track-20"
-      ]
+      "trackIds": ["track-19", "track-20"]
     },
     {
       "id": "album-10",
@@ -450,11 +359,7 @@
       "imageUrl": "",
       "releaseDate": "2005-10-01",
       "artistId": "artist-5",
-      "trackIds": [
-        "track-21",
-        "track-22",
-        "track-23"
-      ]
+      "trackIds": ["track-21", "track-22", "track-23"]
     },
     {
       "id": "album-11",
@@ -464,10 +369,7 @@
       "imageUrl": "",
       "releaseDate": "2012-07-18",
       "artistId": "artist-5",
-      "trackIds": [
-        "track-24",
-        "track-25"
-      ]
+      "trackIds": ["track-24", "track-25"]
     },
     {
       "id": "album-12",
@@ -477,9 +379,7 @@
       "imageUrl": "",
       "releaseDate": "2025-12-05",
       "artistId": "artist-5",
-      "trackIds": [
-        "track-26"
-      ]
+      "trackIds": ["track-26"]
     },
     {
       "id": "album-13",
@@ -489,10 +389,7 @@
       "imageUrl": "",
       "releaseDate": "2017-01-30",
       "artistId": "artist-3",
-      "trackIds": [
-        "track-27",
-        "track-28"
-      ]
+      "trackIds": ["track-27", "track-28"]
     },
     {
       "id": "album-14",
@@ -502,11 +399,7 @@
       "imageUrl": "",
       "releaseDate": "2009-04-11",
       "artistId": "artist-1",
-      "trackIds": [
-        "track-29",
-        "track-30",
-        "track-31"
-      ]
+      "trackIds": ["track-29", "track-30", "track-31"]
     }
   ]
 }

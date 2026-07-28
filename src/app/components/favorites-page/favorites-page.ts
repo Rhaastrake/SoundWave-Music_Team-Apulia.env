@@ -10,7 +10,7 @@ import { FavoritesService } from '../../services/favorites.service';
 import { AlbumCardComponent } from '../album-card/album-card';
 
 @Component({
-  selector: 'app-profile-page',
+  selector: 'app-favorites-page',
   imports: [
     RouterLink,
     AlbumCardComponent,
@@ -20,10 +20,10 @@ import { AlbumCardComponent } from '../album-card/album-card';
     MatListModule,
     MatProgressSpinnerModule,
   ],
-  templateUrl: './profile-page.html',
-  styleUrl: './profile-page.scss',
+  templateUrl: './favorites-page.html',
+  styleUrl: './favorites-page.scss',
 })
-export class ProfilePageComponent {
+export class FavoritesPageComponent {
   protected readonly favorites = inject(FavoritesService);
   private readonly catalog = inject(CatalogService);
 
