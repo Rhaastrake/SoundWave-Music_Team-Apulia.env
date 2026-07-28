@@ -1,15 +1,17 @@
-import { DatePipe } from '@angular/common';
 import { Component, computed, effect, inject } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { Meta } from '@angular/platform-browser';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { Genre } from '../../enums';
 import { Artist } from '../../models';
-import { Genre, ContentType } from '../../enums';
 import { CatalogService } from '../../services/catalog.service';
 import { ConcertService } from '../../services/concert.service';
+import { AlbumCardComponent } from '../album-card/album-card';
 import { EmptyStateComponent } from '../empty-state/empty-state';
 
 const GENRE_LABELS: Record<Genre, string> = {
@@ -19,16 +21,17 @@ const GENRE_LABELS: Record<Genre, string> = {
   [Genre.Jazz]: 'Jazz',
 };
 
-const TYPE_LABELS: Record<ContentType, string> = {
-  [ContentType.Album]: 'Album',
-  [ContentType.EP]: 'EP',
-  [ContentType.Single]: 'Singolo',
-};
-
 @Component({
-  standalone: true,
   selector: 'app-artist-detail',
-  imports: [RouterLink, EmptyStateComponent, DatePipe, MatButtonModule, MatCardModule],
+  imports: [
+    RouterLink,
+    DatePipe,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    AlbumCardComponent,
+    EmptyStateComponent,
+  ],
   templateUrl: './artist-detail.html',
   styleUrl: './artist-detail.scss',
 })
@@ -44,11 +47,15 @@ export class ArtistDetailComponent {
   protected readonly artist = computed<Artist | null>(() => {
     if (!this.catalogService.loaded()) return null;
     const id = this.id();
-    const found = id ? (this.catalogService.getArtistById(id) ?? null) : null;
-    return found;
+    return id ? (this.catalogService.getArtistById(id) ?? null) : null;
   });
 
   protected readonly loading = computed(() => !this.catalogService.loaded());
+
+  protected readonly genreLabel = computed(() => {
+    const a = this.artist();
+    return a ? GENRE_LABELS[a.mainGenre] : '';
+  });
 
   protected readonly sortedAlbums = computed(() => {
     const a = this.artist();
@@ -64,12 +71,8 @@ export class ArtistDetailComponent {
 
   constructor() {
     effect(() => {
-      const loaded = this.catalogService.loaded();
-      const id = this.id();
-      const artist = this.artist();
-
-      if (!loaded) return;
-      if (!artist) {
+      if (!this.catalogService.loaded()) return;
+      if (!this.artist()) {
         this.router.navigate(['/not-found']);
       }
     });
@@ -83,14 +86,5 @@ export class ArtistDetailComponent {
         });
       }
     });
-  }
-
-  protected get genreLabel(): string {
-    const a = this.artist();
-    return a ? GENRE_LABELS[a.mainGenre] : '';
-  }
-
-  protected getAlbumTypeLabel(type: ContentType): string {
-    return TYPE_LABELS[type];
   }
 }

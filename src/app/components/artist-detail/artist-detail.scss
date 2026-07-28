@@ -1,23 +1,30 @@
 .artist-detail {
+  padding: 1.5rem;
   max-width: 900px;
   margin: 0 auto;
-  padding: 32px 16px;
 }
 
 .artist-header {
   display: flex;
-  gap: 32px;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  align-items: flex-start;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 }
 
 .artist-cover {
-  width: 280px;
-  min-width: 280px;
-  aspect-ratio: 1;
+  width: 200px;
+  height: 200px;
+  min-width: 200px;
+  min-height: 200px;
+  flex-shrink: 0;
   border-radius: 8px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   img {
     width: 100%;
@@ -26,156 +33,107 @@
   }
 
   .placeholder-cover {
-    font-size: 4rem;
-    color: var(--mat-sys-outline);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    mat-icon {
+      font-size: 80px;
+      width: 80px;
+      height: 80px;
+      opacity: 0.4;
+    }
   }
 }
 
 .artist-info {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-}
+  align-items: flex-start;
 
-.artist-name {
-  margin: 0 0 12px;
-}
+  @media (max-width: 600px) {
+    align-items: center;
+  }
 
-.artist-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-  margin-bottom: 16px;
-}
+  .artist-name {
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 0.75rem;
+  }
 
-.badge {
-  font-size: 0.8125rem;
-  padding: 3px 10px;
-  border-radius: 4px;
-  font-weight: 500;
-}
+  .artist-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
 
-.genre {
-  background: var(--mat-sys-primary-container);
-  color: var(--mat-sys-on-primary-container);
-}
-
-.artist-formation {
-  font-size: 0.875rem;
-  color: var(--mat-sys-outline);
-}
-
-.artist-bio {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--mat-sys-on-surface-variant);
-  margin: 0;
-}
-
-.loading-state,
-.not-found-state {
-  padding: 60px 20px;
-  text-align: center;
-  color: var(--mat-sys-on-surface-variant);
-  font-size: 1.1rem;
-}
-
-.not-found-state {
-  color: var(--mat-sys-error);
-}
-
-.section-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin: 40px 0 20px;
-  color: var(--mat-sys-on-surface);
-}
-
-.albums-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 20px;
-
-  .album-link {
-    cursor: pointer;
-    border-radius: var(--mat-sys-corner-medium, 12px);
-    transition:
-      transform 0.2s,
-      box-shadow 0.2s;
-
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    .genre-tag {
+      background-color: rgba(0, 0, 0, 0.06);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 500;
     }
 
-    .album-cover-placeholder {
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      border-radius: 1rem;
-      justify-content: center;
-      font-size: 3rem;
-      color: var(--mat-sys-outline);
-      background: var(--mat-sys-surface-container-highest);
-    }
-
-    mat-card-content {
-      padding-top: 12px;
-    }
-
-    .album-title {
-      margin: 0 0 4px;
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .album-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
-      font-size: 0.75rem;
-      margin: 0;
-
-      .badge {
-        padding: 2px 8px;
-        text-transform: uppercase;
-        letter-spacing: 0.3px;
-
-        &.type {
-          background: var(--mat-sys-secondary-container);
-          color: var(--mat-sys-on-secondary-container);
-        }
-      }
-
-      .album-year {
-        color: var(--mat-sys-outline);
-      }
+    .artist-formation {
+      font-size: 0.9rem;
+      opacity: 0.7;
     }
   }
+
+  .artist-bio {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    opacity: 0.75;
+    margin: 0;
+  }
+}
+
+.artist-section {
+  margin-bottom: 2.5rem;
+
+  h2 {
+    font-size: 1.25rem;
+    margin: 0 0 1rem;
+  }
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
 }
 
 .events-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
+
+  .event-details {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.75;
+  }
 }
 
-@media (max-width: 768px) {
-  .artist-header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
+.loading-state,
+.not-found-state {
+  padding: 3.75rem 1.25rem;
+  text-align: center;
+  font-size: 1.05rem;
+  opacity: 0.7;
+}
 
-  .artist-cover {
-    width: 200px;
-    min-width: 200px;
-  }
+.not-found-state {
+  color: var(--mat-sys-error);
+  opacity: 1;
+}
 
-  .artist-meta {
-    justify-content: center;
-  }
+.actions-footer {
+  margin-top: 2rem;
 }
