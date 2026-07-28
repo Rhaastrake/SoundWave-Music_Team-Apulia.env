@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 
 @Component({
-  standalone: true,
   selector: 'app-home-placeholder',
   template: '',
 })

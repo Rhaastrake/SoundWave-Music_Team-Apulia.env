@@ -4,6 +4,7 @@ import { ArtistDetailComponent } from './components/artist-detail/artist-detail'
 import { CatalogPageComponent } from './components/catalog-page/catalog-page';
 import { HomePlaceholderComponent } from './components/home-placeholder/home-placeholder';
 import { NotFoundComponent } from './components/not-found/not-found';
+import { ProfilePageComponent } from './components/profile-page/profile-page';
 
 export const routes: Routes = [
   { path: '', component: HomePlaceholderComponent },

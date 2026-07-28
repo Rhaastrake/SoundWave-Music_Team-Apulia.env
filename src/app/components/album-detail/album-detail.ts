@@ -1,11 +1,15 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Album } from '../../models';
 import { Genre } from '../../enums';
+import { Album } from '../../models';
+import { DurationPipe } from '../../pipes/duration';
 import { CatalogService } from '../../services/catalog.service';
 import { FavoritesService } from '../../services/favorites.service';
-import { DurationPipe } from '../../pipes/duration';
 
 const GENRE_LABELS: Record<Genre, string> = {
   [Genre.Rock]: 'Rock',
@@ -15,9 +19,15 @@ const GENRE_LABELS: Record<Genre, string> = {
 };
 
 @Component({
-  standalone: true,
   selector: 'app-album-detail',
-  imports: [RouterLink, DurationPipe],
+  imports: [
+    RouterLink,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatChipsModule,
+    DurationPipe,
+  ],
   templateUrl: './album-detail.html',
   styleUrl: './album-detail.scss',
 })

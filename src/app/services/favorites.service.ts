@@ -13,7 +13,7 @@ export class FavoritesService {
 
   readonly favoritesCount = computed(() => this.favoriteIds().size);
 
-  /** Album preferiti "grezzi" — utile per il dettaglio (DEV-C). */
+
   readonly favoriteAlbums = computed<Album[]>(() => {
     const ids = this.favoriteIds();
     return this.catalog.albums().filter((a) => ids.has(a.id));

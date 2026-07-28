@@ -41,7 +41,12 @@ export class CatalogService {
 
   readonly albums: WritableSignal<Album[]> = signal([]);
   readonly artists: WritableSignal<Artist[]> = signal([]);
+  readonly tracks: WritableSignal<Track[]> = signal([]);
   readonly loaded: WritableSignal<boolean> = signal(false);
+
+  /** Indici per lookup O(1) per id. */
+  readonly albumIndex = computed(() => new Map(this.albums().map((a) => [a.id, a])));
+  readonly trackIndex = computed(() => new Map(this.tracks().map((t) => [t.id, t])));
 
   readonly searchText: WritableSignal<string> = signal('');
   readonly selectedGenres: WritableSignal<Genre[]> = signal([]);
@@ -123,6 +128,7 @@ export class CatalogService {
     });
 
     this.artists.set([...artistMap.values()]);
+    this.tracks.set([...trackMap.values()]);
     this.albums.set(albums);
     console.log('[CatalogService] Artists set:', this.artists().map(a => a.id));
   }
@@ -135,7 +141,11 @@ export class CatalogService {
   }
 
   getAlbumById(id: string): Album | undefined {
-    return this.albums().find((a) => a.id === id);
+    return this.albumIndex().get(id);
+  }
+
+  getTrackById(id: string): Track | undefined {
+    return this.trackIndex().get(id);
   }
 
   getArtistById(id: string): Artist | undefined {

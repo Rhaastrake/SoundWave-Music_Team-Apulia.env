@@ -5,22 +5,32 @@
         @if (album.imageUrl) {
           <img [src]="album.imageUrl" [alt]="album.title" />
         } @else {
-          <div class="placeholder-cover">🎵</div>
+          <div class="placeholder-cover">
+            <mat-icon>album</mat-icon>
+          </div>
         }
       </div>
+
       <div class="album-info">
         <h1 class="album-title">{{ album.title }}</h1>
         <p class="album-artist">{{ album.artist.name }}</p>
+
         <div class="album-meta">
-          <span class="badge genre">{{ genreLabel }}</span>
+          <span class="genre-tag">{{ genreLabel }}</span>
           <span class="album-year">{{ year }}</span>
         </div>
+
         <p class="album-duration">Durata totale: {{ totalDuration | duration }}</p>
+
         <button
-          class="favorite-btn"
-          [class.is-favorite]="favoritesService.isFavorite(album.id)"
+          mat-flat-button
+          type="button"
+          [color]="favoritesService.isFavorite(album.id) ? 'warn' : 'primary'"
           (click)="favoritesService.toggleFavorite(album.id)"
         >
+          <mat-icon>
+            {{ favoritesService.isFavorite(album.id) ? 'favorite' : 'favorite_border' }}
+          </mat-icon>
           {{
             favoritesService.isFavorite(album.id)
               ? 'Rimuovi dai preferiti'
@@ -32,17 +42,24 @@
 
     <div class="tracklist">
       <h2>Tracklist</h2>
-      <ol class="track-list">
+
+      <mat-list class="track-list">
         @for (track of album.tracks; track track.id; let i = $index) {
-          <li class="track-item">
-            <span class="track-number">{{ i + 1 }}</span>
-            <span class="track-title">{{ track.title }}</span>
-            <span class="track-duration">{{ track.duration | duration }}</span>
-          </li>
+          <mat-list-item>
+            <!-- Usiamo matListItemIcon così Material lo allinea correttamente a sinistra -->
+            <span matListItemIcon class="track-number">{{ i + 1 }}</span>
+            <span matListItemTitle>{{ track.title }}</span>
+            <span matListItemMeta class="track-duration">{{ track.duration | duration }}</span>
+          </mat-list-item>
         }
-      </ol>
+      </mat-list>
     </div>
 
-    <a class="back-link" routerLink="/catalog">← Torna al catalogo</a>
+    <div class="actions-footer">
+      <a mat-button routerLink="/catalog">
+        <mat-icon>arrow_back</mat-icon>
+        Torna al catalogo
+      </a>
+    </div>
   }
 </div>
