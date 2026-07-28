@@ -3,7 +3,6 @@ import { Injectable, WritableSignal, computed, inject, signal } from '@angular/c
 import { ContentType, Genre } from '../enums';
 import { Album, Artist, Track } from '../models';
 
-/** Shape del JSON: normalizzato, senza Date, senza riferimenti circolari, enum per nome. */
 interface RawArtist {
   id: string;
   name: string;
@@ -77,14 +76,12 @@ export class CatalogService {
         this.build(data);
         this.loaded.set(true);
       },
-      error: (err) => {
-        console.error('Caricamento catalogo fallito', err);
+      error: () => {
         this.loaded.set(true);
       },
     });
   }
 
-  /** Ricostruisce Date, enum numerici e i riferimenti circolari artist<->album. */
   private build(data: CatalogData): void {
     const artistMap = new Map<string, Artist>();
     data.artists.forEach((a) =>
@@ -144,6 +141,10 @@ export class CatalogService {
 
   getTrackById(id: string): Track | undefined {
     return this.trackIndex().get(id);
+  }
+
+  getArtistById(id: string): Artist | undefined {
+    return this.artists().find((a) => a.id === id);
   }
 
   setGenre(genres: Genre[]): void {

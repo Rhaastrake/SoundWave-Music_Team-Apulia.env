@@ -6,6 +6,9 @@ export interface Concert extends WithId {
   location: string;
   city: string;
   date: Date;
+  artistId: string;
+  basePrice: number;
+  availableSeats: number;
   duration: Date;
   trackList: Track[];
 }

@@ -1,0 +1,92 @@
+<div class="artist-detail">
+  @if (loading()) {
+    <div class="loading-state">Caricamento catalogo...</div>
+  } @else if (artist(); as artist) {
+    <div class="artist-header">
+      <div class="artist-cover">
+        @if (artist.imageUrl) {
+          <img [src]="artist.imageUrl" [alt]="artist.name" />
+        } @else {
+          <div class="placeholder-cover">
+            <mat-icon>person</mat-icon>
+          </div>
+        }
+      </div>
+
+      <div class="artist-info">
+        <h1 class="artist-name">{{ artist.name }}</h1>
+
+        <div class="artist-meta">
+          <span class="genre-tag">{{ genreLabel() }}</span>
+          <span class="artist-formation">{{ artist.formationYear }}</span>
+        </div>
+
+        <p class="artist-bio">{{ artist.bio }}</p>
+      </div>
+    </div>
+
+    @if (sortedAlbums().length > 0) {
+      <section class="artist-section">
+        <h2>Discografia</h2>
+        <div class="album-grid">
+          @for (album of sortedAlbums(); track album.id) {
+            <app-album-card [album]="album" />
+          }
+        </div>
+      </section>
+    }
+
+    <section class="artist-section">
+      <h2>Prossimi eventi live</h2>
+      @if (upcomingConcerts().length > 0) {
+        <div class="events-list">
+          @for (concert of upcomingConcerts(); track concert.id) {
+            <mat-card appearance="outlined" class="event-card">
+              <mat-card-header>
+                <mat-card-title>{{ concert.title }}</mat-card-title>
+                <mat-card-subtitle>{{
+                  concert.date | date: 'dd/MM/yyyy · HH:mm'
+                }}</mat-card-subtitle>
+              </mat-card-header>
+
+              <mat-card-content>
+                <ul class="event-meta">
+                  <li>
+                    <mat-icon>place</mat-icon>
+                    <span>{{ concert.location }}, {{ concert.city }}</span>
+                  </li>
+                  <li>
+                    <mat-icon>sell</mat-icon>
+                    <span>da €{{ concert.basePrice }}</span>
+                  </li>
+                  <li>
+                    <mat-icon>event_seat</mat-icon>
+                    <span>{{ concert.availableSeats }} posti disponibili</span>
+                  </li>
+                </ul>
+              </mat-card-content>
+
+              <mat-card-actions align="end">
+                <a matButton="filled" [routerLink]="['/tickets', concert.id]">Acquista biglietti</a>
+              </mat-card-actions>
+            </mat-card>
+          }
+        </div>
+      } @else {
+        <app-empty-state
+          message="Nessun evento in programma per questo artista"
+          hint="Torna a trovarci per scoprire le prossime date"
+        />
+      }
+    </section>
+
+    <div class="actions-footer">
+      <a mat-button routerLink="/catalog">
+        <mat-icon>arrow_back</mat-icon>
+        Torna al catalogo
+      </a>
+    </div>
+  } @else {
+    <div class="not-found-state">Artista non trovato (ID: {{ id() }})</div>
+  }
+</div>
