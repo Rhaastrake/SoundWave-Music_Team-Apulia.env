@@ -1,14 +1,25 @@
 import { Component, computed, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterLink } from '@angular/router';
+import { DurationPipe } from '../../pipes';
 import { CatalogService } from '../../services/catalog.service';
 import { FavoritesService } from '../../services/favorites.service';
 import { AlbumCardComponent } from '../album-card/album-card';
-import { DurationPipe } from '../../pipes';
 
 @Component({
-  standalone: true,
   selector: 'app-profile-page',
-  imports: [RouterLink, AlbumCardComponent, DurationPipe],
+  imports: [
+    RouterLink,
+    AlbumCardComponent,
+    DurationPipe,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.scss',
 })

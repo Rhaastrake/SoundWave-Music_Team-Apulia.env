@@ -1,10 +1,12 @@
 <div class="catalog-page">
   <app-filter-bar />
 
-  <p class="results-counter">
-    {{ service.resultCount() }}
-    {{ service.resultCount() === 1 ? 'risultato' : 'risultati' }}
-  </p>
+  <div class="catalog-meta">
+    <span class="results-counter">
+      {{ service.resultCount() }}
+      {{ service.resultCount() === 1 ? 'risultato' : 'risultati' }}
+    </span>
+  </div>
 
   @if (service.resultCount() > 0) {
     <div class="album-grid">

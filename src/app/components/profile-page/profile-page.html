@@ -11,35 +11,47 @@
   </header>
 
   @if (loading()) {
-    <p class="loading">Caricamento…</p>
+    <div class="loading-container">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Caricamento…</p>
+    </div>
   } @else if (isEmpty()) {
     <div class="empty-state">
+      <mat-icon class="empty-icon">favorite_border</mat-icon>
       <p class="empty-message">Nessun preferito</p>
       <p class="empty-hint">Aggiungi brani e release dal catalogo.</p>
-      <a class="back-link" routerLink="/catalog">Vai al catalogo</a>
+      <a mat-flat-button color="primary" routerLink="/catalog">
+        <mat-icon>library_music</mat-icon>
+        Vai al catalogo
+      </a>
     </div>
   } @else {
     @if (favorites.favoriteTracks().length) {
       <section class="favorites-section">
         <h2>Brani</h2>
-        <ol class="track-list">
+
+        <mat-action-list class="track-list">
           @for (track of favorites.favoriteTracks(); track track.id; let i = $index) {
-            <li class="track-item">
-              <span class="track-number">{{ i + 1 }}</span>
-              <span class="track-title">{{ track.title }}</span>
-              <span class="track-artist">{{ track.artists[0].name }}</span>
-              <span class="track-duration">{{ track.duration | duration }}</span>
-              <button
-                type="button"
-                class="remove-btn"
-                (click)="favorites.toggleFavorite(track.id)"
-                [attr.aria-label]="'Rimuovi ' + track.title + ' dai preferiti'"
-              >
-                ✕
-              </button>
-            </li>
+            <mat-list-item class="track-item">
+              <span matListItemAvatar class="track-number">{{ i + 1 }}</span>
+              <span matListItemTitle>{{ track.title }}</span>
+              <span matListItemLine>{{ track.artists[0].name }}</span>
+
+              <div matListItemMeta class="track-actions">
+                <span class="track-duration">{{ track.duration | duration }}</span>
+                <button
+                  mat-icon-button
+                  color="warn"
+                  type="button"
+                  (click)="favorites.toggleFavorite(track.id)"
+                  [attr.aria-label]="'Rimuovi ' + track.title + ' dai preferiti'"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </mat-list-item>
           }
-        </ol>
+        </mat-action-list>
       </section>
     }
 
