@@ -16,7 +16,7 @@
         >Home</a
       >
       <a mat-button routerLink="/catalog" routerLinkActive="active-link">Catalogo</a>
-      <a mat-button routerLink="/profile" routerLinkActive="active-link">Profilo</a>
+      <a mat-button routerLink="/favorites" routerLinkActive="active-link">Preferiti</a>
     </nav>
 
     <!-- Pulsante Hamburger Mobile -->
@@ -51,12 +51,12 @@
       </a>
       <a
         mat-list-item
-        routerLink="/profile"
+        routerLink="/favorites"
         routerLinkActive="active-link"
         (click)="sidenav.close()"
       >
         <mat-icon matListItemIcon>person</mat-icon>
-        <span matListItemTitle>Profilo</span>
+        <span matListItemTitle>Preferiti</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
