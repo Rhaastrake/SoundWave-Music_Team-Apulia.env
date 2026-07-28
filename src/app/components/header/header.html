@@ -1,0 +1,68 @@
+<mat-toolbar color="primary" class="app-toolbar">
+  <div class="toolbar-container">
+    <!-- Logo -->
+    <a routerLink="/" class="logo" (click)="closeMenu()">
+      <mat-icon class="logo-icon">graphic_eq</mat-icon>
+      <span>SoundWave</span>
+    </a>
+
+    <!-- Navigation Links Desktop -->
+    <nav class="desktop-nav">
+      <a
+        mat-button
+        routerLink="/"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Home</a
+      >
+      <a mat-button routerLink="/catalog" routerLinkActive="active-link">Catalogo</a>
+      <a mat-button routerLink="/profile" routerLinkActive="active-link">Profilo</a>
+    </nav>
+
+    <!-- Pulsante Hamburger Mobile -->
+    <button mat-icon-button class="hamburger-btn" (click)="sidenav.toggle()" aria-label="Menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<!-- Menu Mobile Sidenav -->
+<mat-sidenav-container class="sidenav-container" [hasBackdrop]="true">
+  <mat-sidenav #sidenav mode="over" position="end" class="app-sidenav">
+    <mat-nav-list>
+      <a
+        mat-list-item
+        routerLink="/"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="sidenav.close()"
+      >
+        <mat-icon matListItemIcon>home</mat-icon>
+        <span matListItemTitle>Home</span>
+      </a>
+      <a
+        mat-list-item
+        routerLink="/catalog"
+        routerLinkActive="active-link"
+        (click)="sidenav.close()"
+      >
+        <mat-icon matListItemIcon>library_music</mat-icon>
+        <span matListItemTitle>Catalogo</span>
+      </a>
+      <a
+        mat-list-item
+        routerLink="/profile"
+        routerLinkActive="active-link"
+        (click)="sidenav.close()"
+      >
+        <mat-icon matListItemIcon>person</mat-icon>
+        <span matListItemTitle>Profilo</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Il contenuto della pagina verrà inserito qui tramite app.html -->
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
