@@ -40,9 +40,7 @@ export class AlbumDetailComponent {
   private readonly meta = inject(Meta);
   protected readonly favoritesService = inject(FavoritesService);
 
-  private readonly id = toSignal(
-    this.route.paramMap.pipe(map((params) => params.get('id')))
-  );
+  private readonly id = toSignal(this.route.paramMap.pipe(map((params) => params.get('id'))));
 
   protected readonly album = computed<Album | null>(() => {
     if (!this.catalogService.loaded()) return null;
