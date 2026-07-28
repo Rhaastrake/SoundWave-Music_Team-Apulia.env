@@ -3,6 +3,7 @@ import { Injectable, WritableSignal, computed, inject, signal } from '@angular/c
 import { ContentType, Genre } from '../enums';
 import { Album, Artist, Track } from '../models';
 
+/** Shape del JSON: normalizzato, senza Date, senza riferimenti circolari, enum per nome. */
 interface RawArtist {
   id: string;
   name: string;
@@ -71,21 +72,19 @@ export class CatalogService {
   readonly resultCount = computed(() => this.filteredAlbums().length);
 
   constructor() {
-    console.log('[CatalogService] Constructor - starting data load from', this.dataUrl);
     this.http.get<CatalogData>(this.dataUrl).subscribe({
       next: (data) => {
-        console.log('[CatalogService] Data loaded:', { artists: data.artists.length, tracks: data.tracks.length, releases: data.releases.length });
         this.build(data);
         this.loaded.set(true);
-        console.log('[CatalogService] Build complete, loaded=true');
       },
       error: (err) => {
-        console.error('[CatalogService] Caricamento catalogo fallito', err);
+        console.error('Caricamento catalogo fallito', err);
         this.loaded.set(true);
       },
     });
   }
 
+  /** Ricostruisce Date, enum numerici e i riferimenti circolari artist<->album. */
   private build(data: CatalogData): void {
     const artistMap = new Map<string, Artist>();
     data.artists.forEach((a) =>
@@ -130,7 +129,6 @@ export class CatalogService {
     this.artists.set([...artistMap.values()]);
     this.tracks.set([...trackMap.values()]);
     this.albums.set(albums);
-    console.log('[CatalogService] Artists set:', this.artists().map(a => a.id));
   }
 
   private matchesSearch(album: Album, text: string): boolean {
@@ -146,10 +144,6 @@ export class CatalogService {
 
   getTrackById(id: string): Track | undefined {
     return this.trackIndex().get(id);
-  }
-
-  getArtistById(id: string): Artist | undefined {
-    return this.artists().find((a) => a.id === id);
   }
 
   setGenre(genres: Genre[]): void {

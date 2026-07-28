@@ -7,13 +7,9 @@
     transform 0.2s ease,
     box-shadow 0.2s ease;
   overflow: hidden;
-  background-color: var(--mat-sys-surface-container-low);
-  color: var(--mat-sys-on-surface);
-  transition: transform 0.2s, box-shadow 0.2s;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   }
 
   .album-image {
