@@ -62,9 +62,14 @@
   }
 
   .album-artist {
+    align-self: flex-start;
+    margin: 0 0 1.25rem -0.5rem;
     font-size: 1.15rem;
-    opacity: 0.75;
-    margin: 0 0 1.25rem;
+
+    @media (max-width: 600px) {
+      align-self: center;
+      margin-left: 0;
+    }
   }
 
   .album-meta {

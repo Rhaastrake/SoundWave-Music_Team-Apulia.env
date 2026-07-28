@@ -13,7 +13,9 @@
 
       <div class="album-info">
         <h1 class="album-title">{{ album.title }}</h1>
-        <p class="album-artist">{{ album.artist.name }}</p>
+        <a matButton="text" class="album-artist" [routerLink]="['/artist', album.artist.id]">{{
+          album.artist.name
+        }}</a>
 
         <div class="album-meta">
           <span class="genre-tag">{{ genreLabel() }}</span>
