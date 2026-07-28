@@ -1,0 +1,69 @@
+<div class="favorites-page">
+  <div class="favorites-title">
+    <h1>I miei preferiti</h1>
+    @if (!loading() && !isEmpty()) {
+      <p class="favorites-summary">
+        {{ favorites.favoriteTracks().length }} brani ·
+        {{ favorites.favoriteAlbums().length }} release ·
+        {{ totalDuration() | duration }}
+      </p>
+    }
+  </div>
+
+  @if (loading()) {
+    <div class="loading-container">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Caricamento…</p>
+    </div>
+  } @else if (isEmpty()) {
+    <div class="empty-state">
+      <mat-icon class="empty-icon">favorite_border</mat-icon>
+      <p class="empty-message">Nessun preferito</p>
+      <p class="empty-hint">Aggiungi brani e release dal catalogo.</p>
+      <a mat-flat-button color="primary" routerLink="/catalog">
+        <mat-icon>library_music</mat-icon>
+        Vai al catalogo
+      </a>
+    </div>
+  } @else {
+    @if (favorites.favoriteTracks().length) {
+      <section class="favorites-section">
+        <h2>Brani</h2>
+
+        <mat-action-list class="track-list">
+          @for (track of favorites.favoriteTracks(); track track.id; let i = $index) {
+            <mat-list-item class="track-item">
+              <span matListItemAvatar class="track-number">{{ i + 1 }}</span>
+              <span matListItemTitle>{{ track.title }}</span>
+              <span matListItemLine>{{ track.artists[0].name }}</span>
+
+              <div matListItemMeta class="track-actions">
+                <span class="track-duration">{{ track.duration | duration }}</span>
+                <button
+                  mat-icon-button
+                  color="warn"
+                  type="button"
+                  (click)="favorites.toggleFavorite(track.id)"
+                  [attr.aria-label]="'Rimuovi ' + track.title + ' dai preferiti'"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </mat-list-item>
+          }
+        </mat-action-list>
+      </section>
+    }
+
+    @if (favorites.favoriteAlbums().length) {
+      <section class="favorites-section">
+        <h2>Album, EP e singoli</h2>
+        <div class="album-grid">
+          @for (album of favorites.favoriteAlbums(); track album.id) {
+            <app-album-card [album]="album" />
+          }
+        </div>
+      </section>
+    }
+  }
+</div>

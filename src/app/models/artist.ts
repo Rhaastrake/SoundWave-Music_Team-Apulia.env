@@ -1,6 +1,6 @@
-import { Genre } from "../enums";
-import { Album } from "./album";
-import { WithId } from "./with-id";
+import { Genre } from '../enums';
+import { Album } from './album';
+import { WithId } from './with-id';
 
 export interface Artist extends WithId {
   name: string;

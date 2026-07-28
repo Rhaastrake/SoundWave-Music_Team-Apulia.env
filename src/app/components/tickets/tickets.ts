@@ -19,13 +19,12 @@ import { ticketValidator } from '../../validators/ticket.validator';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   templateUrl: './tickets.html',
   styleUrl: './tickets.scss',
 })
 export class TicketsComponent implements OnInit {
-
   private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -45,15 +44,14 @@ export class TicketsComponent implements OnInit {
   totalPrice = this.ticketPrice;
 
   ticketForm = this.fb.group({
-
     nome: [
       '',
       [
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(50),
-        Validators.pattern(/^[A-Za-zÀ-ÿ\s]+$/)
-      ]
+        Validators.pattern(/^[A-Za-zÀ-ÿ\s]+$/),
+      ],
     ],
 
     cognome: [
@@ -62,50 +60,26 @@ export class TicketsComponent implements OnInit {
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(50),
-        Validators.pattern(/^[A-Za-zÀ-ÿ\s]+$/)
-      ]
+        Validators.pattern(/^[A-Za-zÀ-ÿ\s]+$/),
+      ],
     ],
 
-    email: [
-      '',
-      [
-        Validators.required,
-        Validators.email,
-        Validators.maxLength(100)
-      ]
-    ],
+    email: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
 
-    telefono: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern(/^[0-9]+$/),
-        Validators.maxLength(15)
-      ]
-    ],
+    telefono: ['', [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.maxLength(15)]],
 
-    numeroPosti: [
-      1,
-      [
-        Validators.required,
-        ticketValidator(this.availableSeats)
-      ]
-    ]
-
+    numeroPosti: [1, [Validators.required, ticketValidator(this.availableSeats)]],
   });
 
   ngOnInit(): void {
-
     this.updateTotal();
 
     this.ticketForm.controls.numeroPosti.valueChanges.subscribe(() => {
       this.updateTotal();
     });
-
   }
 
   onSubmit(): void {
-
     if (this.ticketForm.invalid) {
       this.ticketForm.markAllAsTouched();
       return;
@@ -113,26 +87,17 @@ export class TicketsComponent implements OnInit {
 
     this.bookingCode = this.generateBookingCode();
     this.bookingCompleted = true;
-
   }
 
   private generateBookingCode(): string {
-
     return 'BK-' + Math.random().toString(36).substring(2, 10).toUpperCase();
-
   }
 
   goToCatalog(): void {
-
     this.router.navigate(['/catalog']);
-
   }
 
   private updateTotal(): void {
-
-    this.totalPrice =
-      Number(this.ticketForm.controls.numeroPosti.value ?? 0) * this.ticketPrice;
-
+    this.totalPrice = Number(this.ticketForm.controls.numeroPosti.value ?? 0) * this.ticketPrice;
   }
-
 }

@@ -6,7 +6,6 @@ import { EmptyStateComponent } from '../empty-state/empty-state';
 import { FilterBarComponent } from '../filter-bar/filter-bar';
 
 @Component({
-  standalone: true,
   selector: 'app-catalog-page',
   imports: [FilterBarComponent, AlbumCardComponent, EmptyStateComponent],
   templateUrl: './catalog-page.html',

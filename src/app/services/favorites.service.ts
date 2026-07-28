@@ -1,5 +1,5 @@
 import { Injectable, WritableSignal, computed, effect, inject, signal } from '@angular/core';
-import { Album } from '../models';
+import { Album, Track } from '../models';
 import { CatalogService } from './catalog.service';
 
 const STORAGE_KEY = 'soundwave.favorites';
@@ -12,10 +12,16 @@ export class FavoritesService {
 
   readonly favoritesCount = computed(() => this.favoriteIds().size);
 
-  /** Preferiti risolti in Album veri; vuoto finché il catalogo non ha caricato. */
+  /** Release preferite risolte in Album veri; vuoto finché il catalogo non ha caricato. */
   readonly favoriteAlbums = computed<Album[]>(() => {
     const ids = this.favoriteIds();
     return this.catalog.albums().filter((a) => ids.has(a.id));
+  });
+
+  /** Brani preferiti risolti in Track veri; vuoto finché il catalogo non ha caricato. */
+  readonly favoriteTracks = computed<Track[]>(() => {
+    const ids = this.favoriteIds();
+    return this.catalog.tracks().filter((t) => ids.has(t.id));
   });
 
   constructor() {
