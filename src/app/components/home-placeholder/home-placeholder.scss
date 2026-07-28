@@ -1,0 +1,152 @@
+.home {
+  display: grid;
+  grid-template-columns: 1fr 700px;
+  gap: 4rem;
+
+  align-items: center;
+
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 3rem;
+}
+
+.home-card {
+  display: flex;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  gap: 1rem;
+  margin-bottom: 6rem;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.eyebrow {
+  color: var(--mat-sys-primary);
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+  font-size: 0.85rem;
+}
+
+.cards-row {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1.5rem;
+
+  width: 100%;
+}
+
+.recommendation-title {
+  margin: 0;
+  align-self: flex-start;
+
+  font-size: 1.5rem;
+  font-weight: 700;
+
+  color: var(--mat-sys-primary);
+}
+
+.cards-row app-album-card {
+  width: 210px;
+  display: block;
+}
+
+.left-column h1 {
+  margin: 0;
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 0;
+  max-width: 520px;
+
+  font-size: 1.2rem;
+  line-height: 1.6;
+
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.actions {
+  margin-top: 1rem;
+}
+
+/* ========================= */
+/*         TABLET            */
+/* ========================= */
+
+@media (max-width: 1200px) {
+
+  .home {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 2rem;
+  }
+
+  .left-column {
+    align-items: center;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .subtitle {
+    max-width: 700px;
+  }
+
+  .right-column {
+    width: 100%;
+  }
+
+  .recommendation-title {
+    align-self: center;
+  }
+
+  .cards-row {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+}
+
+/* ========================= */
+/*         MOBILE            */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  .home {
+    padding: 1.5rem;
+  }
+
+  .left-column h1 {
+    font-size: 2.8rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .cards-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cards-row app-album-card {
+    width: 260px;
+  }
+
+}
