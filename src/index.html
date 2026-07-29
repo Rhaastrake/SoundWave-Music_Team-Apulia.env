@@ -58,6 +58,16 @@
     />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   </head>
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('soundwave.theme');
+      document.documentElement.dataset.theme = saved === 'dark' ? 'dark' : 'light';
+    } catch (e) {
+      document.documentElement.dataset.theme = 'light';
+    }
+  })();
+</script>
   <body>
     <app-root></app-root>
   </body>

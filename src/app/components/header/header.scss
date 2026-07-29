@@ -16,8 +16,8 @@
 
   .toolbar-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 16px;
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
@@ -33,20 +33,29 @@
     text-decoration: none;
     font-weight: bold;
     font-size: 1.25rem;
+    flex-shrink: 0;
   }
 
   .desktop-nav {
     display: flex;
+    align-items: center;
     gap: 8px;
+    margin-left: auto;
 
     a.active-link {
       background-color: rgba(255, 255, 255, 0.15);
       font-weight: 600;
     }
+
+    .theme-btn {
+      margin-left: 4px;
+    }
   }
 
   .hamburger-btn {
     display: none;
+    margin-left: auto;
+    flex-shrink: 0;
   }
 }
 
@@ -88,14 +97,39 @@
     visibility 0.25s ease;
   overflow-y: auto;
 
+  display: flex;
+  flex-direction: column;
+
   &.open {
     transform: translateX(0);
     visibility: visible;
   }
 
+  mat-nav-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  mat-divider {
+    margin-top: auto;
+  }
+
   .active-link {
     background-color: var(--mat-sys-secondary-container);
     font-weight: 600;
+  }
+
+  .theme-list-item {
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    appearance: none;
+    flex-shrink: 0;
   }
 }
 
