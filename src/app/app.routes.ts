@@ -28,6 +28,11 @@ export const routes: Routes = [
       import('./components/favorites-page/favorites-page').then((m) => m.FavoritesPageComponent),
   },
   {
+    path: 'playlists',
+    loadComponent: () =>
+      import('./components/playlists-page/playlists-page').then((m) => m.PlaylistsPageComponent),
+  },
+  {
     path: 'concerts',
     loadComponent: () =>
       import('./components/concert-page/concert-page').then((m) => m.ConcertPageComponent),
