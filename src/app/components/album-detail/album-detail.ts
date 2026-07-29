@@ -9,7 +9,6 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map } from 'rxjs/operators';
-
 import { Genre } from '../../enums';
 import { Album, Track } from '../../models';
 import { DurationPipe } from '../../pipes';

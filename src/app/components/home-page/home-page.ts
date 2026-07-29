@@ -1,9 +1,8 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { Meta } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
-
 import { CatalogService } from '../../services/catalog.service';
 import { AlbumCardComponent } from '../album-card/album-card';
 

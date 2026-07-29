@@ -1,6 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
 import { effect, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
-
 import { Playlist, Track } from '../models';
 
 @Injectable({

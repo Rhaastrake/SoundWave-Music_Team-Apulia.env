@@ -1,14 +1,14 @@
-import { Component, computed, effect, inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { Component, computed, effect, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Meta } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
-import { EmptyStateComponent } from '../empty-state/empty-state';
 import { BookingService } from '../../services/booking.service';
 import { CatalogService } from '../../services/catalog.service';
 import { ConcertService } from '../../services/concert.service';
+import { EmptyStateComponent } from '../empty-state/empty-state';
 
 @Component({
   selector: 'app-concert-page',

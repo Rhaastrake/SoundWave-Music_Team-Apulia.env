@@ -1,4 +1,4 @@
-import { Injectable, WritableSignal, computed, inject, signal } from '@angular/core';
+import { Injectable, WritableSignal, computed, signal } from '@angular/core';
 import { Booking } from '../models';
 
 const STORAGE_KEY = 'soundwave.bookings';

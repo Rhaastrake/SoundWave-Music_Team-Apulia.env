@@ -8,7 +8,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterLink } from '@angular/router';
-
 import { Playlist } from '../../models';
 import { DurationPipe } from '../../pipes';
 import { PlaylistService } from '../../services/playlist.service';
