@@ -6,11 +6,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterLink } from '@angular/router';
 import { BookingService } from '../../services/booking.service';
+import { EmptyStateComponent } from '../empty-state/empty-state';
 
 @Component({
   selector: 'app-booking-page',
   imports: [
     RouterLink,
+    EmptyStateComponent,
     MatButtonModule,
     MatCardModule,
     MatIconModule,

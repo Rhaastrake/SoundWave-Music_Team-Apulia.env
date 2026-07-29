@@ -36,18 +36,14 @@
   </mat-card>
 
   @if (playlistService.playlists().length === 0) {
-    <div class="empty-state">
-      <mat-icon class="empty-icon"> queue_music </mat-icon>
-
-      <p class="empty-message">Nessuna playlist</p>
-
-      <p class="empty-hint">Crea la prima playlist, poi aggiungi i brani dal catalogo.</p>
-
-      <a mat-stroked-button color="primary" routerLink="/catalog">
-        <mat-icon>library_music</mat-icon>
-        Vai al catalogo
-      </a>
-    </div>
+    <app-empty-state
+      icon="queue_music"
+      message="Nessuna playlist"
+      hint="Crea la prima playlist, poi aggiungi i brani dal catalogo."
+      actionLabel="Vai al catalogo"
+      actionIcon="library_music"
+      actionLink="/catalog"
+    />
   } @else {
     <div class="playlist-list">
       @for (playlist of playlistService.playlists(); track playlist.id) {
@@ -84,11 +80,7 @@
 
           <mat-card-content>
             @if (playlist.tracks.length === 0) {
-              <div class="empty-playlist">
-                <mat-icon>music_note</mat-icon>
-
-                <span> Nessun brano in questa playlist. </span>
-              </div>
+              <app-empty-state icon="music_note" message="Nessun brano in questa playlist" />
             } @else {
               <mat-list class="track-list">
                 @for (track of playlist.tracks; track track.id; let i = $index) {

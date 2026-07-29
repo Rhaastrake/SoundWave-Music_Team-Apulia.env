@@ -8,12 +8,14 @@ import { DurationPipe } from '../../pipes';
 import { CatalogService } from '../../services/catalog.service';
 import { FavoritesService } from '../../services/favorites.service';
 import { AlbumCardComponent } from '../album-card/album-card';
+import { EmptyStateComponent } from '../empty-state/empty-state';
 
 @Component({
   selector: 'app-favorites-page',
   imports: [
     RouterLink,
     AlbumCardComponent,
+    EmptyStateComponent,
     DurationPipe,
     MatButtonModule,
     MatIconModule,

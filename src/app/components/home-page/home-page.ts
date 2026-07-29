@@ -8,7 +8,6 @@ import { AlbumCardComponent } from '../album-card/album-card';
 
 @Component({
   selector: 'app-home-page',
-  standalone: true,
   imports: [AlbumCardComponent, MatButtonModule, MatIconModule, RouterLink],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',

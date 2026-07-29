@@ -16,15 +16,14 @@
       <p>Caricamento…</p>
     </div>
   } @else if (isEmpty()) {
-    <div class="empty-state">
-      <mat-icon class="empty-icon">favorite_border</mat-icon>
-      <p class="empty-message">Nessun preferito</p>
-      <p class="empty-hint">Aggiungi brani e release dal catalogo.</p>
-      <a mat-flat-button color="primary" routerLink="/catalog">
-        <mat-icon>library_music</mat-icon>
-        Vai al catalogo
-      </a>
-    </div>
+    <app-empty-state
+      icon="favorite_border"
+      message="Nessun preferito"
+      hint="Aggiungi brani e release dal catalogo."
+      actionLabel="Vai al catalogo"
+      actionIcon="library_music"
+      actionLink="/catalog"
+    />
   } @else {
     @if (favorites.favoriteTracks().length) {
       <section class="favorites-section">

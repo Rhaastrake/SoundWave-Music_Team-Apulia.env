@@ -11,6 +11,7 @@ import { RouterLink } from '@angular/router';
 import { Playlist } from '../../models';
 import { DurationPipe } from '../../pipes';
 import { PlaylistService } from '../../services/playlist.service';
+import { EmptyStateComponent } from '../empty-state/empty-state';
 
 @Component({
   selector: 'app-playlists-page',
@@ -18,6 +19,7 @@ import { PlaylistService } from '../../services/playlist.service';
     ReactiveFormsModule,
     RouterLink,
     DurationPipe,
+    EmptyStateComponent,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
