@@ -8,13 +8,13 @@ import { CatalogService } from '../../services/catalog.service';
 import { AlbumCardComponent } from '../album-card/album-card';
 
 @Component({
-  selector: 'app-home-placeholder',
+  selector: 'app-home-page',
   standalone: true,
   imports: [AlbumCardComponent, MatButtonModule, MatIconModule, RouterLink],
-  templateUrl: './home-placeholder.html',
-  styleUrl: './home-placeholder.scss',
+  templateUrl: './home-page.html',
+  styleUrl: './home-page.scss',
 })
-export class HomePlaceholderComponent implements OnInit {
+export class HomePageComponent implements OnInit {
   private readonly meta = inject(Meta);
 
   readonly catalogService = inject(CatalogService);
@@ -26,7 +26,7 @@ export class HomePlaceholderComponent implements OnInit {
       return albums;
     }
 
-    const shuffled = albums.sort(() => Math.random() - 0.5);
+    const shuffled = this.shuffleArray(albums);
 
     return shuffled.slice(0, 3);
   });
@@ -36,5 +36,14 @@ export class HomePlaceholderComponent implements OnInit {
       name: 'description',
       content: 'SoundWave Music - Discover albums and tracks',
     });
+  }
+
+  private shuffleArray<T>(array: T[]): T[] {
+    const result = [...array];
+    for (let i = result.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [result[i], result[j]] = [result[j], result[i]];
+    }
+    return result;
   }
 }
