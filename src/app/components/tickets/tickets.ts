@@ -129,7 +129,7 @@ export class TicketsComponent implements OnInit {
   }
 
   goToBookings(): void {
-    this.router.navigate(['/prenotazioni']);
+    this.router.navigate(['/bookings']);
   }
 
   protected onlyNumbers(event: KeyboardEvent): void {

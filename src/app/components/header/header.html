@@ -11,7 +11,7 @@
       <a mat-button routerLink="/favorites" routerLinkActive="active-link">Preferiti</a>
       <a mat-button routerLink="/playlists" routerLinkActive="active-link">Playlist</a>
       <a mat-button routerLink="/concerts" routerLinkActive="active-link">Concerti</a>
-      <a mat-button routerLink="/prenotazioni" routerLinkActive="active-link">Prenotazioni</a>
+      <a mat-button routerLink="/bookings" routerLinkActive="active-link">Prenotazioni</a>
 
       <button mat-icon-button class="theme-btn" type="button" (click)="toggleTheme()" [attr.aria-label]="themeLabel()" [matTooltip]="themeLabel()">
         <mat-icon>{{ themeIcon() }}</mat-icon>
@@ -53,7 +53,7 @@
       <span matListItemTitle>Concerti</span>
     </a>
 
-    <a mat-list-item routerLink="/prenotazioni" routerLinkActive="active-link" (click)="closeMenu()">
+    <a mat-list-item routerLink="/bookings" routerLinkActive="active-link" (click)="closeMenu()">
       <mat-icon matListItemIcon>confirmation_number</mat-icon>
       <span matListItemTitle>Prenotazioni</span>
     </a>

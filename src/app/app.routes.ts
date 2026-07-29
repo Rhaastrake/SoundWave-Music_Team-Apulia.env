@@ -42,7 +42,7 @@ export const routes: Routes = [
       import('./components/concert-page/concert-page').then((m) => m.ConcertPageComponent),
   },
   {
-    path: 'prenotazioni',
+    path: 'bookings',
     loadComponent: () =>
       import('./components/booking-page/booking-page').then((m) => m.BookingComponent),
   },
