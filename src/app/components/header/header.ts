@@ -30,7 +30,9 @@ export class HeaderComponent {
 
   readonly menuLabel = computed(() => (this.isMenuOpen() ? 'Chiudi menu' : 'Apri menu'));
 
-  readonly themeIcon = computed(() => (this.themeService.isDark() ? 'brightness_4' : 'brightness_6'));
+  readonly themeIcon = computed(() =>
+    this.themeService.isDark() ? 'brightness_4' : 'brightness_6',
+  );
 
   readonly themeLabel = computed(() =>
     this.themeService.isDark() ? 'Passa al tema chiaro' : 'Passa al tema scuro',

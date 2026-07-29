@@ -6,19 +6,40 @@
     </a>
 
     <nav class="desktop-nav">
-      <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="exactMatch">Home</a>
+      <a
+        mat-button
+        routerLink="/"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="exactMatch"
+        >Home</a
+      >
       <a mat-button routerLink="/catalog" routerLinkActive="active-link">Catalogo</a>
       <a mat-button routerLink="/favorites" routerLinkActive="active-link">Preferiti</a>
       <a mat-button routerLink="/playlists" routerLinkActive="active-link">Playlist</a>
       <a mat-button routerLink="/concerts" routerLinkActive="active-link">Concerti</a>
       <a mat-button routerLink="/bookings" routerLinkActive="active-link">Prenotazioni</a>
 
-      <button mat-icon-button class="theme-btn" type="button" (click)="toggleTheme()" [attr.aria-label]="themeLabel()" [matTooltip]="themeLabel()">
+      <button
+        mat-icon-button
+        class="theme-btn"
+        type="button"
+        (click)="toggleTheme()"
+        [attr.aria-label]="themeLabel()"
+        [matTooltip]="themeLabel()"
+      >
         <mat-icon>{{ themeIcon() }}</mat-icon>
       </button>
     </nav>
 
-    <button mat-icon-button class="hamburger-btn" type="button" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen()" [attr.aria-label]="menuLabel()" aria-controls="mobile-drawer">
+    <button
+      mat-icon-button
+      class="hamburger-btn"
+      type="button"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="isMenuOpen()"
+      [attr.aria-label]="menuLabel()"
+      aria-controls="mobile-drawer"
+    >
       <mat-icon>{{ menuIcon() }}</mat-icon>
     </button>
   </div>
@@ -28,7 +49,13 @@
 
 <nav id="mobile-drawer" class="mobile-drawer" [class.open]="isMenuOpen()">
   <mat-nav-list>
-    <a mat-list-item routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="exactMatch" (click)="closeMenu()">
+    <a
+      mat-list-item
+      routerLink="/"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="exactMatch"
+      (click)="closeMenu()"
+    >
       <mat-icon matListItemIcon>home</mat-icon>
       <span matListItemTitle>Home</span>
     </a>
@@ -60,7 +87,13 @@
 
     <mat-divider></mat-divider>
 
-    <button mat-list-item type="button" class="theme-list-item" (click)="toggleTheme()" [attr.aria-label]="themeLabel()">
+    <button
+      mat-list-item
+      type="button"
+      class="theme-list-item"
+      (click)="toggleTheme()"
+      [attr.aria-label]="themeLabel()"
+    >
       <mat-icon matListItemIcon>{{ themeIcon() }}</mat-icon>
       <span matListItemTitle>Tema</span>
     </button>

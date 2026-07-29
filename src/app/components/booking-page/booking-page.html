@@ -9,20 +9,16 @@
       <p>Caricamento…</p>
     </div>
   } @else if (error()) {
-    <div class="empty-state">
-      <mat-icon class="empty-icon">error_outline</mat-icon>
-      <p class="empty-message">Errore nel caricamento delle prenotazioni</p>
-    </div>
+    <app-empty-state icon="error_outline" message="Errore nel caricamento delle prenotazioni" />
   } @else if (isEmpty()) {
-    <div class="empty-state">
-      <mat-icon class="empty-icon">confirmation_number</mat-icon>
-      <p class="empty-message">Non hai ancora prenotazioni</p>
-      <p class="empty-hint">Acquista i biglietti per i tuoi concerti preferiti.</p>
-      <a mat-flat-button color="primary" routerLink="/concerts">
-        <mat-icon>library_music</mat-icon>
-        Vai all'acquisto biglietti
-      </a>
-    </div>
+    <app-empty-state
+      icon="confirmation_number"
+      message="Non hai ancora prenotazioni"
+      hint="Acquista i biglietti per i tuoi concerti preferiti."
+      actionLabel="Vai all'acquisto biglietti"
+      actionIcon="library_music"
+      actionLink="/concerts"
+    />
   } @else {
     <div class="bookings-list">
       @for (booking of bookings(); track booking.id) {
