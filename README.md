@@ -91,7 +91,7 @@ src/
     │   ├── filter-bar/           # Genre/type/year filter bar
     │   ├── footer/               # App footer
     │   ├── header/               # Navbar (desktop + mobile sidenav)
-    │   ├── home-placeholder/     # Home page (/)
+    │   ├── home-page/           # Home page (/)
     │   ├── not-found/            # 404 page (/not-found)
     │   └── tickets/              # Ticket booking form (/tickets/:concertId)
     ├── enums/
@@ -102,7 +102,6 @@ src/
     │   ├── artist.ts         # Artist (extends WithId)
     │   ├── booking.ts        # Booking (extends WithId)
     │   ├── concert.ts        # Concert (extends WithId)
-    │   ├── favorite-view.model.ts  # FavoriteCardItem
     │   ├── playlist.ts       # Playlist (extends WithId)
     │   ├── ticket.ts         # Ticket (extends WithId)
     │   ├── track.ts          # Track (extends WithId)
@@ -125,12 +124,13 @@ src/
 
 | Path | Component | Lazy |
 |------|-----------|------|
-| `/` | `HomePlaceholderComponent` | Eager |
+| `/` | `HomePageComponent` | ✓ |
 | `/catalog` | `CatalogPageComponent` | ✓ |
 | `/music/:id` | `AlbumDetailComponent` | ✓ |
 | `/artist/:id` | `ArtistDetailComponent` | ✓ |
 | `/tickets/:concertId` | `TicketsComponent` | ✓ |
 | `/favorites` | `FavoritesPageComponent` | ✓ |
+| `/playlists` | `PlaylistsPageComponent` | ✓ |
 | `/concerts` | `ConcertPageComponent` | ✓ |
 | `/prenotazioni` | `BookingComponent` | ✓ |
 | `/not-found` | `NotFoundComponent` | ✓ |
@@ -143,7 +143,7 @@ All routes except the home page (`/`) use **`loadComponent`** to defer loading o
 Each lazy route produces a separate chunk file loaded on demand:
 
 ```
-Initial:  main.js (572 kB)  ← HomePlaceholderComponent only
+Initial:  main.js (572 kB)  ← HomePageComponent only
 Lazy:     catalog-page.js   ← loaded on /catalog
 Lazy:     artist-detail.js  ← loaded on /artist/:id
 Lazy:     concert-page.js   ← loaded on /concerts

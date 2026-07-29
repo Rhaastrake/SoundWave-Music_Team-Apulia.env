@@ -1,8 +1,14 @@
 import { Routes } from '@angular/router';
-import { HomePlaceholderComponent } from './components/home-placeholder/home-placeholder';
 
 export const routes: Routes = [
-  { path: '', component: HomePlaceholderComponent },
+  {
+    path: '',
+    loadComponent: () =>
+      import('./components/home-page/home-page').then(
+        (m) => m.HomePageComponent
+      ),
+  },
+
   {
     path: 'catalog',
     loadComponent: () =>
