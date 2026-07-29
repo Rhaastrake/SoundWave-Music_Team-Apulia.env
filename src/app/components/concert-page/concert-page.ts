@@ -40,8 +40,7 @@ export class ConcertPageComponent {
       .sort((a, b) => a.date.getTime() - b.date.getTime())
       .map((c) => ({
         ...c,
-        artistName:
-          this.catalogService.getArtistById(c.artistId)?.name ?? 'Artista sconosciuto',
+        artistName: this.catalogService.getArtistById(c.artistId)?.name ?? 'Artista sconosciuto',
         availableSeats: this.bookingService.getRemainingSeats(c.id, c.availableSeats),
       }));
   });

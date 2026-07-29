@@ -53,23 +53,23 @@ export class FavoritesService {
       return next;
     });
   }
-  
+
   toggleAlbumFavorite(album: Album): void {
-  this.favoriteIds.update((set) => {
-    const next = new Set(set);
-    const trackIds = album.tracks.map((t) => t.id);
+    this.favoriteIds.update((set) => {
+      const next = new Set(set);
+      const trackIds = album.tracks.map((t) => t.id);
 
-    if (next.has(album.id)) {
-      next.delete(album.id);
-      trackIds.forEach((id) => next.delete(id));
-    } else {
-      next.add(album.id);
-      trackIds.forEach((id) => next.add(id));
-    }
+      if (next.has(album.id)) {
+        next.delete(album.id);
+        trackIds.forEach((id) => next.delete(id));
+      } else {
+        next.add(album.id);
+        trackIds.forEach((id) => next.add(id));
+      }
 
-    return next;
-  });
-}
+      return next;
+    });
+  }
 
   clear(): void {
     this.favoriteIds.set(new Set());

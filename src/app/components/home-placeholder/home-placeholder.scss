@@ -90,7 +90,6 @@
 /* ========================= */
 
 @media (max-width: 1200px) {
-
   .home {
     grid-template-columns: 1fr;
     gap: 3rem;
@@ -119,7 +118,6 @@
     justify-content: center;
     flex-wrap: wrap;
   }
-
 }
 
 /* ========================= */
@@ -127,7 +125,6 @@
 /* ========================= */
 
 @media (max-width: 768px) {
-
   .home {
     padding: 1.5rem;
   }
@@ -148,5 +145,4 @@
   .cards-row app-album-card {
     width: 260px;
   }
-
 }

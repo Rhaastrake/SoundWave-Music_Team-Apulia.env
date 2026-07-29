@@ -1,47 +1,29 @@
 <section class="home">
+  <div class="left-column">
+    <span class="eyebrow">DISCOVER NEW MUSIC</span>
 
-    <div class="left-column">
+    <h1>Benvenuto su SoundWave</h1>
 
-        <span class="eyebrow">DISCOVER NEW MUSIC</span>
+    <p class="subtitle">
+      Esplora una collezione di album, EP e singoli di artisti emergenti. Trova nuova musica, salva
+      i tuoi preferiti e lasciati sorprendere a ogni ascolto.
+    </p>
+    <button mat-raised-button color="primary" routerLink="/catalog">
+      <mat-icon>library_music</mat-icon>
 
-        <h1>Benvenuto su SoundWave</h1>
+      Esplora il Catalogo
+    </button>
+  </div>
 
-        <p class="subtitle">
-            Esplora una collezione di album, EP e singoli di artisti emergenti.
-            Trova nuova musica, salva i tuoi preferiti e lasciati sorprendere a ogni ascolto.
-        </p>
-        <button
-            mat-raised-button
-            color="primary"
-            routerLink="/catalog">
+  <div class="right-column">
+    <h2 class="recommendation-title">🎵 Oggi per te...</h2>
 
-            <mat-icon>library_music</mat-icon>
-
-            Esplora il Catalogo
-
-        </button>
-
-    </div>
-
-    
-    <div class="right-column">
-
-        <h2 class="recommendation-title">
-            🎵 Oggi per te...
-        </h2>
-
-        <div class="cards-row">
-
-            @for (album of randomAlbums(); track album.id) {
-
-            <div class="home-card">
-                <app-album-card [album]="album" />
-            </div>
-
-            }
-
+    <div class="cards-row">
+      @for (album of randomAlbums(); track album.id) {
+        <div class="home-card">
+          <app-album-card [album]="album" />
         </div>
-
+      }
     </div>
-
+  </div>
 </section>

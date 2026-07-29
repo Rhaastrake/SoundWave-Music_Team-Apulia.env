@@ -4,7 +4,9 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 
   &:hover {
     transform: scale(1.03);
@@ -41,54 +43,54 @@
   }
 
   .album-info {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  min-height: 130px;
-
-  .album-title {
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0;
-    height: 2.5rem;
-
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-
-    overflow: hidden;
-  }
-
-  .album-artist {
-    font-size: 0.875rem;
-    opacity: 0.7;
-    margin: 0;
-    height: 1.5rem;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .album-meta {
+    padding: 1rem;
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: auto;
+    flex-direction: column;
+    min-height: 130px;
 
-    .badge {
-      font-size: 0.75rem;
-      padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-      background-color: rgba(0, 0, 0, 0.06);
-      font-weight: 500;
+    .album-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+      height: 2.5rem;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+
+      overflow: hidden;
     }
 
-    .album-year {
-      font-size: 0.8rem;
-      opacity: 0.6;
-      margin-left: auto;
+    .album-artist {
+      font-size: 0.875rem;
+      opacity: 0.7;
+      margin: 0;
+      height: 1.5rem;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .album-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: auto;
+
+      .badge {
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, 0.06);
+        font-weight: 500;
+      }
+
+      .album-year {
+        font-size: 0.8rem;
+        opacity: 0.6;
+        margin-left: auto;
+      }
     }
   }
-}
 }

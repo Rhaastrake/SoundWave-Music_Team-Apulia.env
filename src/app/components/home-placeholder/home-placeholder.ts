@@ -15,13 +15,11 @@ import { AlbumCardComponent } from '../album-card/album-card';
   styleUrl: './home-placeholder.scss',
 })
 export class HomePlaceholderComponent implements OnInit {
-
   private readonly meta = inject(Meta);
 
   readonly catalogService = inject(CatalogService);
 
   readonly randomAlbums = computed(() => {
-
     const albums = [...this.catalogService.albums()];
 
     if (albums.length <= 3) {
@@ -31,16 +29,12 @@ export class HomePlaceholderComponent implements OnInit {
     const shuffled = albums.sort(() => Math.random() - 0.5);
 
     return shuffled.slice(0, 3);
-
   });
 
   ngOnInit(): void {
-
     this.meta.updateTag({
       name: 'description',
       content: 'SoundWave Music - Discover albums and tracks',
     });
-
   }
-
 }
