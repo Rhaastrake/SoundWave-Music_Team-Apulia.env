@@ -83,7 +83,7 @@ src/
     │   ├── album-card/           # Reusable album card component
     │   ├── album-detail/         # Album detail page (/music/:id)
     │   ├── artist-detail/        # Artist detail page (/artist/:id)
-    │   ├── booking-page/         # Booking history page (/prenotazioni)
+    │   ├── booking-page/         # Booking history page (/bookings)
     │   ├── catalog-page/         # Catalog with filters (/catalog)
     │   ├── concert-page/         # All concerts listing (/concerts)
     │   ├── empty-state/          # Reusable empty state component
@@ -106,12 +106,15 @@ src/
     │   ├── ticket.ts         # Ticket (extends WithId)
     │   ├── track.ts          # Track (extends WithId)
     │   └── with-id.ts        # Base interface with `id: string`
-    ├── pipes/                # (reserved for custom pipes)
+    ├── pipes/
+    │   └── duration.ts        # Duration formatting pipe
     ├── services/
     │   ├── booking.service.ts    # Booking CRUD + localStorage persistence
     │   ├── catalog.service.ts    # Albums/artists/tracks loader
     │   ├── concert.service.ts    # Concerts loader
-    │   └── favorites.service.ts  # Favorites toggle + localStorage persistence
+    │   ├── favorites.service.ts  # Favorites toggle + localStorage persistence
+    │   ├── playlist.service.ts   # Playlists CRUD + localStorage persistence
+    │   └── theme.service.ts      # Theme toggle (light/dark) + localStorage persistence
     └── validators/
         └── ticket.validator.ts   # Ticket seats validator (min 1, max 6, availability)
 ```
@@ -132,7 +135,7 @@ src/
 | `/favorites` | `FavoritesPageComponent` | ✓ |
 | `/playlists` | `PlaylistsPageComponent` | ✓ |
 | `/concerts` | `ConcertPageComponent` | ✓ |
-| `/prenotazioni` | `BookingComponent` | ✓ |
+| `/bookings` | `BookingComponent` | ✓ |
 | `/not-found` | `NotFoundComponent` | ✓ |
 | `**` | redirect → `/not-found` | — |
 
