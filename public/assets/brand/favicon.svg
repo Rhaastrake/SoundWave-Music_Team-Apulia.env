@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Michele Garofalo">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F2D588"/>
+      <stop offset="1" stop-color="#C79A2B"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#0E1014"/>
+  <g opacity="0.9"><rect x="4.05" y="26.50" width="7.5" height="11" rx="3.75" fill="#E2662B"/><rect x="15.55" y="18.00" width="7.5" height="28" rx="3.75" fill="#E2662B"/><rect x="27.05" y="9.00" width="7.5" height="46" rx="3.75" fill="#E2662B"/><rect x="38.55" y="18.00" width="7.5" height="28" rx="3.75" fill="#E2662B"/><rect x="50.05" y="26.50" width="7.5" height="11" rx="3.75" fill="#E2662B"/></g>
+  <g opacity="0.9"><rect x="6.45" y="26.50" width="7.5" height="11" rx="3.75" fill="#2D6FD1"/><rect x="17.95" y="18.00" width="7.5" height="28" rx="3.75" fill="#2D6FD1"/><rect x="29.45" y="9.00" width="7.5" height="46" rx="3.75" fill="#2D6FD1"/><rect x="40.95" y="18.00" width="7.5" height="28" rx="3.75" fill="#2D6FD1"/><rect x="52.45" y="26.50" width="7.5" height="11" rx="3.75" fill="#2D6FD1"/></g>
+  <g><rect x="5.25" y="26.50" width="7.5" height="11" rx="3.75" fill="url(#g)"/><rect x="16.75" y="18.00" width="7.5" height="28" rx="3.75" fill="url(#g)"/><rect x="28.25" y="9.00" width="7.5" height="46" rx="3.75" fill="url(#g)"/><rect x="39.75" y="18.00" width="7.5" height="28" rx="3.75" fill="url(#g)"/><rect x="51.25" y="26.50" width="7.5" height="11" rx="3.75" fill="url(#g)"/></g>
+</svg>

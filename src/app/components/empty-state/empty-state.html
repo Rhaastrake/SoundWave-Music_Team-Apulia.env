@@ -1,0 +1,29 @@
+<div class="empty-state">
+  <mat-icon class="empty-icon">{{ icon }}</mat-icon>
+  <p class="empty-message">{{ message }}</p>
+
+  @if (hint) {
+    <p class="empty-hint">{{ hint }}</p>
+  }
+
+  @if (actionLabel || actionLink || resetRequest.observed || actionClick.observed) {
+    @if (actionLink) {
+      <a mat-stroked-button color="primary" [routerLink]="actionLink">
+        @if (actionIcon) {
+          <mat-icon>{{ actionIcon }}</mat-icon>
+        }
+        {{ actionLabel }}
+      </a>
+    } @else {
+      <button
+        mat-stroked-button
+        color="primary"
+        type="button"
+        (click)="actionLabel ? actionClick.emit() : resetRequest.emit()"
+      >
+        <mat-icon>{{ actionIcon || 'restart_alt' }}</mat-icon>
+        {{ actionLabel || 'Azzera filtri' }}
+      </button>
+    }
+  }
+</div>

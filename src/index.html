@@ -1,11 +1,55 @@
 <!doctype html>
-<html lang="en">
+<html lang="it">
   <head>
     <meta charset="utf-8" />
-    <title>SoundWaveMusic</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <title>SoundWave Music — Catalogo album, artisti e concerti live</title>
+    <link rel="canonical" href="https://soundwavemusic.it/" />
+    <meta
+      name="description"
+      content="Esplora il catalogo SoundWave Music: album, EP e singoli di rock, pop, elettronica e jazz, con schede artista e biglietti per i prossimi concerti live."
+    />
+    <meta
+      name="keywords"
+      content="catalogo musicale, album, EP, singoli, artisti, concerti live, biglietti concerti, rock, pop, elettronica, jazz"
+    />
+    <meta name="author" content="SoundWave Music Team" />
+    <meta name="theme-color" content="#006874" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="SoundWave Music — Catalogo album, artisti e concerti live" />
+    <meta
+      property="og:description"
+      content="Esplora il catalogo SoundWave Music: album, EP e singoli di rock, pop, elettronica e jazz, con schede artista e biglietti per i prossimi concerti live."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://soundwavemusic.it/" />
+    <meta property="og:image" content="https://soundwavemusic.it/assets/brand/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logo SoundWave Music" />
+    <meta property="og:site_name" content="SoundWave Music" />
+    <meta property="og:locale" content="it_IT" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="SoundWave Music — Catalogo album, artisti e concerti live"
+    />
+    <meta
+      name="twitter:description"
+      content="Esplora il catalogo SoundWave Music: album, EP e singoli di rock, pop, elettronica e jazz, con schede artista e biglietti per i prossimi concerti live."
+    />
+    <meta name="twitter:image" content="https:/no/soundwavemusic.it/assets/brand/og-image.png" />
+
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/brand/apple-touch-icon.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,6 +58,16 @@
     />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   </head>
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('soundwave.theme');
+        document.documentElement.dataset.theme = saved === 'dark' ? 'dark' : 'light';
+      } catch (e) {
+        document.documentElement.dataset.theme = 'light';
+      }
+    })();
+  </script>
   <body>
     <app-root></app-root>
   </body>

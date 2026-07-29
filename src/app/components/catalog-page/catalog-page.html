@@ -1,0 +1,20 @@
+<div class="catalog-page">
+  <app-filter-bar />
+
+  <div class="catalog-meta">
+    <span class="results-counter">
+      {{ service.resultCount() }}
+      {{ service.resultCount() === 1 ? 'risultato' : 'risultati' }}
+    </span>
+  </div>
+
+  @if (service.resultCount() > 0) {
+    <div class="album-grid">
+      @for (album of service.filteredAlbums(); track album.id) {
+        <app-album-card [album]="album" />
+      }
+    </div>
+  } @else {
+    <app-empty-state (resetRequest)="service.resetFilters()" />
+  }
+</div>

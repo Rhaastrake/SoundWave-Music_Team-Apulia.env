@@ -1,0 +1,143 @@
+<div class="album-detail">
+  @if (loading()) {
+    <div class="loading-state">
+      <p>Caricamento album...</p>
+    </div>
+  } @else if (album(); as album) {
+    <div class="album-header">
+      <div class="album-cover">
+        @if (album.imageUrl) {
+          <img [src]="album.imageUrl" [alt]="'Copertina di ' + album.title" />
+        } @else {
+          <div class="placeholder-cover">
+            <mat-icon>album</mat-icon>
+          </div>
+        }
+      </div>
+
+      <div class="album-info">
+        <h1 class="album-title">
+          {{ album.title }}
+        </h1>
+
+        <a mat-button class="album-artist" [routerLink]="['/artist', album.artist.id]">
+          {{ album.artist.name }}
+        </a>
+
+        <div class="album-meta">
+          <span class="genre-tag">
+            {{ genreLabel() }}
+          </span>
+
+          <span class="album-year">
+            {{ year() }}
+          </span>
+        </div>
+
+        <p class="album-duration">
+          Durata totale:
+          {{ totalDuration() | duration }}
+        </p>
+
+        <button
+          mat-flat-button
+          type="button"
+          [color]="favoritesService.isFavorite(album.id) ? 'warn' : 'primary'"
+          (click)="favoritesService.toggleAlbumFavorite(album)"
+        >
+          <mat-icon>
+            {{ favoritesService.isFavorite(album.id) ? 'favorite' : 'favorite_border' }}
+          </mat-icon>
+
+          {{
+            favoritesService.isFavorite(album.id)
+              ? 'Rimuovi dai preferiti'
+              : 'Aggiungi ai preferiti'
+          }}
+        </button>
+      </div>
+    </div>
+
+    <div class="tracklist">
+      <h2>Tracklist</h2>
+
+      <mat-list class="track-list">
+        @for (track of album.tracks; track track.id; let i = $index) {
+          <mat-list-item class="track-item">
+            <span matListItemIcon class="track-number">
+              {{ i + 1 }}
+            </span>
+
+            <span matListItemTitle>
+              {{ track.title }}
+            </span>
+
+            <div matListItemMeta class="track-actions">
+              <span class="track-duration">
+                {{ track.duration | duration }}
+              </span>
+
+              <button
+                mat-icon-button
+                type="button"
+                class="favorite-track-button"
+                [color]="favoritesService.isFavorite(track.id) ? 'warn' : undefined"
+                (click)="toggleTrackFavorite(track)"
+                [attr.aria-label]="
+                  (favoritesService.isFavorite(track.id) ? 'Rimuovi ' : 'Aggiungi ') +
+                  track.title +
+                  ' ai preferiti'
+                "
+              >
+                <mat-icon>
+                  {{ favoritesService.isFavorite(track.id) ? 'favorite' : 'favorite_border' }}
+                </mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                type="button"
+                class="playlist-track-button"
+                [matMenuTriggerFor]="playlistMenu"
+                [attr.aria-label]="'Aggiungi ' + track.title + ' a una playlist'"
+              >
+                <mat-icon> playlist_add </mat-icon>
+              </button>
+
+              <mat-menu #playlistMenu="matMenu">
+                @if (playlistService.playlists().length === 0) {
+                  <a mat-menu-item routerLink="/playlists">
+                    <mat-icon>add</mat-icon>
+
+                    <span> Crea una playlist </span>
+                  </a>
+                } @else {
+                  @for (playlist of playlistService.playlists(); track playlist.id) {
+                    <button
+                      mat-menu-item
+                      type="button"
+                      (click)="addTrackToPlaylist(playlist.id, playlist.title, track)"
+                    >
+                      <mat-icon> queue_music </mat-icon>
+
+                      <span>
+                        {{ playlist.title }}
+                      </span>
+                    </button>
+                  }
+                }
+              </mat-menu>
+            </div>
+          </mat-list-item>
+        }
+      </mat-list>
+    </div>
+
+    <div class="actions-footer">
+      <a mat-button routerLink="/catalog">
+        <mat-icon>arrow_back</mat-icon>
+        Torna al catalogo
+      </a>
+    </div>
+  }
+</div>
