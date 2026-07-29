@@ -10,7 +10,7 @@
         mat-button
         routerLink="/"
         routerLinkActive="active-link"
-        [routerLinkActiveOptions]="{ exact: true }"
+        [routerLinkActiveOptions]="exactMatch"
         >Home</a
       >
       <a mat-button routerLink="/catalog" routerLinkActive="active-link">Catalogo</a>
@@ -20,74 +20,62 @@
       <a mat-button routerLink="/prenotazioni" routerLinkActive="active-link">Prenotazioni</a>
     </nav>
 
-    <button mat-icon-button class="hamburger-btn" (click)="sidenav.toggle()" aria-label="Menu">
-      <mat-icon>menu</mat-icon>
+    <button
+      mat-icon-button
+      class="hamburger-btn"
+      type="button"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="isMenuOpen()"
+      [attr.aria-label]="menuLabel()"
+      aria-controls="mobile-drawer"
+    >
+      <mat-icon>{{ menuIcon() }}</mat-icon>
     </button>
   </div>
 </mat-toolbar>
 
-<mat-sidenav-container class="sidenav-container" [hasBackdrop]="true">
-  <mat-sidenav #sidenav mode="over" position="end" class="app-sidenav">
-    <mat-nav-list>
-      <a
-        mat-list-item
-        routerLink="/"
-        routerLinkActive="active-link"
-        [routerLinkActiveOptions]="{ exact: true }"
-        (click)="sidenav.close()"
-      >
-        <mat-icon matListItemIcon>home</mat-icon>
-        <span matListItemTitle>Home</span>
-      </a>
-      <a
-        mat-list-item
-        routerLink="/catalog"
-        routerLinkActive="active-link"
-        (click)="sidenav.close()"
-      >
-        <mat-icon matListItemIcon>library_music</mat-icon>
-        <span matListItemTitle>Catalogo</span>
-      </a>
-      <a
-        mat-list-item
-        routerLink="/favorites"
-        routerLinkActive="active-link"
-        (click)="sidenav.close()"
-      >
-        <mat-icon matListItemIcon>person</mat-icon>
-        <span matListItemTitle>Preferiti</span>
-      </a>
-      <a
-        mat-list-item
-        routerLink="/playlists"
-        routerLinkActive="active-link"
-        (click)="sidenav.close()"
-      >
-        <mat-icon matListItemIcon>playlist</mat-icon>
-        <span matListItemTitle>Playlist</span>
-      </a>
-      <a
-        mat-list-item
-        routerLink="/concerts"
-        routerLinkActive="active-link"
-        (click)="sidenav.close()"
-      >
-        <mat-icon matListItemIcon>event</mat-icon>
-        <span matListItemTitle>Concerti</span>
-      </a>
-      <a
-        mat-list-item
-        routerLink="/prenotazioni"
-        routerLinkActive="active-link"
-        (click)="sidenav.close()"
-      >
-        <mat-icon matListItemIcon>confirmation_number</mat-icon>
-        <span matListItemTitle>Prenotazioni</span>
-      </a>
-    </mat-nav-list>
-  </mat-sidenav>
+<div class="menu-backdrop" [class.open]="isMenuOpen()" (click)="closeMenu()"></div>
 
-  <mat-sidenav-content>
-    <ng-content></ng-content>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<nav id="mobile-drawer" class="mobile-drawer" [class.open]="isMenuOpen()">
+  <mat-nav-list>
+    <a
+      mat-list-item
+      routerLink="/"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="exactMatch"
+      (click)="closeMenu()"
+    >
+      <mat-icon matListItemIcon>home</mat-icon>
+      <span matListItemTitle>Home</span>
+    </a>
+
+    <a mat-list-item routerLink="/catalog" routerLinkActive="active-link" (click)="closeMenu()">
+      <mat-icon matListItemIcon>library_music</mat-icon>
+      <span matListItemTitle>Catalogo</span>
+    </a>
+
+    <a mat-list-item routerLink="/favorites" routerLinkActive="active-link" (click)="closeMenu()">
+      <mat-icon matListItemIcon>favorite</mat-icon>
+      <span matListItemTitle>Preferiti</span>
+    </a>
+
+    <a mat-list-item routerLink="/playlists" routerLinkActive="active-link" (click)="closeMenu()">
+      <mat-icon matListItemIcon>queue_music</mat-icon>
+      <span matListItemTitle>Playlist</span>
+    </a>
+
+    <a mat-list-item routerLink="/concerts" routerLinkActive="active-link" (click)="closeMenu()">
+      <mat-icon matListItemIcon>event</mat-icon>
+      <span matListItemTitle>Concerti</span>
+    </a>
+
+    <a
+      mat-list-item
+      routerLink="/prenotazioni"
+      routerLinkActive="active-link"
+      (click)="closeMenu()"
+    >
+      <mat-icon matListItemIcon>confirmation</mat-icon></a
+    ></mat-nav-list
+  >
+</nav>
