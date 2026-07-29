@@ -33,7 +33,7 @@
         <mat-action-list class="track-list">
           @for (track of favorites.favoriteTracks(); track track.id; let i = $index) {
             <mat-list-item class="track-item">
-              <span matListItemAvatar class="track-number">{{ i + 1 }}</span>
+              <span matListItemIcon class="track-number">{{ i + 1 }}</span>
               <span matListItemTitle>{{ track.title }}</span>
               <span matListItemLine>{{ track.artists[0].name }}</span>
 

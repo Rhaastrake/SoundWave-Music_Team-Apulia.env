@@ -14,7 +14,10 @@ export class FavoritesService {
 
   readonly favoriteAlbums = computed<Album[]>(() => {
     const ids = this.favoriteIds();
-    return this.catalog.albums().filter((a) => ids.has(a.id));
+    return this.catalog.albums().filter((a) => {
+      if (!ids.has(a.id)) return false;
+      return a.tracks.some((t) => ids.has(t.id));
+    });
   });
 
   readonly favoriteTracks = computed<Track[]>(() => {
@@ -35,8 +38,35 @@ export class FavoritesService {
   toggleFavorite(id: string): void {
     this.favoriteIds.update((set) => {
       const next = new Set(set);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
+      if (next.has(id)) {
+        next.delete(id);
+        for (const album of this.catalog.albums()) {
+          if (next.has(album.id) && album.tracks.some((t) => t.id === id)) {
+            if (!album.tracks.some((t) => next.has(t.id))) {
+              next.delete(album.id);
+            }
+          }
+        }
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  }
+
+  toggleAlbumFavorite(album: Album): void {
+    this.favoriteIds.update((set) => {
+      const next = new Set(set);
+      const trackIds = album.tracks.map((t) => t.id);
+
+      if (next.has(album.id)) {
+        next.delete(album.id);
+        trackIds.forEach((id) => next.delete(id));
+      } else {
+        next.add(album.id);
+        trackIds.forEach((id) => next.add(id));
+      }
+
       return next;
     });
   }

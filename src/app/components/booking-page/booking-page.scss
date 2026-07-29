@@ -1,0 +1,91 @@
+.prenotazioni-page {
+  padding: 1.5rem;
+}
+
+.prenotazioni-title {
+  margin-bottom: 2rem;
+
+  h1 {
+    margin: 0;
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  gap: 1rem;
+  opacity: 0.7;
+
+  p {
+    margin: 0;
+  }
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 1rem;
+
+  .empty-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+  }
+
+  .empty-message {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0 0 0.25rem;
+  }
+
+  .empty-hint {
+    opacity: 0.6;
+    margin: 0 0 1.5rem;
+  }
+}
+
+.bookings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.booking-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.booking-details {
+  margin-top: 0.5rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  font-size: 0.9rem;
+
+  span:first-child {
+    opacity: 0.6;
+  }
+}
+
+.booking-code {
+  font-family: 'Courier New', monospace;
+  font-weight: 500;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}

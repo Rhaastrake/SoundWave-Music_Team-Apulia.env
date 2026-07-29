@@ -1,0 +1,79 @@
+<div class="prenotazioni-page">
+  <div class="prenotazioni-title">
+    <h1>Le mie prenotazioni</h1>
+  </div>
+
+  @if (loading()) {
+    <div class="loading-container">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Caricamento…</p>
+    </div>
+  } @else if (error()) {
+    <div class="empty-state">
+      <mat-icon class="empty-icon">error_outline</mat-icon>
+      <p class="empty-message">Errore nel caricamento delle prenotazioni</p>
+    </div>
+  } @else if (isEmpty()) {
+    <div class="empty-state">
+      <mat-icon class="empty-icon">confirmation_number</mat-icon>
+      <p class="empty-message">Non hai ancora prenotazioni</p>
+      <p class="empty-hint">Acquista i biglietti per i tuoi concerti preferiti.</p>
+      <a mat-flat-button color="primary" routerLink="/catalog">
+        <mat-icon>library_music</mat-icon>
+        Vai all'acquisto biglietti
+      </a>
+    </div>
+  } @else {
+    <div class="bookings-list">
+      @for (booking of bookings(); track booking.id) {
+        <mat-card class="booking-card" appearance="outlined">
+          <mat-card-header>
+            <mat-icon matCardAvatar>confirmation_number</mat-icon>
+            <mat-card-title>{{ booking.concertTitle }}</mat-card-title>
+            <mat-card-subtitle
+              >{{ booking.concertDate | date: 'd MMMM yyyy, HH:mm' }} —
+              {{ booking.concertCity }}</mat-card-subtitle
+            >
+          </mat-card-header>
+
+          <mat-card-content>
+            <div class="booking-details">
+              <div class="detail-row">
+                <span>Cliente</span>
+                <span>{{ booking.customerName }} {{ booking.customerSurname }}</span>
+              </div>
+              <div class="detail-row">
+                <span>Posti</span>
+                <span>{{ booking.numberOfSeats }}</span>
+              </div>
+              <div class="detail-row">
+                <span>Totale</span>
+                <span>{{ booking.totalPrice | currency: 'EUR' }}</span>
+              </div>
+              <div class="detail-row">
+                <span>Codice prenotazione</span>
+                <span class="booking-code">{{ booking.id }}</span>
+              </div>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <button
+              mat-icon-button
+              color="warn"
+              type="button"
+              (click)="removeBooking(booking.id)"
+              [attr.aria-label]="'Cancella prenotazione ' + booking.id"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+            <a mat-button color="primary" [routerLink]="['/tickets', booking.concertId]">
+              <mat-icon>confirmation_number</mat-icon>
+              Acquista altri biglietti
+            </a>
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+  }
+</div>

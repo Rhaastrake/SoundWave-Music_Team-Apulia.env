@@ -16,6 +16,8 @@
       <a mat-button routerLink="/catalog" routerLinkActive="active-link">Catalogo</a>
       <a mat-button routerLink="/favorites" routerLinkActive="active-link">Preferiti</a>
       <a mat-button routerLink="/playlists" routerLinkActive="active-link">Playlist</a>
+      <a mat-button routerLink="/concerts" routerLinkActive="active-link">Concerti</a>
+      <a mat-button routerLink="/prenotazioni" routerLinkActive="active-link">Prenotazioni</a>
     </nav>
 
     <button mat-icon-button class="hamburger-btn" (click)="sidenav.toggle()" aria-label="Menu">
@@ -63,6 +65,24 @@
       >
         <mat-icon matListItemIcon>playlist</mat-icon>
         <span matListItemTitle>Playlist</span>
+      </a>
+      <a
+        mat-list-item
+        routerLink="/concerts"
+        routerLinkActive="active-link"
+        (click)="sidenav.close()"
+      >
+        <mat-icon matListItemIcon>event</mat-icon>
+        <span matListItemTitle>Concerti</span>
+      </a>
+      <a
+        mat-list-item
+        routerLink="/prenotazioni"
+        routerLinkActive="active-link"
+        (click)="sidenav.close()"
+      >
+        <mat-icon matListItemIcon>confirmation_number</mat-icon>
+        <span matListItemTitle>Prenotazioni</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
