@@ -2,18 +2,12 @@ import { isPlatformBrowser } from '@angular/common';
 import { effect, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { Playlist, Track } from '../models';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root'})
 export class PlaylistService {
   private readonly platformId = inject(PLATFORM_ID);
-
   private readonly storageKey = 'soundwave-playlists';
-
   private readonly playlistState = signal<Playlist[]>(this.loadPlaylists());
-
   readonly playlists = this.playlistState.asReadonly();
-
   private nextId = 1;
 
   constructor() {

@@ -1,0 +1,37 @@
+.mini-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+  background-color: var(--mat-sys-surface-container);
+  color: var(--mat-sys-on-surface);
+  border-top: 1px solid var(--mat-sys-outline-variant);
+  box-shadow: var(--mat-sys-level3);
+  font: var(--mat-sys-body-medium);
+  min-height: 64px;
+  box-sizing: border-box;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.player-track {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .mini-player {
+    padding: 10px 16px;
+  }
+}
