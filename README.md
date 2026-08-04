@@ -92,7 +92,9 @@ src/
     │   ├── footer/               # App footer
     │   ├── header/               # Navbar (desktop + mobile sidenav)
     │   ├── home-page/           # Home page (/)
+    │   ├── mini-player/          # Fixed bottom mini-player with playback controls
     │   ├── not-found/            # 404 page (/not-found)
+    │   ├── playlists-page/       # Playlists page (/playlists)
     │   └── tickets/              # Ticket booking form (/tickets/:concertId)
     ├── enums/
     │   ├── content-type.ts   # Single, EP, Album
@@ -113,6 +115,7 @@ src/
     │   ├── catalog.service.ts    # Albums/artists/tracks loader
     │   ├── concert.service.ts    # Concerts loader
     │   ├── favorites.service.ts  # Favorites toggle + localStorage persistence
+    │   ├── player.service.ts     # Playback state (signals) + simulated progress
     │   ├── playlist.service.ts   # Playlists CRUD + localStorage persistence
     │   └── theme.service.ts      # Theme toggle (light/dark) + localStorage persistence
     └── validators/
@@ -170,12 +173,15 @@ Once loaded, chunks are cached by the browser and reused on subsequent visits.
 
 All state is managed through **Angular Signals** (`WritableSignal`, `computed`, `effect`) — no NgRx or external state library. Services fetch data via `HttpClient` at construction time and expose signals.
 
+The **player** is signal-based as well: private `WritableSignal`s (`currentTrack`, `isPlaying`, `currentTime`, `queue`) exposed read-only via `asReadonly()`, derived values with `computed` (`trackDuration`, `currentProgress`, `currentIndex`, `hasPrevious`, `hasNext`), and simulated progress via an `effect()` that starts a 1-second `setInterval` while playing and clears it with `onCleanup`.
+
 ### Data Flow
 
 1. **Static JSON** files in `public/assets/data/` are fetched by services on app load
 2. **Services** parse raw data into typed models and expose signals
 3. **Components** consume signals via `computed()` and render with Angular `@if` / `@for` control flow
 4. **Booking** and **Favorites** persist to `localStorage`
+5. **Player** state stays in memory (transient) — it is not persisted
 
 ### Key Patterns
 
@@ -183,6 +189,7 @@ All state is managed through **Angular Signals** (`WritableSignal`, `computed`, 
 - **Signals** — synchronous reactive state with `computed` and `effect`
 - **Lazy loading** — `loadComponent` for all non-initial routes
 - **Reactive Forms** — with custom validators (`ticketValidator`)
+- **Player signals** — private writable state exposed read-only (`asReadonly`) with `computed` derived values and an `effect`-driven playback timer
 - **Angular Material 3** — theming via `mat.theme()` with cyan primary, orange tertiary
 
 ### Observable Usage
@@ -265,6 +272,7 @@ No SSR, no server-side dependencies. The app is a fully static SPA.
 - All data is loaded from **static JSON** files (`public/assets/data/`). To add or modify content, edit those files.
 - **No backend API** — the app is entirely client-side. If a backend is added later, replace `HttpClient` calls to JSON files with API endpoints.
 - **localStorage** is used for booking and favorites. Clearing browser storage will reset these.
+- **Playback is simulated** — there is no real audio. Progress advances 1 second at a time and, when a track finishes, the next one in the queue autoplays; the player stops at the end of the queue.
 
 ### Adding a new page
 
