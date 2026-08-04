@@ -7,8 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { Playlist } from '../../models';
+import { Playlist, Track } from '../../models';
 import { DurationPipe } from '../../pipes';
+import { PlayerService } from '../../services/player.service';
 import { PlaylistService } from '../../services/playlist.service';
 import { EmptyStateComponent } from '../empty-state/empty-state';
 
@@ -34,6 +35,8 @@ export class PlaylistsPageComponent {
 
   private readonly formBuilder = inject(FormBuilder);
   private readonly snackBar = inject(MatSnackBar);
+
+  protected readonly playerService = inject(PlayerService);
 
   protected readonly playlistForm = this.formBuilder.nonNullable.group({
     name: [
@@ -97,5 +100,17 @@ export class PlaylistsPageComponent {
 
   protected totalDuration(playlist: Playlist): number {
     return this.playlistService.getTotalDuration(playlist);
+  }
+
+  protected isCurrentTrack(track: Track): boolean {
+    return this.playerService.currentTrack()?.id === track.id;
+  }
+
+  protected playOrPauseTrack(track: Track, queue: Track[]): void {
+    if (this.isCurrentTrack(track)) {
+      this.playerService.togglePlay();
+    } else {
+      this.playerService.playTrack(track, queue);
+    }
   }
 }

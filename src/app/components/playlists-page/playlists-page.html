@@ -84,7 +84,7 @@
             } @else {
               <mat-list class="track-list">
                 @for (track of playlist.tracks; track track.id; let i = $index) {
-                  <mat-list-item>
+                  <mat-list-item [class.current-track]="isCurrentTrack(track)">
                     <span matListItemIcon class="track-number">
                       {{ i + 1 }}
                     </span>
@@ -98,6 +98,19 @@
                     </span>
 
                     <div matListItemMeta class="track-actions">
+                      <button
+                        mat-icon-button
+                        type="button"
+                        class="play-track-button"
+                        [color]="isCurrentTrack(track) ? 'primary' : undefined"
+                        (click)="playOrPauseTrack(track, playlist.tracks)"
+                        [attr.aria-label]="(isCurrentTrack(track) ? 'Metti in pausa ' : 'Riproduci ') + track.title"
+                      >
+                        <mat-icon>
+                          {{ isCurrentTrack(track) && playerService.isPlaying() ? 'pause' : 'play_arrow' }}
+                        </mat-icon>
+                      </button>
+
                       <span class="track-duration">
                         {{ track.duration | duration }}
                       </span>

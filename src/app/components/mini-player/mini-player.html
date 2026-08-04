@@ -1,5 +1,40 @@
 <div class="mini-player">
   <div class="player-info">
-    <span class="player-track">Nessun brano in riproduzione</span>
+    @if (player.currentTrack(); as track) {
+      <span class="player-track">{{ track.title }}</span>
+      <span class="player-artist">{{ trackArtists() }}</span>
+    } @else {
+      <span class="player-track">Nessun brano in riproduzione</span>
+    }
   </div>
+
+  @if (player.currentTrack()) {
+    <div class="player-center">
+      <div class="player-controls">
+        <button mat-icon-button type="button" aria-label="Brano precedente" (click)="player.previous()">
+          <mat-icon>skip_previous</mat-icon>
+        </button>
+
+        <button mat-icon-button type="button" aria-label="Play o pausa" (click)="player.togglePlay()">
+          <mat-icon>{{ player.isPlaying() ? 'pause' : 'play_arrow' }}</mat-icon>
+        </button>
+
+        <button mat-icon-button type="button" aria-label="Brano successivo" (click)="player.next()"
+          [disabled]="!player.hasNext()">
+          <mat-icon>skip_next</mat-icon>
+        </button>
+      </div>
+
+      <div class="player-progress">
+        <span class="player-time">{{ player.currentTime() | duration }}</span>
+
+        <mat-slider [min]="0" [max]="player.trackDuration()">
+          <label for="player-progress">Avanzamento del brano</label>
+          <input id="player-progress" matSliderThumb [value]="player.currentTime()" (valueChange)="onSeek($event)" />
+        </mat-slider>
+
+        <span class="player-time">{{ player.trackDuration() | duration }}</span>
+      </div>
+    </div>
+  }
 </div>

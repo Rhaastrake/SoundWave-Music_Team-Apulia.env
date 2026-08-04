@@ -14,6 +14,7 @@ import { Album, Track } from '../../models';
 import { DurationPipe } from '../../pipes';
 import { CatalogService } from '../../services/catalog.service';
 import { FavoritesService } from '../../services/favorites.service';
+import { PlayerService } from '../../services/player.service';
 import { PlaylistService } from '../../services/playlist.service';
 
 const GENRE_LABELS: Record<Genre, string> = {
@@ -48,6 +49,8 @@ export class AlbumDetailComponent {
   protected readonly favoritesService = inject(FavoritesService);
 
   protected readonly playlistService = inject(PlaylistService);
+
+  protected readonly playerService = inject(PlayerService);
 
   private readonly id = toSignal(this.route.paramMap.pipe(map((params) => params.get('id'))));
 
@@ -145,4 +148,17 @@ export class AlbumDetailComponent {
       duration: 3000,
     });
   }
+
+  protected isCurrentTrack(track: Track): boolean {
+    return this.playerService.currentTrack()?.id === track.id;
+  }
+
+  protected playOrPauseTrack(track: Track, queue: Track[]): void {
+    if (this.isCurrentTrack(track)) {
+      this.playerService.togglePlay();
+    } else {
+      this.playerService.playTrack(track, queue);
+    }
+  }
 }
+
